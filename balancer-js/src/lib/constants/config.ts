@@ -135,6 +135,23 @@ export const BALANCER_NETWORK_CONFIG: Record<Network, BalancerNetworkConfig> = {
     },
     pools: {},
   },
+  [Network.AURORA]: {
+    chainId: Network.AURORA, //1313161554
+    addresses: {
+      contracts: {
+        vault: '0x6985436a0E5247A3E1dc29cdA9e1D89C5b59e26b',
+        multicall: '0x04364F8908BDCB4cc7EA881d0DE869398BA849C9',
+      },
+      tokens: {
+        wrappedNativeAsset: '0xC9BdeEd33CD01541e1eeD10f90519d2C06Fe3feB',
+      },
+    },
+    urls: {
+      subgraph:
+        'https://api.thegraph.com/subgraphs/name/polarisfinance/polaris-dex',
+    },
+    pools: {},
+  },
 };
 
 export const networkAddresses = (
