@@ -8,4 +8,5 @@ export enum Network {
   POLYGON = 137,
   ARBITRUM = 42161,
   AURORA = 1313161554,
+  AURORATEST = 1313161555,
 }

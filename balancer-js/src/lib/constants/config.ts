@@ -152,6 +152,23 @@ export const BALANCER_NETWORK_CONFIG: Record<Network, BalancerNetworkConfig> = {
     },
     pools: {},
   },
+  [Network.AURORATEST]: {
+    chainId: Network.AURORATEST, //1313161555
+    addresses: {
+      contracts: {
+        vault: '0x914A10f5596ab67ff21a278986E7767213Bd967E',
+        multicall: '0x3a4773e600086A753862621A26a2E3274610da43',
+      },
+      tokens: {
+        wrappedNativeAsset: '0xC9BdeEd33CD01541e1eeD10f90519d2C06Fe3feB',
+      },
+    },
+    urls: {
+      subgraph:
+        'https://api.thegraph.com/subgraphs/name/polarisfinance/polaris-dex-testnet',
+    },
+    pools: {},
+  },
 };
 
 export const networkAddresses = (
