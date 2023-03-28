@@ -156,7 +156,7 @@ export const BALANCER_NETWORK_CONFIG: Record<Network, BalancerNetworkConfig> = {
     chainId: Network.AURORATEST, //1313161555
     addresses: {
       contracts: {
-        vault: '0x914A10f5596ab67ff21a278986E7767213Bd967E',
+        vault: '0x3F39DDE7BF3e17Db8F7D56942B1A2C2880C2e622',
         multicall: '0x3a4773e600086A753862621A26a2E3274610da43',
       },
       tokens: {
