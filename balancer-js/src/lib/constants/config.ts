@@ -410,9 +410,9 @@ export const BALANCER_NETWORK_CONFIG: Record<Network, BalancerNetworkConfig> = {
     chainId: Network.AURORATEST, //1313161555
     addresses: {
       contracts: {
-        vault: '0x914A10f5596ab67ff21a278986E7767213Bd967E',
+        vault: '0x3F39DDE7BF3e17Db8F7D56942B1A2C2880C2e622',
         multicall: '0x3a4773e600086A753862621A26a2E3274610da43',
-        balancerHelpers: '0x57642e05Be5951Ef344d10867Cb2172BeE43b21f',
+        balancerHelpers: '0x6C4E3797f4E269D89fd6e57d70bF07e4c81Fc008',
         balancerMinterAddress: '0x4f7C0716A397aeCD5D0247dB28fE6C8e3d3b4372',
         relayerV3: '0x9Ff7C3a8cb7cf8E3bdeF2701d38F1a1abB4a2618',
         relayerV4: '0x9a4B2171350b4f8Cf684405271A7F209e28F1f4E',
@@ -422,7 +422,7 @@ export const BALANCER_NETWORK_CONFIG: Record<Network, BalancerNetworkConfig> = {
           '0xBDF6b1B805807b0909eB8825C60aFbceC1256075',
         veBal: '0x38a7f3381e581C02745E7D71F428E9e3297632E7',
         veBalProxy: '0x36510254A83Db4044882dD039835bdE5e581962F',
-        weightedPoolFactory: '0x6C13F3df404855a3a3E9aAB5bdf22a1c13962bfC',
+        weightedPoolFactory: '0x11b825043Ecc9ec5860E956f45857812dccAdfD0',
         //composableStablePoolFactory:
         //  '0x85a80afee867adf27b50bdb7b76da70f1e853062',
       },
