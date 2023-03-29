@@ -334,15 +334,15 @@ declare class LiquidityGaugesMulticallRepository {
     }>;
 }
 
-declare type Maybe$1<T> = T | null;
-declare type InputMaybe$1<T> = Maybe$1<T>;
-declare type Exact$1<T extends {
+type Maybe$1<T> = T | null;
+type InputMaybe$1<T> = Maybe$1<T>;
+type Exact$1<T extends {
     [key: string]: unknown;
 }> = {
     [K in keyof T]: T[K];
 };
 /** All built-in and custom scalars, mapped to their actual values */
-declare type Scalars$1 = {
+type Scalars$1 = {
     ID: string;
     String: string;
     Boolean: boolean;
@@ -352,7 +352,7 @@ declare type Scalars$1 = {
     BigInt: string;
     Bytes: string;
 };
-declare type Balancer_Filter = {
+type Balancer_Filter = {
     /** Filter for the block changed event. */
     _change_block?: InputMaybe$1<BlockChangedFilter$1>;
     and?: InputMaybe$1<Array<InputMaybe$1<Balancer_Filter>>>;
@@ -416,15 +416,15 @@ declare enum Balancer_OrderBy {
     TotalSwapFee = "totalSwapFee",
     TotalSwapVolume = "totalSwapVolume"
 }
-declare type BlockChangedFilter$1 = {
+type BlockChangedFilter$1 = {
     number_gte: Scalars$1['Int'];
 };
-declare type Block_Height$1 = {
+type Block_Height$1 = {
     hash?: InputMaybe$1<Scalars$1['Bytes']>;
     number?: InputMaybe$1<Scalars$1['Int']>;
     number_gte?: InputMaybe$1<Scalars$1['Int']>;
 };
-declare type GradualWeightUpdate_Filter = {
+type GradualWeightUpdate_Filter = {
     /** Filter for the block changed event. */
     _change_block?: InputMaybe$1<BlockChangedFilter$1>;
     and?: InputMaybe$1<Array<InputMaybe$1<GradualWeightUpdate_Filter>>>;
@@ -499,7 +499,7 @@ declare enum InvestType {
     Exit = "Exit",
     Join = "Join"
 }
-declare type JoinExit_Filter = {
+type JoinExit_Filter = {
     /** Filter for the block changed event. */
     _change_block?: InputMaybe$1<BlockChangedFilter$1>;
     amounts?: InputMaybe$1<Array<Scalars$1['BigDecimal']>>;
@@ -669,7 +669,7 @@ declare enum JoinExit_OrderBy {
     UserId = "user__id",
     ValueUsd = "valueUSD"
 }
-declare type LatestPrice_Filter = {
+type LatestPrice_Filter = {
     /** Filter for the block changed event. */
     _change_block?: InputMaybe$1<BlockChangedFilter$1>;
     and?: InputMaybe$1<Array<InputMaybe$1<LatestPrice_Filter>>>;
@@ -804,7 +804,7 @@ declare enum LatestPrice_OrderBy {
     Price = "price",
     PricingAsset = "pricingAsset"
 }
-declare type ManagementOperation_Filter = {
+type ManagementOperation_Filter = {
     /** Filter for the block changed event. */
     _change_block?: InputMaybe$1<BlockChangedFilter$1>;
     and?: InputMaybe$1<Array<InputMaybe$1<ManagementOperation_Filter>>>;
@@ -877,7 +877,7 @@ declare enum OrderDirection$1 {
     Asc = "asc",
     Desc = "desc"
 }
-declare type PoolHistoricalLiquidity_Filter = {
+type PoolHistoricalLiquidity_Filter = {
     /** Filter for the block changed event. */
     _change_block?: InputMaybe$1<BlockChangedFilter$1>;
     and?: InputMaybe$1<Array<InputMaybe$1<PoolHistoricalLiquidity_Filter>>>;
@@ -1019,7 +1019,7 @@ declare enum PoolHistoricalLiquidity_OrderBy {
     PoolTotalShares = "poolTotalShares",
     PricingAsset = "pricingAsset"
 }
-declare type PoolShare_Filter = {
+type PoolShare_Filter = {
     /** Filter for the block changed event. */
     _change_block?: InputMaybe$1<BlockChangedFilter$1>;
     and?: InputMaybe$1<Array<InputMaybe$1<PoolShare_Filter>>>;
@@ -1146,7 +1146,7 @@ declare enum PoolShare_OrderBy {
     UserAddress = "userAddress",
     UserAddressId = "userAddress__id"
 }
-declare type PoolSnapshot_Filter = {
+type PoolSnapshot_Filter = {
     /** Filter for the block changed event. */
     _change_block?: InputMaybe$1<BlockChangedFilter$1>;
     amounts?: InputMaybe$1<Array<Scalars$1['BigDecimal']>>;
@@ -1311,7 +1311,7 @@ declare enum PoolSnapshot_OrderBy {
     Timestamp = "timestamp",
     TotalShares = "totalShares"
 }
-declare type PoolToken_Filter = {
+type PoolToken_Filter = {
     /** Filter for the block changed event. */
     _change_block?: InputMaybe$1<BlockChangedFilter$1>;
     address?: InputMaybe$1<Scalars$1['String']>;
@@ -1498,7 +1498,7 @@ declare type PoolToken_Filter = {
     weight_not?: InputMaybe$1<Scalars$1['BigDecimal']>;
     weight_not_in?: InputMaybe$1<Array<Scalars$1['BigDecimal']>>;
 };
-declare type Pool_Filter$1 = {
+type Pool_Filter$1 = {
     /** Filter for the block changed event. */
     _change_block?: InputMaybe$1<BlockChangedFilter$1>;
     address?: InputMaybe$1<Scalars$1['Bytes']>;
@@ -2091,7 +2091,7 @@ declare enum Pool_OrderBy$1 {
     WrappedIndex = "wrappedIndex",
     Z = "z"
 }
-declare type PriceRateProvider_Filter = {
+type PriceRateProvider_Filter = {
     /** Filter for the block changed event. */
     _change_block?: InputMaybe$1<BlockChangedFilter$1>;
     address?: InputMaybe$1<Scalars$1['Bytes']>;
@@ -2189,7 +2189,7 @@ declare type PriceRateProvider_Filter = {
     token_starts_with?: InputMaybe$1<Scalars$1['String']>;
     token_starts_with_nocase?: InputMaybe$1<Scalars$1['String']>;
 };
-declare type Swap_Filter = {
+type Swap_Filter = {
     /** Filter for the block changed event. */
     _change_block?: InputMaybe$1<BlockChangedFilter$1>;
     and?: InputMaybe$1<Array<InputMaybe$1<Swap_Filter>>>;
@@ -2357,7 +2357,7 @@ declare type Swap_Filter = {
     valueUSD_not?: InputMaybe$1<Scalars$1['BigDecimal']>;
     valueUSD_not_in?: InputMaybe$1<Array<Scalars$1['BigDecimal']>>;
 };
-declare type TokenPrice_Filter = {
+type TokenPrice_Filter = {
     /** Filter for the block changed event. */
     _change_block?: InputMaybe$1<BlockChangedFilter$1>;
     amount?: InputMaybe$1<Scalars$1['BigDecimal']>;
@@ -2510,7 +2510,7 @@ declare enum TokenPrice_OrderBy {
     PricingAsset = "pricingAsset",
     Timestamp = "timestamp"
 }
-declare type Token_Filter = {
+type Token_Filter = {
     /** Filter for the block changed event. */
     _change_block?: InputMaybe$1<BlockChangedFilter$1>;
     address?: InputMaybe$1<Scalars$1['String']>;
@@ -2690,7 +2690,7 @@ declare type Token_Filter = {
     totalVolumeUSD_not?: InputMaybe$1<Scalars$1['BigDecimal']>;
     totalVolumeUSD_not_in?: InputMaybe$1<Array<Scalars$1['BigDecimal']>>;
 };
-declare type UserInternalBalance_Filter = {
+type UserInternalBalance_Filter = {
     /** Filter for the block changed event. */
     _change_block?: InputMaybe$1<BlockChangedFilter$1>;
     and?: InputMaybe$1<Array<InputMaybe$1<UserInternalBalance_Filter>>>;
@@ -2743,7 +2743,7 @@ declare type UserInternalBalance_Filter = {
     userAddress_starts_with?: InputMaybe$1<Scalars$1['String']>;
     userAddress_starts_with_nocase?: InputMaybe$1<Scalars$1['String']>;
 };
-declare type User_Filter$1 = {
+type User_Filter$1 = {
     /** Filter for the block changed event. */
     _change_block?: InputMaybe$1<BlockChangedFilter$1>;
     and?: InputMaybe$1<Array<InputMaybe$1<User_Filter$1>>>;
@@ -2766,11 +2766,11 @@ declare enum User_OrderBy {
     Swaps = "swaps",
     UserInternalBalances = "userInternalBalances"
 }
-declare type PoolShareQueryVariables = Exact$1<{
+type PoolShareQueryVariables = Exact$1<{
     id: Scalars$1['ID'];
     block?: InputMaybe$1<Block_Height$1>;
 }>;
-declare type PoolShareQuery = {
+type PoolShareQuery = {
     __typename?: 'Query';
     poolShare?: {
         __typename?: 'PoolShare';
@@ -2787,7 +2787,7 @@ declare type PoolShareQuery = {
         };
     } | null;
 };
-declare type PoolSharesQueryVariables = Exact$1<{
+type PoolSharesQueryVariables = Exact$1<{
     first?: InputMaybe$1<Scalars$1['Int']>;
     orderBy?: InputMaybe$1<PoolShare_OrderBy>;
     orderDirection?: InputMaybe$1<OrderDirection$1>;
@@ -2795,7 +2795,7 @@ declare type PoolSharesQueryVariables = Exact$1<{
     where?: InputMaybe$1<PoolShare_Filter>;
     block?: InputMaybe$1<Block_Height$1>;
 }>;
-declare type PoolSharesQuery = {
+type PoolSharesQuery = {
     __typename?: 'Query';
     poolShares: Array<{
         __typename?: 'PoolShare';
@@ -2812,7 +2812,7 @@ declare type PoolSharesQuery = {
         };
     }>;
 };
-declare type SubgraphPoolShareFragment = {
+type SubgraphPoolShareFragment = {
     __typename?: 'PoolShare';
     id: string;
     balance: string;
@@ -2826,7 +2826,7 @@ declare type SubgraphPoolShareFragment = {
         address: string;
     };
 };
-declare type PoolsQueryVariables$1 = Exact$1<{
+type PoolsQueryVariables$1 = Exact$1<{
     skip?: InputMaybe$1<Scalars$1['Int']>;
     first?: InputMaybe$1<Scalars$1['Int']>;
     orderBy?: InputMaybe$1<Pool_OrderBy$1>;
@@ -2834,7 +2834,7 @@ declare type PoolsQueryVariables$1 = Exact$1<{
     where?: InputMaybe$1<Pool_Filter$1>;
     block?: InputMaybe$1<Block_Height$1>;
 }>;
-declare type PoolsQuery$1 = {
+type PoolsQuery$1 = {
     __typename?: 'Query';
     pools: Array<{
         __typename?: 'Pool';
@@ -2952,7 +2952,7 @@ declare type PoolsQuery$1 = {
         }> | null;
     }>;
 };
-declare type AllPoolsQueryVariables = Exact$1<{
+type AllPoolsQueryVariables = Exact$1<{
     skip?: InputMaybe$1<Scalars$1['Int']>;
     first?: InputMaybe$1<Scalars$1['Int']>;
     orderBy?: InputMaybe$1<Pool_OrderBy$1>;
@@ -2960,7 +2960,7 @@ declare type AllPoolsQueryVariables = Exact$1<{
     where?: InputMaybe$1<Pool_Filter$1>;
     block?: InputMaybe$1<Block_Height$1>;
 }>;
-declare type AllPoolsQuery = {
+type AllPoolsQuery = {
     __typename?: 'Query';
     pool0: Array<{
         __typename?: 'Pool';
@@ -3308,11 +3308,11 @@ declare type AllPoolsQuery = {
         }> | null;
     }>;
 };
-declare type PoolQueryVariables = Exact$1<{
+type PoolQueryVariables = Exact$1<{
     id: Scalars$1['ID'];
     block?: InputMaybe$1<Block_Height$1>;
 }>;
-declare type PoolQuery = {
+type PoolQuery = {
     __typename?: 'Query';
     pool?: {
         __typename?: 'Pool';
@@ -3430,7 +3430,7 @@ declare type PoolQuery = {
         }> | null;
     } | null;
 };
-declare type PoolHistoricalLiquiditiesQueryVariables = Exact$1<{
+type PoolHistoricalLiquiditiesQueryVariables = Exact$1<{
     skip?: InputMaybe$1<Scalars$1['Int']>;
     first?: InputMaybe$1<Scalars$1['Int']>;
     orderBy?: InputMaybe$1<PoolHistoricalLiquidity_OrderBy>;
@@ -3438,7 +3438,7 @@ declare type PoolHistoricalLiquiditiesQueryVariables = Exact$1<{
     where?: InputMaybe$1<PoolHistoricalLiquidity_Filter>;
     block?: InputMaybe$1<Block_Height$1>;
 }>;
-declare type PoolHistoricalLiquiditiesQuery = {
+type PoolHistoricalLiquiditiesQuery = {
     __typename?: 'Query';
     poolHistoricalLiquidities: Array<{
         __typename?: 'PoolHistoricalLiquidity';
@@ -3454,7 +3454,7 @@ declare type PoolHistoricalLiquiditiesQuery = {
         };
     }>;
 };
-declare type PoolSnapshotsQueryVariables = Exact$1<{
+type PoolSnapshotsQueryVariables = Exact$1<{
     skip?: InputMaybe$1<Scalars$1['Int']>;
     first?: InputMaybe$1<Scalars$1['Int']>;
     orderBy?: InputMaybe$1<PoolSnapshot_OrderBy>;
@@ -3462,7 +3462,7 @@ declare type PoolSnapshotsQueryVariables = Exact$1<{
     where?: InputMaybe$1<PoolSnapshot_Filter>;
     block?: InputMaybe$1<Block_Height$1>;
 }>;
-declare type PoolSnapshotsQuery = {
+type PoolSnapshotsQuery = {
     __typename?: 'Query';
     poolSnapshots: Array<{
         __typename?: 'PoolSnapshot';
@@ -3477,7 +3477,7 @@ declare type PoolSnapshotsQuery = {
         };
     }>;
 };
-declare type JoinExitsQueryVariables = Exact$1<{
+type JoinExitsQueryVariables = Exact$1<{
     skip?: InputMaybe$1<Scalars$1['Int']>;
     first?: InputMaybe$1<Scalars$1['Int']>;
     orderBy?: InputMaybe$1<JoinExit_OrderBy>;
@@ -3485,7 +3485,7 @@ declare type JoinExitsQueryVariables = Exact$1<{
     where?: InputMaybe$1<JoinExit_Filter>;
     block?: InputMaybe$1<Block_Height$1>;
 }>;
-declare type JoinExitsQuery = {
+type JoinExitsQuery = {
     __typename?: 'Query';
     joinExits: Array<{
         __typename?: 'JoinExit';
@@ -3506,7 +3506,7 @@ declare type JoinExitsQuery = {
         };
     }>;
 };
-declare type SubgraphJoinExitFragment = {
+type SubgraphJoinExitFragment = {
     __typename?: 'JoinExit';
     amounts: Array<string>;
     id: string;
@@ -3524,7 +3524,7 @@ declare type SubgraphJoinExitFragment = {
         tokensList: Array<string>;
     };
 };
-declare type BalancersQueryVariables = Exact$1<{
+type BalancersQueryVariables = Exact$1<{
     skip?: InputMaybe$1<Scalars$1['Int']>;
     first?: InputMaybe$1<Scalars$1['Int']>;
     orderBy?: InputMaybe$1<Balancer_OrderBy>;
@@ -3532,7 +3532,7 @@ declare type BalancersQueryVariables = Exact$1<{
     where?: InputMaybe$1<Balancer_Filter>;
     block?: InputMaybe$1<Block_Height$1>;
 }>;
-declare type BalancersQuery = {
+type BalancersQuery = {
     __typename?: 'Query';
     balancers: Array<{
         __typename?: 'Balancer';
@@ -3544,7 +3544,7 @@ declare type BalancersQuery = {
         poolCount: number;
     }>;
 };
-declare type TokenPricesQueryVariables = Exact$1<{
+type TokenPricesQueryVariables = Exact$1<{
     skip?: InputMaybe$1<Scalars$1['Int']>;
     first?: InputMaybe$1<Scalars$1['Int']>;
     orderBy?: InputMaybe$1<TokenPrice_OrderBy>;
@@ -3552,7 +3552,7 @@ declare type TokenPricesQueryVariables = Exact$1<{
     where?: InputMaybe$1<TokenPrice_Filter>;
     block?: InputMaybe$1<Block_Height$1>;
 }>;
-declare type TokenPricesQuery = {
+type TokenPricesQuery = {
     __typename?: 'Query';
     tokenPrices: Array<{
         __typename?: 'TokenPrice';
@@ -3569,7 +3569,7 @@ declare type TokenPricesQuery = {
         };
     }>;
 };
-declare type TokenLatestPricesQueryVariables = Exact$1<{
+type TokenLatestPricesQueryVariables = Exact$1<{
     skip?: InputMaybe$1<Scalars$1['Int']>;
     first?: InputMaybe$1<Scalars$1['Int']>;
     orderBy?: InputMaybe$1<LatestPrice_OrderBy>;
@@ -3577,7 +3577,7 @@ declare type TokenLatestPricesQueryVariables = Exact$1<{
     where?: InputMaybe$1<LatestPrice_Filter>;
     block?: InputMaybe$1<Block_Height$1>;
 }>;
-declare type TokenLatestPricesQuery = {
+type TokenLatestPricesQuery = {
     __typename?: 'Query';
     latestPrices: Array<{
         __typename?: 'LatestPrice';
@@ -3591,10 +3591,10 @@ declare type TokenLatestPricesQuery = {
         };
     }>;
 };
-declare type TokenLatestPriceQueryVariables = Exact$1<{
+type TokenLatestPriceQueryVariables = Exact$1<{
     id: Scalars$1['ID'];
 }>;
-declare type TokenLatestPriceQuery = {
+type TokenLatestPriceQuery = {
     __typename?: 'Query';
     latestPrice?: {
         __typename?: 'LatestPrice';
@@ -3608,11 +3608,11 @@ declare type TokenLatestPriceQuery = {
         };
     } | null;
 };
-declare type UserQueryVariables = Exact$1<{
+type UserQueryVariables = Exact$1<{
     id: Scalars$1['ID'];
     block?: InputMaybe$1<Block_Height$1>;
 }>;
-declare type UserQuery = {
+type UserQuery = {
     __typename?: 'Query';
     user?: {
         __typename?: 'User';
@@ -3627,7 +3627,7 @@ declare type UserQuery = {
         }> | null;
     } | null;
 };
-declare type UsersQueryVariables = Exact$1<{
+type UsersQueryVariables = Exact$1<{
     skip?: InputMaybe$1<Scalars$1['Int']>;
     first?: InputMaybe$1<Scalars$1['Int']>;
     orderBy?: InputMaybe$1<User_OrderBy>;
@@ -3635,7 +3635,7 @@ declare type UsersQueryVariables = Exact$1<{
     where?: InputMaybe$1<User_Filter$1>;
     block?: InputMaybe$1<Block_Height$1>;
 }>;
-declare type UsersQuery = {
+type UsersQuery = {
     __typename?: 'Query';
     users: Array<{
         __typename?: 'User';
@@ -3650,7 +3650,7 @@ declare type UsersQuery = {
         }> | null;
     }>;
 };
-declare type SdkFunctionWrapper$1 = <T>(action: (requestHeaders?: Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
+type SdkFunctionWrapper$1 = <T>(action: (requestHeaders?: Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
 declare function getSdk$1(client: GraphQLClient, withWrapper?: SdkFunctionWrapper$1): {
     PoolShare(variables: PoolShareQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PoolShareQuery>;
     PoolShares(variables?: PoolSharesQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PoolSharesQuery>;
@@ -3667,17 +3667,17 @@ declare function getSdk$1(client: GraphQLClient, withWrapper?: SdkFunctionWrappe
     User(variables: UserQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<UserQuery>;
     Users(variables?: UsersQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<UsersQuery>;
 };
-declare type Sdk$1 = ReturnType<typeof getSdk$1>;
+type Sdk$1 = ReturnType<typeof getSdk$1>;
 
-declare type Maybe<T> = T | null;
-declare type InputMaybe<T> = Maybe<T>;
-declare type Exact<T extends {
+type Maybe<T> = T | null;
+type InputMaybe<T> = Maybe<T>;
+type Exact<T extends {
     [key: string]: unknown;
 }> = {
     [K in keyof T]: T[K];
 };
 /** All built-in and custom scalars, mapped to their actual values */
-declare type Scalars = {
+type Scalars = {
     ID: string;
     String: string;
     Boolean: boolean;
@@ -3687,10 +3687,10 @@ declare type Scalars = {
     BigInt: string;
     Bytes: string;
 };
-declare type BlockChangedFilter = {
+type BlockChangedFilter = {
     number_gte: Scalars['Int'];
 };
-declare type Block_Height = {
+type Block_Height = {
     hash?: InputMaybe<Scalars['Bytes']>;
     number?: InputMaybe<Scalars['Int']>;
     number_gte?: InputMaybe<Scalars['Int']>;
@@ -3701,7 +3701,7 @@ declare enum Chain {
     Optimism = "Optimism",
     Polygon = "Polygon"
 }
-declare type Gauge = {
+type Gauge = {
     __typename?: 'Gauge';
     /**  Timestamp at which Balancer DAO added the gauge to GaugeController [seconds]  */
     addedTimestamp: Scalars['Int'];
@@ -3716,7 +3716,7 @@ declare type Gauge = {
     /**  Type of the gauge  */
     type: GaugeType;
 };
-declare type GaugeFactory = {
+type GaugeFactory = {
     __typename?: 'GaugeFactory';
     /**  List of gauges created through the factory  */
     gauges?: Maybe<Array<LiquidityGauge$1>>;
@@ -3725,7 +3725,7 @@ declare type GaugeFactory = {
     /**  Number of gauges created through the factory  */
     numGauges: Scalars['Int'];
 };
-declare type GaugeFactory_Filter = {
+type GaugeFactory_Filter = {
     /** Filter for the block changed event. */
     _change_block?: InputMaybe<BlockChangedFilter>;
     and?: InputMaybe<Array<InputMaybe<GaugeFactory_Filter>>>;
@@ -3748,7 +3748,7 @@ declare type GaugeFactory_Filter = {
     numGauges_not_in?: InputMaybe<Array<Scalars['Int']>>;
     or?: InputMaybe<Array<InputMaybe<GaugeFactory_Filter>>>;
 };
-declare type GaugeShare$1 = {
+type GaugeShare$1 = {
     __typename?: 'GaugeShare';
     /**  User's balance of gauge deposit tokens  */
     balance: Scalars['BigDecimal'];
@@ -3759,7 +3759,7 @@ declare type GaugeShare$1 = {
     /**  Reference to User entity  */
     user: User;
 };
-declare type GaugeShare_Filter = {
+type GaugeShare_Filter = {
     /** Filter for the block changed event. */
     _change_block?: InputMaybe<BlockChangedFilter>;
     and?: InputMaybe<Array<InputMaybe<GaugeShare_Filter>>>;
@@ -3839,14 +3839,14 @@ declare enum GaugeShare_OrderBy {
     user = "user",
     user__id = "user__id"
 }
-declare type GaugeType = {
+type GaugeType = {
     __typename?: 'GaugeType';
     /**  Type ID  */
     id: Scalars['ID'];
     /**  Name of the type - empty string if call reverts  */
     name: Scalars['String'];
 };
-declare type GaugeType_Filter = {
+type GaugeType_Filter = {
     /** Filter for the block changed event. */
     _change_block?: InputMaybe<BlockChangedFilter>;
     and?: InputMaybe<Array<InputMaybe<GaugeType_Filter>>>;
@@ -3880,7 +3880,7 @@ declare type GaugeType_Filter = {
     name_starts_with_nocase?: InputMaybe<Scalars['String']>;
     or?: InputMaybe<Array<InputMaybe<GaugeType_Filter>>>;
 };
-declare type GaugeVote = {
+type GaugeVote = {
     __typename?: 'GaugeVote';
     /**  Reference to Gauge entity  */
     gauge: Gauge;
@@ -3893,7 +3893,7 @@ declare type GaugeVote = {
     /**  Weight of veBAL power user has used to vote  */
     weight?: Maybe<Scalars['BigDecimal']>;
 };
-declare type GaugeVote_Filter = {
+type GaugeVote_Filter = {
     /** Filter for the block changed event. */
     _change_block?: InputMaybe<BlockChangedFilter>;
     and?: InputMaybe<Array<InputMaybe<GaugeVote_Filter>>>;
@@ -3965,7 +3965,7 @@ declare type GaugeVote_Filter = {
     weight_not?: InputMaybe<Scalars['BigDecimal']>;
     weight_not_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
 };
-declare type Gauge_Filter = {
+type Gauge_Filter = {
     /** Filter for the block changed event. */
     _change_block?: InputMaybe<BlockChangedFilter>;
     addedTimestamp?: InputMaybe<Scalars['Int']>;
@@ -4060,7 +4060,7 @@ declare type Gauge_Filter = {
     type_starts_with?: InputMaybe<Scalars['String']>;
     type_starts_with_nocase?: InputMaybe<Scalars['String']>;
 };
-declare type LiquidityGauge$1 = {
+type LiquidityGauge$1 = {
     __typename?: 'LiquidityGauge';
     /**  Factory contract address  */
     factory: GaugeFactory;
@@ -4091,7 +4091,7 @@ declare type LiquidityGauge$1 = {
     /**  Total of BPTs users have staked in the LiquidityGauge  */
     totalSupply: Scalars['BigDecimal'];
 };
-declare type LiquidityGauge_Filter = {
+type LiquidityGauge_Filter = {
     /** Filter for the block changed event. */
     _change_block?: InputMaybe<BlockChangedFilter>;
     and?: InputMaybe<Array<InputMaybe<LiquidityGauge_Filter>>>;
@@ -4273,7 +4273,7 @@ declare enum OrderDirection {
     asc = "asc",
     desc = "desc"
 }
-declare type Pool$2 = {
+type Pool$2 = {
     __typename?: 'Pool';
     /**  Address of the pool (lp_token of the gauge)  */
     address: Scalars['Bytes'];
@@ -4288,7 +4288,7 @@ declare type Pool$2 = {
     /**  Most recent, unkilled gauge in the GaugeController  */
     preferentialGauge?: Maybe<LiquidityGauge$1>;
 };
-declare type Pool_Filter = {
+type Pool_Filter = {
     /** Filter for the block changed event. */
     _change_block?: InputMaybe<BlockChangedFilter>;
     address?: InputMaybe<Scalars['Bytes']>;
@@ -4367,7 +4367,7 @@ declare enum Pool_OrderBy {
     preferentialGauge__symbol = "preferentialGauge__symbol",
     preferentialGauge__totalSupply = "preferentialGauge__totalSupply"
 }
-declare type RewardToken = {
+type RewardToken = {
     __typename?: 'RewardToken';
     /**  ERC20 token decimals - zero if call to decimals() reverts  */
     decimals: Scalars['Int'];
@@ -4384,7 +4384,7 @@ declare type RewardToken = {
     /**  Amount of reward tokens that has been deposited into the gauge  */
     totalDeposited: Scalars['BigDecimal'];
 };
-declare type RewardToken_Filter = {
+type RewardToken_Filter = {
     /** Filter for the block changed event. */
     _change_block?: InputMaybe<BlockChangedFilter>;
     and?: InputMaybe<Array<InputMaybe<RewardToken_Filter>>>;
@@ -4471,7 +4471,7 @@ declare type RewardToken_Filter = {
     totalDeposited_not?: InputMaybe<Scalars['BigDecimal']>;
     totalDeposited_not_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
 };
-declare type RootGauge = {
+type RootGauge = {
     __typename?: 'RootGauge';
     /**  Chain where emissions by this gauge will be bridged to  */
     chain: Chain;
@@ -4488,7 +4488,7 @@ declare type RootGauge = {
     /**  Relative weight cap of the gauge (0.01 = 1%) - V2 factories only  */
     relativeWeightCap?: Maybe<Scalars['BigDecimal']>;
 };
-declare type RootGauge_Filter = {
+type RootGauge_Filter = {
     /** Filter for the block changed event. */
     _change_block?: InputMaybe<BlockChangedFilter>;
     and?: InputMaybe<Array<InputMaybe<RootGauge_Filter>>>;
@@ -4570,7 +4570,7 @@ declare type RootGauge_Filter = {
     relativeWeightCap_not?: InputMaybe<Scalars['BigDecimal']>;
     relativeWeightCap_not_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
 };
-declare type User = {
+type User = {
     __typename?: 'User';
     /**  List of gauge the user has shares  */
     gaugeShares?: Maybe<Array<GaugeShare$1>>;
@@ -4581,7 +4581,7 @@ declare type User = {
     /**  List of locks the user created  */
     votingLocks?: Maybe<Array<VotingEscrowLock>>;
 };
-declare type User_Filter = {
+type User_Filter = {
     /** Filter for the block changed event. */
     _change_block?: InputMaybe<BlockChangedFilter>;
     and?: InputMaybe<Array<InputMaybe<User_Filter>>>;
@@ -4598,7 +4598,7 @@ declare type User_Filter = {
     or?: InputMaybe<Array<InputMaybe<User_Filter>>>;
     votingLocks_?: InputMaybe<VotingEscrowLock_Filter>;
 };
-declare type VotingEscrow = {
+type VotingEscrow = {
     __typename?: 'VotingEscrow';
     /**  VotingEscrow contract address  */
     id: Scalars['ID'];
@@ -4607,7 +4607,7 @@ declare type VotingEscrow = {
     /**  Amount of B-80BAL-20WETH BPT locked  */
     stakedSupply: Scalars['BigDecimal'];
 };
-declare type VotingEscrowLock = {
+type VotingEscrowLock = {
     __typename?: 'VotingEscrowLock';
     /**  Equal to: <userAdress>-<votingEscrow>  */
     id: Scalars['ID'];
@@ -4621,7 +4621,7 @@ declare type VotingEscrowLock = {
     /**  Reference to VotingEscrow entity  */
     votingEscrowID: VotingEscrow;
 };
-declare type VotingEscrowLock_Filter = {
+type VotingEscrowLock_Filter = {
     /** Filter for the block changed event. */
     _change_block?: InputMaybe<BlockChangedFilter>;
     and?: InputMaybe<Array<InputMaybe<VotingEscrowLock_Filter>>>;
@@ -4701,7 +4701,7 @@ declare type VotingEscrowLock_Filter = {
     votingEscrowID_starts_with?: InputMaybe<Scalars['String']>;
     votingEscrowID_starts_with_nocase?: InputMaybe<Scalars['String']>;
 };
-declare type VotingEscrow_Filter = {
+type VotingEscrow_Filter = {
     /** Filter for the block changed event. */
     _change_block?: InputMaybe<BlockChangedFilter>;
     and?: InputMaybe<Array<InputMaybe<VotingEscrow_Filter>>>;
@@ -4724,11 +4724,11 @@ declare type VotingEscrow_Filter = {
     stakedSupply_not?: InputMaybe<Scalars['BigDecimal']>;
     stakedSupply_not_in?: InputMaybe<Array<Scalars['BigDecimal']>>;
 };
-declare type GaugeShareQueryVariables = Exact<{
+type GaugeShareQueryVariables = Exact<{
     id: Scalars['ID'];
     block?: InputMaybe<Block_Height>;
 }>;
-declare type GaugeShareQuery = {
+type GaugeShareQuery = {
     __typename?: 'Query';
     gaugeShare?: {
         __typename?: 'GaugeShare';
@@ -4748,7 +4748,7 @@ declare type GaugeShareQuery = {
         };
     } | null;
 };
-declare type GaugeSharesQueryVariables = Exact<{
+type GaugeSharesQueryVariables = Exact<{
     first?: InputMaybe<Scalars['Int']>;
     orderBy?: InputMaybe<GaugeShare_OrderBy>;
     orderDirection?: InputMaybe<OrderDirection>;
@@ -4756,7 +4756,7 @@ declare type GaugeSharesQueryVariables = Exact<{
     where?: InputMaybe<GaugeShare_Filter>;
     block?: InputMaybe<Block_Height>;
 }>;
-declare type GaugeSharesQuery = {
+type GaugeSharesQuery = {
     __typename?: 'Query';
     gaugeShares: Array<{
         __typename?: 'GaugeShare';
@@ -4776,7 +4776,7 @@ declare type GaugeSharesQuery = {
         };
     }>;
 };
-declare type SubgraphGaugeShareFragment = {
+type SubgraphGaugeShareFragment = {
     __typename?: 'GaugeShare';
     id: string;
     balance: string;
@@ -4793,7 +4793,7 @@ declare type SubgraphGaugeShareFragment = {
         totalSupply: string;
     };
 };
-declare type LiquidityGaugesQueryVariables = Exact<{
+type LiquidityGaugesQueryVariables = Exact<{
     skip?: InputMaybe<Scalars['Int']>;
     first?: InputMaybe<Scalars['Int']>;
     orderBy?: InputMaybe<LiquidityGauge_OrderBy>;
@@ -4801,7 +4801,7 @@ declare type LiquidityGaugesQueryVariables = Exact<{
     where?: InputMaybe<LiquidityGauge_Filter>;
     block?: InputMaybe<Block_Height>;
 }>;
-declare type LiquidityGaugesQuery = {
+type LiquidityGaugesQuery = {
     __typename?: 'Query';
     liquidityGauges: Array<{
         __typename?: 'LiquidityGauge';
@@ -4827,7 +4827,7 @@ declare type LiquidityGaugesQuery = {
         }> | null;
     }>;
 };
-declare type PoolsQueryVariables = Exact<{
+type PoolsQueryVariables = Exact<{
     skip?: InputMaybe<Scalars['Int']>;
     first?: InputMaybe<Scalars['Int']>;
     orderBy?: InputMaybe<Pool_OrderBy>;
@@ -4835,7 +4835,7 @@ declare type PoolsQueryVariables = Exact<{
     where?: InputMaybe<Pool_Filter>;
     block?: InputMaybe<Block_Height>;
 }>;
-declare type PoolsQuery = {
+type PoolsQuery = {
     __typename?: 'Query';
     pools: Array<{
         __typename?: 'Pool';
@@ -4866,7 +4866,7 @@ declare type PoolsQuery = {
         } | null;
     }>;
 };
-declare type PoolGaugesQueryVariables = Exact<{
+type PoolGaugesQueryVariables = Exact<{
     where?: InputMaybe<Pool_Filter>;
     first?: InputMaybe<Scalars['Int']>;
     orderBy?: InputMaybe<Pool_OrderBy>;
@@ -4874,7 +4874,7 @@ declare type PoolGaugesQueryVariables = Exact<{
     skip?: InputMaybe<Scalars['Int']>;
     block?: InputMaybe<Block_Height>;
 }>;
-declare type PoolGaugesQuery = {
+type PoolGaugesQuery = {
     __typename?: 'Query';
     pools: Array<{
         __typename?: 'Pool';
@@ -4889,7 +4889,7 @@ declare type PoolGaugesQuery = {
         } | null;
     }>;
 };
-declare type SdkFunctionWrapper = <T>(action: (requestHeaders?: Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
+type SdkFunctionWrapper = <T>(action: (requestHeaders?: Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
 declare function getSdk(client: GraphQLClient, withWrapper?: SdkFunctionWrapper): {
     GaugeShare(variables: GaugeShareQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GaugeShareQuery>;
     GaugeShares(variables?: GaugeSharesQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GaugeSharesQuery>;
@@ -4897,11 +4897,11 @@ declare function getSdk(client: GraphQLClient, withWrapper?: SdkFunctionWrapper)
     Pools(variables?: PoolsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PoolsQuery>;
     PoolGauges(variables?: PoolGaugesQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PoolGaugesQuery>;
 };
-declare type Sdk = ReturnType<typeof getSdk>;
+type Sdk = ReturnType<typeof getSdk>;
 
-declare type SubgraphClient = Sdk$1;
-declare type GaugesClient = Sdk;
-declare type SubgraphLiquidityGauge = LiquidityGauge$1;
+type SubgraphClient = Sdk$1;
+type GaugesClient = Sdk;
+type SubgraphLiquidityGauge = LiquidityGauge$1;
 
 /**
  * Access liquidity gauges indexed by subgraph.
@@ -4957,7 +4957,7 @@ declare class LiquidityGaugeSubgraphRPCProvider implements Findable<LiquidityGau
     private compose;
 }
 
-declare type PoolAttribute = 'id' | 'address';
+type PoolAttribute = 'id' | 'address';
 interface PoolRepository {
     skip?: number;
 }
@@ -4969,7 +4969,7 @@ interface PoolsFallbackRepositoryOptions {
     timeout?: number;
 }
 
-declare type TokenAttribute = 'address' | 'symbol';
+type TokenAttribute = 'address' | 'symbol';
 interface TokenProvider {
     find: (address: string) => Promise<Token | undefined>;
     findBy: (attribute: TokenAttribute, value: string) => Promise<Token | undefined>;
@@ -5392,7 +5392,7 @@ declare class BalancerErrors {
     static encodeError: (error: string) => string;
 }
 
-declare type Account = string | Signer | Contract;
+type Account = string | Signer | Contract;
 declare function accountToAddress(account: Account): Promise<string>;
 declare enum RelayerAction {
     JoinPool = "JoinPool",
@@ -5436,7 +5436,7 @@ declare const signPermit: (token: Contract, owner: Signer & TypedDataSigner, spe
 }>;
 
 declare const AMP_PRECISION = 3;
-declare type ParsedPoolInfo = {
+type ParsedPoolInfo = {
     bptIndex: number;
     higherBalanceTokenIndex: number;
     ampWithPrecision: bigint;
@@ -5673,12 +5673,12 @@ declare const APR_THRESHOLD = 10000;
  * when calculating the ExactTokensOut. The variable below is that "little bit".
  */
 declare const SHALLOW_COMPOSABLE_STABLE_BUFFER = 1000000;
-declare type FactoryType = 'oracleWeightedPool' | 'weightedPool' | 'stablePool' | 'managedPool' | 'liquidityBootstrappingPool' | 'boostedPool' | 'composableStablePool';
-declare type PoolMetadata = {
+type FactoryType = 'oracleWeightedPool' | 'weightedPool' | 'stablePool' | 'managedPool' | 'liquidityBootstrappingPool' | 'boostedPool' | 'composableStablePool';
+type PoolMetadata = {
     name: string;
     hasIcon: boolean;
 };
-declare type NamedPools = {
+type NamedPools = {
     staBAL: string;
     bbAaveUSD: {
         v1: string;
@@ -5698,7 +5698,7 @@ declare type NamedPools = {
     };
     veBAL: string;
 };
-declare type Pools$1 = {
+type Pools$1 = {
     IdsMap: Partial<NamedPools>;
     Pagination: {
         PerPage: number;
@@ -5849,8 +5849,8 @@ declare class Data implements BalancerDataRepositories {
     constructor(networkConfig: BalancerNetworkConfig, provider: Provider, subgraphQuery?: GraphQLQuery);
 }
 
-declare type GraphQLFilterOperator = 'gt' | 'lt' | 'eq' | 'in' | 'not_in' | 'contains';
-declare type GraphQLFilter = {
+type GraphQLFilterOperator = 'gt' | 'lt' | 'eq' | 'in' | 'not_in' | 'contains';
+type GraphQLFilter = {
     [operator in GraphQLFilterOperator]?: any;
 };
 interface GraphQLArgs {
@@ -6049,7 +6049,7 @@ interface ExitExactOutParams {
     maxBptIn?: BigNumber;
     toInternalBalance?: boolean;
 }
-declare type queryJoinParams = [
+type queryJoinParams = [
     poolId: string,
     sender: string,
     recipient: string,
@@ -6060,7 +6060,7 @@ declare type queryJoinParams = [
         fromInternalBalance: boolean;
     }
 ];
-declare type queryExitParams = [
+type queryExitParams = [
     poolId: string,
     sender: string,
     recipient: string,
@@ -6072,7 +6072,7 @@ declare type queryExitParams = [
     }
 ];
 
-declare type Address$1 = string;
+type Address$1 = string;
 interface BalancerSdkConfig {
     network: Network | BalancerNetworkConfig;
     rpcUrl: string;
@@ -6156,7 +6156,7 @@ interface BalancerDataRepositories {
     poolJoinExits: PoolJoinExitRepository;
     gaugeShares?: GaugeSharesRepository;
 }
-declare type PoolReference = {
+type PoolReference = {
     id: string;
     address: string;
 };
@@ -6165,13 +6165,13 @@ declare enum PoolSpecialization {
     MinimalSwapInfoPool = 1,
     TwoTokenPool = 2
 }
-declare type JoinPoolRequest$1 = {
+type JoinPoolRequest$1 = {
     assets: string[];
     maxAmountsIn: BigNumberish[];
     userData: string;
     fromInternalBalance: boolean;
 };
-declare type ExitPoolRequest$1 = {
+type ExitPoolRequest$1 = {
     assets: string[];
     minAmountsOut: string[];
     userData: string;
@@ -6183,7 +6183,7 @@ declare enum UserBalanceOpKind {
     TransferInternal = 2,
     TransferExternal = 3
 }
-declare type UserBalanceOp = {
+type UserBalanceOp = {
     kind: UserBalanceOpKind;
     asset: string;
     amount: BigNumberish;
@@ -6195,7 +6195,7 @@ declare enum PoolBalanceOpKind {
     Deposit = 1,
     Update = 2
 }
-declare type PoolBalanceOp = {
+type PoolBalanceOp = {
     kind: PoolBalanceOpKind;
     poolId: string;
     token: string;
@@ -6210,14 +6210,14 @@ interface TransactionData {
         amountsOut?: string[];
     };
 }
-declare type Currency = 'eth' | 'usd';
-declare type Price = {
+type Currency = 'eth' | 'usd';
+type Price = {
     [currency in Currency]?: string;
 };
-declare type TokenPrices$1 = {
+type TokenPrices$1 = {
     [address: string]: Price;
 };
-declare type HistoricalPrices = {
+type HistoricalPrices = {
     prices: [[number, number]];
     market_caps: [[number, number]];
     total_volumes: [[number, number]];
@@ -6390,12 +6390,12 @@ interface TypedEventFilter<_TEvent extends TypedEvent> extends EventFilter {
 interface TypedListener<TEvent extends TypedEvent> {
     (...listenerArg: [...__TypechainArgsArray<TEvent>, TEvent]): void;
 }
-declare type __TypechainArgsArray<T> = T extends TypedEvent<infer U> ? U : never;
+type __TypechainArgsArray<T> = T extends TypedEvent<infer U> ? U : never;
 interface OnEvent<TRes> {
     <TEvent extends TypedEvent>(eventFilter: TypedEventFilter<TEvent>, listener: TypedListener<TEvent>): TRes;
     (eventName: string, listener: Listener): TRes;
 }
-declare type PromiseOrValue<T> = T | Promise<T>;
+type PromiseOrValue<T> = T | Promise<T>;
 
 declare namespace IVault$2 {
     type ExitPoolRequestStruct = {
@@ -7048,54 +7048,54 @@ interface VaultInterface extends utils.Interface {
 interface AuthorizerChangedEventObject {
     newAuthorizer: string;
 }
-declare type AuthorizerChangedEvent = TypedEvent<[
+type AuthorizerChangedEvent = TypedEvent<[
     string
 ], AuthorizerChangedEventObject>;
-declare type AuthorizerChangedEventFilter = TypedEventFilter<AuthorizerChangedEvent>;
+type AuthorizerChangedEventFilter = TypedEventFilter<AuthorizerChangedEvent>;
 interface ExternalBalanceTransferEventObject {
     token: string;
     sender: string;
     recipient: string;
     amount: BigNumber$1;
 }
-declare type ExternalBalanceTransferEvent = TypedEvent<[
+type ExternalBalanceTransferEvent = TypedEvent<[
     string,
     string,
     string,
     BigNumber$1
 ], ExternalBalanceTransferEventObject>;
-declare type ExternalBalanceTransferEventFilter = TypedEventFilter<ExternalBalanceTransferEvent>;
+type ExternalBalanceTransferEventFilter = TypedEventFilter<ExternalBalanceTransferEvent>;
 interface FlashLoanEventObject {
     recipient: string;
     token: string;
     amount: BigNumber$1;
     feeAmount: BigNumber$1;
 }
-declare type FlashLoanEvent = TypedEvent<[
+type FlashLoanEvent = TypedEvent<[
     string,
     string,
     BigNumber$1,
     BigNumber$1
 ], FlashLoanEventObject>;
-declare type FlashLoanEventFilter = TypedEventFilter<FlashLoanEvent>;
+type FlashLoanEventFilter = TypedEventFilter<FlashLoanEvent>;
 interface InternalBalanceChangedEventObject {
     user: string;
     token: string;
     delta: BigNumber$1;
 }
-declare type InternalBalanceChangedEvent = TypedEvent<[
+type InternalBalanceChangedEvent = TypedEvent<[
     string,
     string,
     BigNumber$1
 ], InternalBalanceChangedEventObject>;
-declare type InternalBalanceChangedEventFilter = TypedEventFilter<InternalBalanceChangedEvent>;
+type InternalBalanceChangedEventFilter = TypedEventFilter<InternalBalanceChangedEvent>;
 interface PausedStateChangedEventObject$1 {
     paused: boolean;
 }
-declare type PausedStateChangedEvent$1 = TypedEvent<[
+type PausedStateChangedEvent$1 = TypedEvent<[
     boolean
 ], PausedStateChangedEventObject$1>;
-declare type PausedStateChangedEventFilter$1 = TypedEventFilter<PausedStateChangedEvent$1>;
+type PausedStateChangedEventFilter$1 = TypedEventFilter<PausedStateChangedEvent$1>;
 interface PoolBalanceChangedEventObject {
     poolId: string;
     liquidityProvider: string;
@@ -7103,14 +7103,14 @@ interface PoolBalanceChangedEventObject {
     deltas: BigNumber$1[];
     protocolFeeAmounts: BigNumber$1[];
 }
-declare type PoolBalanceChangedEvent = TypedEvent<[
+type PoolBalanceChangedEvent = TypedEvent<[
     string,
     string,
     string[],
     BigNumber$1[],
     BigNumber$1[]
 ], PoolBalanceChangedEventObject>;
-declare type PoolBalanceChangedEventFilter = TypedEventFilter<PoolBalanceChangedEvent>;
+type PoolBalanceChangedEventFilter = TypedEventFilter<PoolBalanceChangedEvent>;
 interface PoolBalanceManagedEventObject {
     poolId: string;
     assetManager: string;
@@ -7118,36 +7118,36 @@ interface PoolBalanceManagedEventObject {
     cashDelta: BigNumber$1;
     managedDelta: BigNumber$1;
 }
-declare type PoolBalanceManagedEvent = TypedEvent<[
+type PoolBalanceManagedEvent = TypedEvent<[
     string,
     string,
     string,
     BigNumber$1,
     BigNumber$1
 ], PoolBalanceManagedEventObject>;
-declare type PoolBalanceManagedEventFilter = TypedEventFilter<PoolBalanceManagedEvent>;
+type PoolBalanceManagedEventFilter = TypedEventFilter<PoolBalanceManagedEvent>;
 interface PoolRegisteredEventObject {
     poolId: string;
     poolAddress: string;
     specialization: number;
 }
-declare type PoolRegisteredEvent = TypedEvent<[
+type PoolRegisteredEvent = TypedEvent<[
     string,
     string,
     number
 ], PoolRegisteredEventObject>;
-declare type PoolRegisteredEventFilter = TypedEventFilter<PoolRegisteredEvent>;
+type PoolRegisteredEventFilter = TypedEventFilter<PoolRegisteredEvent>;
 interface RelayerApprovalChangedEventObject {
     relayer: string;
     sender: string;
     approved: boolean;
 }
-declare type RelayerApprovalChangedEvent = TypedEvent<[
+type RelayerApprovalChangedEvent = TypedEvent<[
     string,
     string,
     boolean
 ], RelayerApprovalChangedEventObject>;
-declare type RelayerApprovalChangedEventFilter = TypedEventFilter<RelayerApprovalChangedEvent>;
+type RelayerApprovalChangedEventFilter = TypedEventFilter<RelayerApprovalChangedEvent>;
 interface SwapEventObject {
     poolId: string;
     tokenIn: string;
@@ -7155,34 +7155,34 @@ interface SwapEventObject {
     amountIn: BigNumber$1;
     amountOut: BigNumber$1;
 }
-declare type SwapEvent = TypedEvent<[
+type SwapEvent = TypedEvent<[
     string,
     string,
     string,
     BigNumber$1,
     BigNumber$1
 ], SwapEventObject>;
-declare type SwapEventFilter = TypedEventFilter<SwapEvent>;
+type SwapEventFilter = TypedEventFilter<SwapEvent>;
 interface TokensDeregisteredEventObject {
     poolId: string;
     tokens: string[];
 }
-declare type TokensDeregisteredEvent = TypedEvent<[
+type TokensDeregisteredEvent = TypedEvent<[
     string,
     string[]
 ], TokensDeregisteredEventObject>;
-declare type TokensDeregisteredEventFilter = TypedEventFilter<TokensDeregisteredEvent>;
+type TokensDeregisteredEventFilter = TypedEventFilter<TokensDeregisteredEvent>;
 interface TokensRegisteredEventObject {
     poolId: string;
     tokens: string[];
     assetManagers: string[];
 }
-declare type TokensRegisteredEvent = TypedEvent<[
+type TokensRegisteredEvent = TypedEvent<[
     string,
     string[],
     string[]
 ], TokensRegisteredEventObject>;
-declare type TokensRegisteredEventFilter = TypedEventFilter<TokensRegisteredEvent>;
+type TokensRegisteredEventFilter = TypedEventFilter<TokensRegisteredEvent>;
 interface Vault extends BaseContract {
     connect(signerOrProvider: Signer$1 | Provider | string): this;
     attach(addressOrName: string): this;
@@ -7753,37 +7753,37 @@ interface ApprovalEventObject {
     spender: string;
     value: BigNumber$1;
 }
-declare type ApprovalEvent = TypedEvent<[
+type ApprovalEvent = TypedEvent<[
     string,
     string,
     BigNumber$1
 ], ApprovalEventObject>;
-declare type ApprovalEventFilter = TypedEventFilter<ApprovalEvent>;
+type ApprovalEventFilter = TypedEventFilter<ApprovalEvent>;
 interface PausedStateChangedEventObject {
     paused: boolean;
 }
-declare type PausedStateChangedEvent = TypedEvent<[
+type PausedStateChangedEvent = TypedEvent<[
     boolean
 ], PausedStateChangedEventObject>;
-declare type PausedStateChangedEventFilter = TypedEventFilter<PausedStateChangedEvent>;
+type PausedStateChangedEventFilter = TypedEventFilter<PausedStateChangedEvent>;
 interface SwapFeePercentageChangedEventObject {
     swapFeePercentage: BigNumber$1;
 }
-declare type SwapFeePercentageChangedEvent = TypedEvent<[
+type SwapFeePercentageChangedEvent = TypedEvent<[
     BigNumber$1
 ], SwapFeePercentageChangedEventObject>;
-declare type SwapFeePercentageChangedEventFilter = TypedEventFilter<SwapFeePercentageChangedEvent>;
+type SwapFeePercentageChangedEventFilter = TypedEventFilter<SwapFeePercentageChangedEvent>;
 interface TransferEventObject {
     from: string;
     to: string;
     value: BigNumber$1;
 }
-declare type TransferEvent = TypedEvent<[
+type TransferEvent = TypedEvent<[
     string,
     string,
     BigNumber$1
 ], TransferEventObject>;
-declare type TransferEventFilter = TypedEventFilter<TransferEvent>;
+type TransferEventFilter = TypedEventFilter<TransferEvent>;
 interface WeightedPool extends BaseContract {
     connect(signerOrProvider: Signer$1 | Provider | string): this;
     attach(addressOrName: string): this;
@@ -8149,8 +8149,8 @@ interface WeightedPoolFactoryInterface extends utils.Interface {
 interface PoolCreatedEventObject {
     pool: string;
 }
-declare type PoolCreatedEvent = TypedEvent<[string], PoolCreatedEventObject>;
-declare type PoolCreatedEventFilter = TypedEventFilter<PoolCreatedEvent>;
+type PoolCreatedEvent = TypedEvent<[string], PoolCreatedEventObject>;
+type PoolCreatedEventFilter = TypedEventFilter<PoolCreatedEvent>;
 interface WeightedPoolFactory extends BaseContract {
     connect(signerOrProvider: Signer$1 | Provider | string): this;
     attach(addressOrName: string): this;
@@ -10353,13 +10353,13 @@ declare enum SwapType {
     SwapExactIn = 0,
     SwapExactOut = 1
 }
-declare type FundManagement = {
+type FundManagement = {
     sender: string;
     recipient: string;
     fromInternalBalance: boolean;
     toInternalBalance: boolean;
 };
-declare type SingleSwap = {
+type SingleSwap = {
     poolId: string;
     kind: SwapType;
     assetIn: string;
@@ -10367,7 +10367,7 @@ declare type SingleSwap = {
     amount: BigNumberish;
     userData: string;
 };
-declare type Swap = {
+type Swap = {
     request: SingleSwap;
     funds: FundManagement;
     limit: BigNumberish;
@@ -10375,14 +10375,14 @@ declare type Swap = {
     value?: BigNumberish;
     outputReference?: BigNumberish;
 };
-declare type BatchSwapStep = {
+type BatchSwapStep = {
     poolId: string;
     assetInIndex: number;
     assetOutIndex: number;
     amount: string;
     userData: string;
 };
-declare type BatchSwap = {
+type BatchSwap = {
     kind: SwapType;
     swaps: BatchSwapStep[];
     assets: string[];
@@ -10623,7 +10623,7 @@ declare class Swaps {
     getSorSwap(swapInput: SwapInput): Promise<SwapInfo>;
 }
 
-declare type OutputReference = {
+type OutputReference = {
     index: number;
     key: BigNumber;
 };
@@ -10681,8 +10681,8 @@ interface ExitAndBatchSwapInput {
     slippage: string;
     fetchPools: FetchPoolsInput;
 }
-declare type ExitPoolData = ExitPoolRequest$1 & EncodeExitPoolInput;
-declare type JoinPoolData = JoinPoolRequest$1 & EncodeJoinPoolInput;
+type ExitPoolData = ExitPoolRequest$1 & EncodeExitPoolInput;
+type JoinPoolData = JoinPoolRequest$1 & EncodeJoinPoolInput;
 
 declare class Relayer {
     private readonly swaps;
@@ -10807,7 +10807,7 @@ declare class Pricing {
     getSpotPrice(tokenIn: string, tokenOut: string, pools?: SubgraphPoolBase[]): Promise<string>;
 }
 
-declare type VeBalLockInfo = {
+type VeBalLockInfo = {
     lockedEndDate: number;
     lockedAmount: string;
     totalSupply: string;
@@ -10815,7 +10815,7 @@ declare type VeBalLockInfo = {
     hasExistingLock: boolean;
     isExpired: boolean;
 };
-declare type VeBalLockInfoResult = {
+type VeBalLockInfoResult = {
     locked: BigNumber[];
     epoch: BigNumber;
     totalSupply: BigNumber;
@@ -10834,7 +10834,7 @@ declare class VeBalProxy {
     getAdjustedBalance(account: string): Promise<string>;
 }
 
-declare type ContractFactory = (address: string, signerOrProvider: Signer | Provider) => Contract;
+type ContractFactory = (address: string, signerOrProvider: Signer | Provider) => Contract;
 interface ContractInstances {
     vault: Vault;
     balancerHelpers: BalancerHelpers;
@@ -10984,11 +10984,11 @@ declare class Zaps {
     constructor(network: Network);
 }
 
-declare type Asset = {
+type Asset = {
     priceDelta: number;
     weight: number;
 };
-declare type TokenPrices = {
+type TokenPrices = {
     [key: string]: number;
 };
 declare class ImpermanentLossService {
@@ -11050,7 +11050,7 @@ declare class ImpermanentLossService {
     getEntryPrices(timestamp: number, tokenAddresses: string[]): Promise<TokenPrices>;
 }
 
-declare type SpotPrices = {
+type SpotPrices = {
     [tokenIn: string]: string;
 };
 interface Node {
@@ -11068,8 +11068,8 @@ interface Node {
     spotPrices: SpotPrices;
     decimals: number;
 }
-declare type JoinAction = 'input' | 'batchSwap' | 'joinPool';
-declare type ExitAction = 'output' | 'batchSwap' | 'exitPool';
+type JoinAction = 'input' | 'batchSwap' | 'joinPool';
+type ExitAction = 'output' | 'batchSwap' | 'exitPool';
 declare class PoolGraph {
     private pools;
     constructor(pools: Findable<Pool$1, PoolAttribute>);
@@ -11086,7 +11086,7 @@ declare class PoolGraph {
 interface PoolDictionary {
     [poolId: string]: Pool;
 }
-declare type Pool = (WeightedPool$1 | StablePool | LinearPool | MetaStablePool | PhantomStablePool | ComposableStablePool) & {
+type Pool = (WeightedPool$1 | StablePool | LinearPool | MetaStablePool | PhantomStablePool | ComposableStablePool) & {
     SubgraphType: string;
 };
 declare class PoolsSource {
@@ -11134,7 +11134,7 @@ declare enum ActionType {
     Exit = 2,
     Swap = 3
 }
-declare type Requests = BatchSwapRequest | JoinPoolRequest | ExitPoolRequest | SwapRequest;
+type Requests = BatchSwapRequest | JoinPoolRequest | ExitPoolRequest | SwapRequest;
 /**
  * Controller / use-case layer for interacting with pools data.
  */
@@ -11262,8 +11262,8 @@ declare class PoolFees {
     last24h(pool: Pool$1): Promise<number>;
 }
 
-declare type Address = string;
-declare type CreatePoolParameters = {
+type Address = string;
+type CreatePoolParameters = {
     factoryAddress: string;
     name: string;
     symbol: string;
