@@ -436,7 +436,7 @@ export const BALANCER_NETWORK_CONFIG: Record<Network, BalancerNetworkConfig> = {
       gaugesSubgraph:
         'https://graph.polarisfinance.io/subgraphs/name/polarisfinance/gauges-testnet',
       blockNumberSubgraph:
-        'https://api.thegraph.com/subgraphs/name/polarisfinance/auroratestnet-blocks',
+        'https://graph.polarisfinance.io/subgraphs/name/polarisfinance/auroratestnet-blocks',
     },
     pools: {},
     poolsToIgnore: [],
