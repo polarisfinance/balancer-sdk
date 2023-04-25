@@ -407,6 +407,42 @@ export const BALANCER_NETWORK_CONFIG: Record<Network, BalancerNetworkConfig> = {
       },
     ],
   },
+  [Network.AURORATEST]: {
+    chainId: Network.AURORATEST, //1313161555
+    addresses: {
+      contracts: {
+        vault: '0xf1E1EAD3688aDeCd33b17E389BE1877015be4935',
+        multicall: '0x3a4773e600086A753862621A26a2E3274610da43',
+        balancerHelpers: '0x4d820fe13cD10Cff01463528111429A72203A1e9',
+        balancerMinterAddress: '0xC0eEE7a62E0643c37A5CCF07E5157fb52e48164E',
+        relayerV3: '0x395ACE744450B015b849ec32F796C26bBAd8E7DD',
+        relayerV4: '0xea179A80E9dC5DD0401E8480c14455220E8Ba881',
+        gaugeController: '0x6a7E068Fe310531dd82c1EC26897fEe6F78dED5f',
+        feeDistributor: '0x19268e71C512d08b0895FB98972c8CF9675995B7',
+        protocolFeePercentagesProvider:
+          '0xBa424cb3d97559D599D84bcb085e9c1cFa29c6E9',
+        veBal: '0xb657C8D69DB2226Ed684eCB59cd1155b9ddbEa54',
+        veBalProxy: '0x3A3659D2161c8c9f137A6DD04b378aE3cf66D2Ec',
+        weightedPoolFactory: '0xDcA978dB1941c88F537A0f029765b65A02d163f5',
+        //composableStablePoolFactory:
+        //  '0x85a80afee867adf27b50bdb7b76da70f1e853062',
+      },
+      tokens: {
+        wrappedNativeAsset: '0x8886E7A8883e9A40b30Bd4E16e0e25C2C3f29Cd8',
+      },
+    },
+    urls: {
+      subgraph:
+        'https://graph.polarisfinance.io/subgraphs/name/polarisfinance/polaris-dex-testnet',
+      gaugesSubgraph:
+        'https://graph.polarisfinance.io/subgraphs/name/polarisfinance/gauges-testnet',
+      blockNumberSubgraph:
+        'https://graph.polarisfinance.io/subgraphs/name/polarisfinance/auroratestnet-blocks',
+    },
+    pools: {},
+    poolsToIgnore: [],
+    sorConnectingTokens: [],
+  },
 };
 
 export const networkAddresses = (
