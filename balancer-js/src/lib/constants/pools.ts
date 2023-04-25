@@ -718,8 +718,8 @@ const POOLS_AURORA_TESTNET: Pools = {
     AllowList: [],
   },
   Factories: {
-    '0x9449D7a7c83Ccfd637cc222d76FCeb92C607E6A7': 'oracleWeightedPool',
-    '0x11b825043Ecc9ec5860E956f45857812dccAdfD0': 'weightedPool',
+    '0x8dF214DcE8a2dE99caf1035217E62055789a1e9C': 'oracleWeightedPool',
+    '0xDcA978dB1941c88F537A0f029765b65A02d163f5': 'weightedPool',
     '0xc66ba2b6595d3613ccab350c886ace23866ede24': 'stablePool',
     '0x67d27634e44793fe63c467035e31ea8635117cd4': 'stablePool', // Metastable
     '0x751dfdace1ad995ff13c927f6f761c6604532c79': 'stablePool', // Kovan
