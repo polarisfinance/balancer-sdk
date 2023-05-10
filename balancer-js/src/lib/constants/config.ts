@@ -411,18 +411,18 @@ export const BALANCER_NETWORK_CONFIG: Record<Network, BalancerNetworkConfig> = {
     chainId: Network.AURORATEST, //1313161555
     addresses: {
       contracts: {
-        vault: '0xf1E1EAD3688aDeCd33b17E389BE1877015be4935',
+        vault: '0x5f084dcC622239e820626a05773775A44Af25E7c',
         multicall: '0x3a4773e600086A753862621A26a2E3274610da43',
-        balancerHelpers: '0x4d820fe13cD10Cff01463528111429A72203A1e9',
-        balancerMinterAddress: '0xd91De01dcfe32dd3642Dcb440baebA1Ded6cE00F',
-        relayerV5: '0xbFB772D9aD87DFC69Ec41a28720779AAc23C15c2',
-        gaugeController: '0xBF9b6174960DF88510eBEcB07ECCC2d6571Ee78B',
-        feeDistributor: '0xE65551a305Dc48D0C14E177D25B2692982341BeC',
+        balancerHelpers: '0x129F2a54851a8ddC9B556ee9877Bb93eE55C17B0',
+        balancerMinterAddress: '0x106F91F64aEf43156E0536cA41e0b56D50d570BD',
+        relayerV5: '0x928DfA13E7d3cAaD340eb50E2F78f67cf0AB930F',
+        gaugeController: '0xFbC105216A2e457849873B21b7a880DB54211F75',
+        feeDistributor: '0xAb91a52809c5A91D21b2Be2B27fb4e9f1049e59F',
         protocolFeePercentagesProvider:
-          '0x8eC1cF8D3C5ee26eC10bcB0a94BA0403d43b09c1',
-        veBal: '0xF793F57f4E174b1974ECd2eCEdfc1B49DAAfb53F',
-        veBalProxy: '0xe4479b5B328D674Fb1DfD2fB2F1F064005A18a2E',
-        weightedPoolFactory: '0xDcA978dB1941c88F537A0f029765b65A02d163f5',
+          '0x7CDe1bF0059f6C0ECA753bD5D94552e23Fd24Fe5',
+        veBal: '0x86989e569bc9ccF08bd3Cf9840C47c07C55be4cA',
+        veBalProxy: '0x78fb7c9E0626fA2312f80b918c9e9c264918399D',
+        weightedPoolFactory: '0x517803476a7434ea83316384d7Af408DE90DB083',
         //composableStablePoolFactory:
         //  '0x85a80afee867adf27b50bdb7b76da70f1e853062',
       },

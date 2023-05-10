@@ -187,7 +187,7 @@ export const TOKENS_AURORATEST: TokenConstants = {
     nativeAsset: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE',
     wNativeAsset: '0x8886E7A8883e9A40b30Bd4E16e0e25C2C3f29Cd8',
     WETH: '0x8886E7A8883e9A40b30Bd4E16e0e25C2C3f29Cd8',
-    BAL: '0x4FaF5fF47B77D49DD800c4757bfb89DAd80C3f70',
+    BAL: '0xbADdAab20345a0E6607469949f069e8482f9AFC0',
   },
 };
 
