@@ -16,9 +16,9 @@ export class CoingeckoPriceRepository implements Findable<Price> {
 
   constructor(tokenAddresses: string[], private chainId: Network = 1) {
     this.baseTokenAddresses = tokenAddresses.map(tokenAddressForPricing);
-    this.urlBase = `https://api.coingecko.com/api/v3/simple/token_price/${this.platform(
+    this.urlBase = `https://coingecko.polarisfinance.io/getTokens/?chain=${this.platform(
       chainId
-    )}?vs_currencies=usd,eth`;
+    )}&vs_currencies=usd,eth`;
     this.debouncer = new Debouncer<TokenPrices, string>(
       this.fetch.bind(this),
       200
@@ -139,6 +139,8 @@ export class CoingeckoPriceRepository implements Findable<Price> {
         return 'polygon-pos';
       case 42161:
         return 'arbitrum-one';
+      case 1313161555:
+        return 'aurora';
     }
 
     return '2';
