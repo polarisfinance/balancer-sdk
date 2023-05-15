@@ -18,7 +18,7 @@ export class CoingeckoPriceRepository implements Findable<Price> {
     this.baseTokenAddresses = tokenAddresses.map(tokenAddressForPricing);
     this.urlBase = `https://coingecko.polarisfinance.io/getTokens/?chain=${this.platform(
       chainId
-    )}&vs_currencies=usd,eth`;
+    )}&vs_currencies=usd`;
     this.debouncer = new Debouncer<TokenPrices, string>(
       this.fetch.bind(this),
       200
