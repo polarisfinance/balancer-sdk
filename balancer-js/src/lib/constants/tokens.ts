@@ -201,8 +201,9 @@ export const TOKENS_AURORATEST: TokenConstants = {
     //xpolar
     '0xbaddaab20345a0e6607469949f069e8482f9afc0':
       '0x9d6fc90b25976e40adad5a3edd08af9ed7a21729',
+    //pnear to near, pStnear to stnear DONT FORGET !!!!
     '0xf4a8b365cd410308d581574e35d412d82726a251':
-      '0x990e50e781004ea75e2ba3a67eb69c0b1cd6e3a6',
+      '0xc42c30ac6cc15fac9bd938618bcaa1a1fae8501d',
   },
 };
 

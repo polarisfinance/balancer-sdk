@@ -428,6 +428,8 @@ export const BALANCER_NETWORK_CONFIG: Record<Network, BalancerNetworkConfig> = {
       },
       tokens: {
         wrappedNativeAsset: '0x8886E7A8883e9A40b30Bd4E16e0e25C2C3f29Cd8',
+        bal: '0xbADdAab20345a0E6607469949f069e8482f9AFC0',
+        veBal: '0x86989e569bc9ccF08bd3Cf9840C47c07C55be4cA',
       },
     },
     urls: {
