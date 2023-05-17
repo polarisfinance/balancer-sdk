@@ -62,7 +62,7 @@ export class LiquidityGaugeSubgraphRPCProvider
   async fetch(): Promise<LiquidityGauge[]> {
     const gauges: SubgraphLiquidityGauge[] = await this.subgraph.fetch();
     const gaugeAddresses = gauges.map((g) => g.id);
-    if (this.chainId == 1) {
+    if (this.chainId == 1313161554 || this.chainId == 1313161555) {
       console.time('Fetching multicall.getWorkingSupplies');
       this.workingSupplies = await this.multicall.getWorkingSupplies(
         gaugeAddresses

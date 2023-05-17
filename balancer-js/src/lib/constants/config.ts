@@ -444,6 +444,39 @@ export const BALANCER_NETWORK_CONFIG: Record<Network, BalancerNetworkConfig> = {
     poolsToIgnore: [],
     sorConnectingTokens: [],
   },
+  [Network.AURORA]: {
+    chainId: Network.AURORA, //1313161555
+    addresses: {
+      contracts: {
+        vault: '',
+        multicall: '',
+        balancerHelpers: '',
+        balancerMinterAddress: '',
+        relayerV5: '',
+        gaugeController: '',
+        feeDistributor: '',
+        protocolFeePercentagesProvider: '',
+        veBal: '',
+        veBalProxy: '',
+        weightedPoolFactory: '',
+        //composableStablePoolFactory:
+        //  '0x85a80afee867adf27b50bdb7b76da70f1e853062',
+      },
+      tokens: {
+        wrappedNativeAsset: '',
+        bal: '',
+        veBal: '',
+      },
+    },
+    urls: {
+      subgraph: '',
+      gaugesSubgraph: '',
+      blockNumberSubgraph: '',
+    },
+    pools: {},
+    poolsToIgnore: [],
+    sorConnectingTokens: [],
+  },
 };
 
 export const networkAddresses = (
