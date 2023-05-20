@@ -207,6 +207,18 @@ export const TOKENS_AURORATEST: TokenConstants = {
   },
 };
 
+export const TOKENS_AURORA: TokenConstants = {
+  Popular: {
+    Symbols: ['WBTC', 'DAI', 'USDC', 'BAL', 'AAVE', 'WETH'],
+  },
+  Addresses: {
+    nativeAsset: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE',
+    wNativeAsset: '0xC9BdeEd33CD01541e1eeD10f90519d2C06Fe3feB',
+    WETH: '0xC9BdeEd33CD01541e1eeD10f90519d2C06Fe3feB',
+    BAL: '0xeAf7665969f1DaA3726CEADa7c40Ab27B3245993',
+  },
+};
+
 export const TOKENS_MAP = {
   [Network.KOVAN]: TOKENS_KOVAN,
   [Network.GOERLI]: TOKENS_GOERLI,
@@ -215,6 +227,7 @@ export const TOKENS_MAP = {
   [Network.ARBITRUM]: TOKENS_ARBITRUM,
   [Network.GNOSIS]: TOKENS_GNOSIS,
   [Network.AURORATEST]: TOKENS_AURORATEST,
+  [Network.AURORA]: TOKENS_AURORA,
 };
 
 export function TOKENS(networkId: Network): TokenConstants {

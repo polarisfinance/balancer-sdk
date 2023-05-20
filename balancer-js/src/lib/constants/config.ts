@@ -1,7 +1,7 @@
 import { Network } from './network';
 import { BalancerNetworkConfig } from '@/types';
 
-export const balancerVault = '0xBA12222222228d8Ba445958a75a0704d566BF2C8';
+export const balancerVault = '0x6985436a0E5247A3E1dc29cdA9e1D89C5b59e26b';
 
 // Info fetched using npm package slot20
 export const BPT_SLOT = 0;
@@ -445,33 +445,37 @@ export const BALANCER_NETWORK_CONFIG: Record<Network, BalancerNetworkConfig> = {
     sorConnectingTokens: [],
   },
   [Network.AURORA]: {
-    chainId: Network.AURORA, //1313161555
+    chainId: Network.AURORA, //1313161554
     addresses: {
       contracts: {
-        vault: '',
-        multicall: '',
-        balancerHelpers: '',
-        balancerMinterAddress: '',
-        relayerV5: '',
-        gaugeController: '',
-        feeDistributor: '',
-        protocolFeePercentagesProvider: '',
-        veBal: '',
-        veBalProxy: '',
-        weightedPoolFactory: '',
-        //composableStablePoolFactory:
-        //  '0x85a80afee867adf27b50bdb7b76da70f1e853062',
+        vault: '0x6985436a0E5247A3E1dc29cdA9e1D89C5b59e26b',
+        multicall: '0x04364F8908BDCB4cc7EA881d0DE869398BA849C9',
+        balancerHelpers: '0x4a0A3ec68BF26bF0446fA4664EC90a25E521c0f0',
+        balancerMinterAddress: '0xfc5803Ba89e46D37Bbac542B7449b4c1c0628587',
+        relayerV5: '0x28965a81eF4Fc8d236047122C458918532A28CA8',
+        gaugeController: '0x31eCA9385Fa44e0f8D83322F79937943216Df7c5',
+        feeDistributor: '0xd30b72Ff398DE0fF24934fFdb49B28D738076302',
+        protocolFeePercentagesProvider:
+          '0xa07Fca3c96B55daF89E5e4C0887040B0C8a85219',
+        veBal: '0xBe96730583b46140210efA92AC6039EF11247657',
+        veBalProxy: '0xDA4765fE5AfAEac3A0582eDAF78E76b6C4cF9a7C',
+        weightedPoolFactory: '0x98b5584A0c40F2c50CBa0Adb40E51A8caD79b9AC',
+        composableStablePoolFactory:
+          '0xA408376E84DedD19616e8Cd79753eb4B594acd85',
       },
       tokens: {
-        wrappedNativeAsset: '',
-        bal: '',
-        veBal: '',
+        wrappedNativeAsset: '0xC9BdeEd33CD01541e1eeD10f90519d2C06Fe3feB',
+        bal: '0xeAf7665969f1DaA3726CEADa7c40Ab27B3245993',
+        veBal: '0xBe96730583b46140210efA92AC6039EF11247657',
       },
     },
     urls: {
-      subgraph: '',
-      gaugesSubgraph: '',
-      blockNumberSubgraph: '',
+      subgraph:
+        'https://api.thegraph.com/subgraphs/name/polarisfinance/polaris-dex-v2',
+      gaugesSubgraph:
+        'https://api.thegraph.com/subgraphs/name/polarisfinance/polaris-gauges',
+      blockNumberSubgraph:
+        'https://api.thegraph.com/subgraphs/name/polarisfinance/aurora-blocks',
     },
     pools: {},
     poolsToIgnore: [],

@@ -728,6 +728,37 @@ const POOLS_AURORATEST: Pools = {
   Metadata: {},
 };
 
+const POOLS_AURORA: Pools = {
+  IdsMap: {},
+  Pagination: {
+    PerPage: 10,
+    PerPool: 10,
+    PerPoolInitial: 5,
+  },
+  DelegateOwner: '0xba1ba1ba1ba1ba1ba1ba1ba1ba1ba1ba1ba1ba1b',
+  ZeroAddress: '0x0000000000000000000000000000000000000000',
+  DynamicFees: {
+    Gauntlet: [],
+  },
+  BlockList: [''],
+  ExcludedPoolTypes: ['Element', 'AaveLinear', 'Linear', 'ERC4626Linear', 'FX'],
+  Stable: {
+    AllowList: [
+      '0xceecce984f498ee00832670e9ca6d372f6ce155a000200000000000000000014',
+    ],
+  },
+  Investment: {
+    AllowList: [],
+  },
+  Factories: {
+    '0x98b5584A0c40F2c50CBa0Adb40E51A8caD79b9AC': 'weightedPool', // weighted pool v4
+  },
+  Stakable: {
+    AllowList: [],
+  },
+  Metadata: {},
+};
+
 const POOLS_MAP = {
   [Network.KOVAN]: POOLS_KOVAN,
   [Network.GOERLI]: POOLS_GOERLI,
@@ -736,6 +767,7 @@ const POOLS_MAP = {
   [Network.ARBITRUM]: POOLS_ARBITRUM,
   [Network.GNOSIS]: POOLS_GNOSIS,
   [Network.AURORATEST]: POOLS_AURORATEST,
+  [Network.AURORA]: POOLS_AURORA,
 };
 
 export function POOLS(networkId: Network): Pools {
