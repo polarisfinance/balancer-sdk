@@ -127,25 +127,7 @@ export class CoingeckoPriceRepository implements Findable<Price> {
   }
 
   private platform(chainId: number): string {
-    switch (chainId) {
-      case 1:
-      case 5:
-      case 42:
-      case 31337:
-        return 'ethereum';
-      case 100:
-        return 'xdai';
-      case 137:
-        return 'polygon-pos';
-      case 42161:
-        return 'arbitrum-one';
-      case 1313161555:
-        return 'aurora';
-      case 1313161554:
-        return 'aurora';
-    }
-
-    return '2';
+    return 'aurora';
   }
 
   private url(addresses: string[]): string {
