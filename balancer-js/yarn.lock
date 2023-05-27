@@ -507,11 +507,11 @@
     "@babel/helper-validator-identifier" "^7.19.1"
     to-fast-properties "^2.0.0"
 
-"@balancer-labs/sor@^4.1.1-beta.7":
-  version "4.1.1-beta.7"
-  resolved "https://registry.yarnpkg.com/@balancer-labs/sor/-/sor-4.1.1-beta.7.tgz#709a12e4ea9543f6af2b2cd5746f46c799233497"
-  integrity sha512-pb/IVYVeQXCvOZ06qoVJ2KGUTHeL4go9Je7Z5VSTYg26SYx8PNWEKeF9bdg/mo8TOweu4upcLj78PTNBLPF/fQ==
+"@balancer-labs/sor@github:polarisfinance/balancer-sor#new-graph-implementation":
+  version "4.0.1-beta.18"
+  resolved "https://codeload.github.com/polarisfinance/balancer-sor/tar.gz/3d8d63fef6871dbcd4c5e903127306dafad55c89"
   dependencies:
+    graphlib "^2.1.8"
     isomorphic-fetch "^2.2.1"
 
 "@cspotcode/source-map-support@^0.8.0":
@@ -3881,6 +3881,13 @@ graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.1.9:
   version "4.2.10"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.10.tgz#147d3a006da4ca3ce14728c7aefc287c367d7a6c"
   integrity sha512-9ByhssR2fPVsNZj478qUUbKfmL0+t5BDVyjShtyZZLiK7ZDAArFFfopyOTj0M05wE2tJPisA4iTnnXl2YoPvOA==
+
+graphlib@^2.1.8:
+  version "2.1.8"
+  resolved "https://registry.yarnpkg.com/graphlib/-/graphlib-2.1.8.tgz#5761d414737870084c92ec7b5dbcb0592c9d35da"
+  integrity sha512-jcLLfkpoVGmH7/InMC/1hIvOPSUh38oJtGhvrOFGzioE1DZ+0YW16RgmOJhHiuWTvGiJQ9Z1Ik43JvkRPRvE+A==
+  dependencies:
+    lodash "^4.17.15"
 
 graphql-config@4.4.0:
   version "4.4.0"
