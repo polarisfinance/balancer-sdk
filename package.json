@@ -16,9 +16,7 @@
   "module": "dist/index.esm.js",
   "browser": "dist/index.umd.js",
   "typings": "dist/index.d.ts",
-  "files": [
-    "dist/"
-  ],
+  "files": ["dist/"],
   "scripts": {
     "build": "rimraf dist && rollup -c",
     "dev": "rollup -c -w",
@@ -83,7 +81,7 @@
     "typescript": "^4.0.2"
   },
   "dependencies": {
-    "@balancer-labs/sor": "^4.1.1-beta.7",
+    "@balancer-labs/sor": "github:polarisfinance/balancer-sor#new-graph-implementation",
     "@ethersproject/abi": "^5.4.0",
     "@ethersproject/abstract-signer": "^5.4.0",
     "@ethersproject/address": "^5.4.0",
