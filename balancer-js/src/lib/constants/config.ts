@@ -479,7 +479,16 @@ export const BALANCER_NETWORK_CONFIG: Record<Network, BalancerNetworkConfig> = {
     },
     pools: {},
     poolsToIgnore: [],
-    sorConnectingTokens: [],
+    sorConnectingTokens: [
+      {
+        symbol: 'usdc',
+        address: '0xB12BFcA5A55806AaF64E99521918A4bf0fC40802',
+      },
+      {
+        symbol: 'pNEAR',
+        address: '0x990e50E781004EA75e2bA3A67eB69c0B1cD6e3A6',
+      },
+    ],
   },
 };
 
