@@ -60,8 +60,7 @@ export class Pricing {
       tokenIn,
       tokenOut,
       0,
-      poolsDict,
-      4
+      poolsDict
     );
 
     if (paths.length === 0)

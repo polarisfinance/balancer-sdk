@@ -508,8 +508,8 @@
     to-fast-properties "^2.0.0"
 
 "@balancer-labs/sor@github:polarisfinance/balancer-sor#new-graph-implementation":
-  version "4.0.1-beta.18"
-  resolved "https://codeload.github.com/polarisfinance/balancer-sor/tar.gz/3d8d63fef6871dbcd4c5e903127306dafad55c89"
+  version "4.1.1-beta.11"
+  resolved "https://codeload.github.com/polarisfinance/balancer-sor/tar.gz/6b80d103813f1f53f1213b04d93c163db0090b91"
   dependencies:
     graphlib "^2.1.8"
     isomorphic-fetch "^2.2.1"
