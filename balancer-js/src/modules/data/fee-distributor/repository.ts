@@ -74,7 +74,6 @@ export class FeeDistributorRepository implements BaseFeeDistributor {
         ),
       ],
       [this.veBalAddress, veBalInterface.encodeFunctionData('totalSupply', [])],
-      [this.bbAUsdAddress, bbAUsdInterface.encodeFunctionData('getRate', [])],
     ];
     const [, res] = await this.multicall.aggregate(payload);
 
@@ -82,7 +81,7 @@ export class FeeDistributorRepository implements BaseFeeDistributor {
       balAmount: parseFloat(formatUnits(res[0], 18)),
       bbAUsdAmount: parseFloat(formatUnits(res[1], 18)),
       veBalSupply: parseFloat(formatUnits(res[2], 18)),
-      bbAUsdPrice: parseFloat(formatUnits(res[3], 18)),
+      bbAUsdPrice: parseFloat('1'),
       balAddress: this.balAddress,
     };
 
