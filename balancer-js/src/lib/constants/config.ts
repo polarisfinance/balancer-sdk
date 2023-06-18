@@ -467,6 +467,7 @@ export const BALANCER_NETWORK_CONFIG: Record<Network, BalancerNetworkConfig> = {
         wrappedNativeAsset: '0xC9BdeEd33CD01541e1eeD10f90519d2C06Fe3feB',
         bal: '0xeAf7665969f1DaA3726CEADa7c40Ab27B3245993',
         veBal: '0xBe96730583b46140210efA92AC6039EF11247657',
+        bbaUsd: '0xB12BFcA5A55806AaF64E99521918A4bf0fC40802',
       },
     },
     urls: {
