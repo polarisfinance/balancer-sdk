@@ -12,4 +12,5 @@ export enum Network {
   FANTOM = 250,
   AURORA = 1313161554,
   AURORATEST = 1313161555,
+  TELOS = 40,
 }
