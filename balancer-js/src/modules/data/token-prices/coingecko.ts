@@ -127,6 +127,12 @@ export class CoingeckoPriceRepository implements Findable<Price> {
   }
 
   private platform(chainId: number): string {
+    switch (chainId) {
+      case 40:
+        return 'telos';
+      case 1313161554:
+        return 'aurora';
+    }
     return 'aurora';
   }
 
