@@ -505,13 +505,14 @@ export const BALANCER_NETWORK_CONFIG: Record<Network, BalancerNetworkConfig> = {
       },
       tokens: {
         wrappedNativeAsset: '0xD102cE6A4dB07D247fcc28F366A623Df0938CA9E',
+        bal: '0x1073E53ac92F711761475Cd30fab157620AFdAb0',
       },
     },
     urls: {
       subgraph:
         'https://api.goldsky.com/api/public/project_clqbhfggr3ii501w02mp62ver/subgraphs/polaris-dex-v2-telos/1.0.1/gn',
       gaugesSubgraph:
-        'https://api.goldsky.com/api/public/project_clqbhfggr3ii501w02mp62ver/subgraphs/polaris-dex-v2-telos/1.0.1/gn',
+        'https://api.goldsky.com/api/public/project_clqbhfggr3ii501w02mp62ver/subgraphs/gauges-telos/1.0.0/gn',
       blockNumberSubgraph:
         'https://api.goldsky.com/api/public/project_clqbhfggr3ii501w02mp62ver/subgraphs/blocks-telos/1.0.0/gn',
     },
