@@ -496,7 +496,7 @@ export const BALANCER_NETWORK_CONFIG: Record<Network, BalancerNetworkConfig> = {
     addresses: {
       contracts: {
         vault: '0x9Ced3B4E4DC978265484d1F1f569010E13f911c9',
-        multicall: '0x69d8D6913Eb2f4d2dCD9E18e7e22a34C15Fb1558',
+        multicall: '0x075A47CDF38Bc67A018A4742a2Fe7e9053d41C8c',
         balancerHelpers: '0xf0f3b9Eee32b1F490A4b8720cf6F005d4aE9eA86',
         relayerV5: '0x15F707033cA3a44FB3deC7EBC2F3ac5DB3b4e099',
         weightedPoolFactory: '0x981071AA1A430fC1b54C3E171608f88975497cF3',
