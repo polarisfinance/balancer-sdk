@@ -269,23 +269,22 @@ export class PoolApr {
 
     const balPriceUsd = parseFloat(balPrice.usd);
 
-    // commented this out as we only use one network for now
-    // // Subgraph is returning BAL staking rewards as reward tokens for L2 gauges.
-    // if (pool.chainId > 1) {
-    //   if (!gauge.rewardTokens) {
-    //     return 0;
-    //   }
+    // Subgraph is returning BAL staking rewards as reward tokens for L2 gauges.
+    if (pool.chainId != 1313161554) {
+      if (!gauge.rewardTokens) {
+        return 0;
+      }
 
-    //   const balReward = bal && gauge.rewardTokens[bal];
-    //   if (balReward) {
-    //     const reward = await this.rewardTokenApr(bal, balReward);
-    //     const totalSupplyUsd = gauge.totalSupply * bptPriceUsd;
-    //     const rewardValue = reward.value / totalSupplyUsd;
-    //     return Math.round(10000 * rewardValue);
-    //   } else {
-    //     return 0;
-    //   }
-    // }
+      const balReward = bal && gauge.rewardTokens[bal];
+      if (balReward) {
+        const reward = await this.rewardTokenApr(bal, balReward);
+        const totalSupplyUsd = gauge.totalSupply * bptPriceUsd;
+        const rewardValue = reward.value / totalSupplyUsd;
+        return Math.round(10000 * rewardValue);
+      } else {
+        return 0;
+      }
+    }
 
     const now = Math.round(new Date().getTime() / 1000);
     const totalBalEmissions = (emissions.weekly(now) / 7) * 365;
