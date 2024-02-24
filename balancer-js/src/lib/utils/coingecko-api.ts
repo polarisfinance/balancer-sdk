@@ -1,6 +1,6 @@
 export function getCoingeckoApiBaseUrl(isDemoApi = true): string {
   if (isDemoApi) {
-    return 'https://api.coingecko.com/api/v3/';
+    return 'https://coingecko.polarisfinance.io/';
   }
   return 'https://pro-api.coingecko.com/api/v3/';
 }

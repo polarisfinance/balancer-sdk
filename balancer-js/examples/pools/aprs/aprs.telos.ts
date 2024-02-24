@@ -7,15 +7,15 @@
 import { BalancerSDK, Pool } from '@balancer-labs/sdk';
 
 const sdk = new BalancerSDK({
-  network: 42161,
-  rpcUrl: 'https://rpc.ankr.com/arbitrum',
+  network: 40,
+  rpcUrl: 'https://mainnet.telos.net/evm',
 });
 
 const { pools } = sdk;
 
 const main = async () => {
   const id =
-    '0x32df62dc3aed2cd6224193052ce665dc181658410002000000000000000003bd';
+    '0x2621c0c2559a0d04a208f85e9720402ca5fdc779000200000000000000000008';
   const pool = (await pools.find(id)) as Pool;
   const apr = await pools.apr(pool);
   console.log(pool.id, apr);

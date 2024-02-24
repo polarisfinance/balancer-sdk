@@ -525,35 +525,91 @@ export const BALANCER_NETWORK_CONFIG: Record<Network, BalancerNetworkConfig> = {
     chainId: Network.AURORA, //1313161554
     addresses: {
       contracts: {
+        poolDataQueries: '0xD141F942aaE365995350e02D3C8111BD034E0C53',
         vault: '0x6985436a0E5247A3E1dc29cdA9e1D89C5b59e26b',
         multicall: '0x04364F8908BDCB4cc7EA881d0DE869398BA849C9',
+        balancerHelpers: '0x530D85776e560303D18094a366f127ff2F113526',
+        balancerMinterAddress: '0xfc5803Ba89e46D37Bbac542B7449b4c1c0628587',
+        balancerRelayer: '0x28965a81eF4Fc8d236047122C458918532A28CA8',
+        gaugeController: '0x31eCA9385Fa44e0f8D83322F79937943216Df7c5',
+        feeDistributor: '0xd30b72Ff398DE0fF24934fFdb49B28D738076302',
+        protocolFeePercentagesProvider:
+          '0xa07Fca3c96B55daF89E5e4C0887040B0C8a85219',
+        veBal: '0xBe96730583b46140210efA92AC6039EF11247657',
+        veBalProxy: '0xDA4765fE5AfAEac3A0582eDAF78E76b6C4cF9a7C',
+        weightedPoolFactory: '0x98b5584A0c40F2c50CBa0Adb40E51A8caD79b9AC',
+        composableStablePoolFactory:
+          '0xA408376E84DedD19616e8Cd79753eb4B594acd85',
       },
       tokens: {
         wrappedNativeAsset: '0xC9BdeEd33CD01541e1eeD10f90519d2C06Fe3feB',
+        bal: '0xeAf7665969f1DaA3726CEADa7c40Ab27B3245993',
+        veBal: '0xBe96730583b46140210efA92AC6039EF11247657',
+        bbaUsd: '0xB12BFcA5A55806AaF64E99521918A4bf0fC40802',
       },
     },
     urls: {
       subgraph:
-        'https://api.thegraph.com/subgraphs/name/polarisfinance/polaris-dex',
+        'https://api.thegraph.com/subgraphs/name/polarisfinance/polaris-dex-v2',
+      gaugesSubgraph:
+        'https://api.thegraph.com/subgraphs/name/polarisfinance/polaris-gauges',
+      blockNumberSubgraph:
+        'https://api.thegraph.com/subgraphs/name/polarisfinance/aurora-blocks',
+    },
+    thirdParty: {
+      coingecko: {
+        nativeAssetId: 'eth',
+        platformId: 'aurora',
+      },
     },
     pools: {},
+    poolsToIgnore: [],
+    sorConnectingTokens: [
+      {
+        symbol: 'usdc',
+        address: '0xB12BFcA5A55806AaF64E99521918A4bf0fC40802',
+      },
+      {
+        symbol: 'pNEAR',
+        address: '0x990e50E781004EA75e2bA3A67eB69c0B1cD6e3A6',
+      },
+    ],
   },
-  [Network.AURORATEST]: {
-    chainId: Network.AURORATEST, //1313161555
+  [Network.TELOS]: {
+    chainId: Network.TELOS, //40
     addresses: {
       contracts: {
-        vault: '0x3F39DDE7BF3e17Db8F7D56942B1A2C2880C2e622',
-        multicall: '0x3a4773e600086A753862621A26a2E3274610da43',
+        poolDataQueries: '0x402545Ec0BE161Debd8f68047b0A6786C148CDF1',
+        vault: '0x9Ced3B4E4DC978265484d1F1f569010E13f911c9',
+        multicall: '0x075A47CDF38Bc67A018A4742a2Fe7e9053d41C8c',
+        balancerHelpers: '0xf0f3b9Eee32b1F490A4b8720cf6F005d4aE9eA86',
+        balancerRelayer: '0x15F707033cA3a44FB3deC7EBC2F3ac5DB3b4e099',
+        weightedPoolFactory: '0x981071AA1A430fC1b54C3E171608f88975497cF3',
+        composableStablePoolFactory:
+          '0x2Af7e5b19405A02FC99468Af38a23aa270921781',
       },
       tokens: {
-        wrappedNativeAsset: '0xC9BdeEd33CD01541e1eeD10f90519d2C06Fe3feB',
+        wrappedNativeAsset: '0xD102cE6A4dB07D247fcc28F366A623Df0938CA9E',
+        bal: '0x1073E53ac92F711761475Cd30fab157620AFdAb0',
       },
     },
     urls: {
       subgraph:
-        'https://api.thegraph.com/subgraphs/name/polarisfinance/polaris-dex-testnet',
+        'https://api.goldsky.com/api/public/project_clqbhfggr3ii501w02mp62ver/subgraphs/polaris-dex-v2-telos/1.0.1/gn',
+      gaugesSubgraph:
+        'https://api.goldsky.com/api/public/project_clqbhfggr3ii501w02mp62ver/subgraphs/gauges-telos/1.0.0/gn',
+      blockNumberSubgraph:
+        'https://api.goldsky.com/api/public/project_clqbhfggr3ii501w02mp62ver/subgraphs/blocks-telos/1.0.0/gn',
+    },
+    thirdParty: {
+      coingecko: {
+        nativeAssetId: 'tlos',
+        platformId: 'telos',
+      },
     },
     pools: {},
+    poolsToIgnore: [],
+    sorConnectingTokens: [],
   },
 };
 

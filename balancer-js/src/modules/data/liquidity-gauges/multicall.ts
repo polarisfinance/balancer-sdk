@@ -9,7 +9,7 @@ const liquidityGaugeV5Interface = new Interface([
   'function working_supply() view returns (uint)',
   'function reward_count() view returns (uint)',
   'function reward_tokens(uint rewardIndex) view returns (address)',
-  'function reward_data(address rewardToken) view returns (tuple(address token, address distributor, uint period_finish, uint rate, uint last_update, uint integral) data)',
+  'function reward_data(address rewardToken) view returns (tuple(address distributor, uint period_finish, uint rate, uint last_update, uint integral) data)',
 ]);
 
 const childLiquidityGaugeInterface = new Interface([

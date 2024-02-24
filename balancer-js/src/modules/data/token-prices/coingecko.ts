@@ -35,7 +35,7 @@ export class CoingeckoPriceRepository implements Findable<Price> {
     this.baseTokenAddresses = tokenAddresses.map(tokenAddressForPricing);
     this.url = `${getCoingeckoApiBaseUrl(
       coingecko?.isDemoApiKey
-    )}simple/token_price/${this.platform(chainId)}?vs_currencies=usd,eth`;
+    )}getTokens/?chain=${this.platform(chainId)}`;
     this.urlNative = `${getCoingeckoApiBaseUrl(
       coingecko?.isDemoApiKey
     )}simple/price/?vs_currencies=eth,usd&ids=`;
@@ -56,7 +56,9 @@ export class CoingeckoPriceRepository implements Findable<Price> {
   ): Promise<TokenPrices> {
     try {
       const { data } = await axios.get<TokenPrices>(
-        `${this.url}&contract_addresses=${addresses.join(',')}`,
+        `${this.url}&contract_addresses=${addresses.join(
+          ','
+        )}&vs_currencies=usd`,
         {
           signal,
           headers: {
@@ -176,6 +178,10 @@ export class CoingeckoPriceRepository implements Findable<Price> {
         return 'arbitrum-one';
       case 43114:
         return 'avalanche';
+      case 1313161554:
+        return 'aurora';
+      case 40:
+        return 'telos';
     }
 
     return '2';

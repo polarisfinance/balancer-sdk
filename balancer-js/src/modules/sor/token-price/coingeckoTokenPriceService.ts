@@ -14,9 +14,7 @@ export class CoingeckoTokenPriceService implements TokenPriceService {
   constructor(private readonly chainId: number, coingecko: CoingeckoConfig) {
     this.urlBase = `${getCoingeckoApiBaseUrl(
       coingecko?.isDemoApiKey
-    )}simple/token_price/${this.platformId}?vs_currencies=${
-      this.nativeAssetId
-    }`;
+    )}getTokens/?chain=${this.platformId}`;
     this.coingeckoApiKeyHeaderName = getCoingeckoApiKeyHeaderName(
       coingecko?.isDemoApiKey
     );
