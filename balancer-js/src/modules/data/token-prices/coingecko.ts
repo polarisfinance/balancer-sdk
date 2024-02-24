@@ -58,13 +58,7 @@ export class CoingeckoPriceRepository implements Findable<Price> {
       const { data } = await axios.get<TokenPrices>(
         `${this.url}&contract_addresses=${addresses.join(
           ','
-        )}&vs_currencies=usd`,
-        {
-          signal,
-          headers: {
-            [this.coingeckoApiKeyHeaderName]: this.apiKey ?? '',
-          },
-        }
+        )}&vs_currencies=usd`
       );
       return data;
     } catch (error) {
