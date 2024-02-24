@@ -42186,8 +42186,8 @@ declare class GyroConfigRepositoryImpl implements GyroConfigRepository {
  * Calculation source
  * https://github.com/balancer-labs/balancer-v2-monorepo/blob/master/pkg/liquidity-mining/contracts/BalancerTokenAdmin.sol
  */
-declare const INITIAL_RATE = 145000;
-declare const START_EPOCH_TIME = 1648465251;
+declare const INITIAL_RATE = 15342;
+declare const START_EPOCH_TIME = 1683673200;
 /**
  * Weekly BAL emissions
  *

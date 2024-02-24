@@ -60,7 +60,7 @@ export class LiquidityGaugeSubgraphRPCProvider
   async fetch(): Promise<LiquidityGauge[]> {
     const gauges: SubgraphLiquidityGauge[] = await this.subgraph.fetch();
     const gaugeAddresses = gauges.map((g) => g.id);
-    if (this.chainId == 1) {
+    if (this.chainId == 1313161554) {
       console.time('Fetching multicall.getWorkingSupplies');
       this.workingSupplies = await this.multicall.getWorkingSupplies(
         gaugeAddresses
@@ -102,38 +102,41 @@ export class LiquidityGaugeSubgraphRPCProvider
     }
 
     // Kept as a potential fallback for getting rewardData from RPC
-
-    this.rewardData = await this.multicall.getRewardData(
-      gaugeAddresses //,
-      // rewardTokens
-    );
+    if (this.chainId == 40) {
+      this.rewardData = await this.multicall.getRewardData(
+        gaugeAddresses //,
+        // rewardTokens
+      );
+    }
 
     // Reward data was made available from subgraph, keeping it separate for potential RPC fallback
-    // this.rewardData = gauges.reduce(
-    //   (r: { [key: string]: { [key: string]: RewardData } }, g) => {
-    //     r[g.id] ||= g.tokens
-    //       ? Object.fromEntries(
-    //           g.tokens.map((t) => [
-    //             t.id.split('-')[0],
-    //             {
-    //               distributor: '',
-    //               last_update: BigNumber.from(0),
-    //               integral: BigNumber.from(0),
-    //               token: t.id.split('-')[0],
-    //               decimals: t.decimals,
-    //               rate: parseUnits(t.rate || '0', t.decimals),
-    //               period_finish: BigNumber.from(
-    //                 (t.periodFinish as unknown as string) || '0'
-    //               ),
-    //             },
-    //           ])
-    //         )
-    //       : {};
+    else {
+      this.rewardData = gauges.reduce(
+        (r: { [key: string]: { [key: string]: RewardData } }, g) => {
+          r[g.id] ||= g.tokens
+            ? Object.fromEntries(
+                g.tokens.map((t) => [
+                  t.id.split('-')[0],
+                  {
+                    distributor: '',
+                    last_update: BigNumber.from(0),
+                    integral: BigNumber.from(0),
+                    token: t.id.split('-')[0],
+                    decimals: t.decimals,
+                    rate: parseUnits(t.rate || '0', t.decimals),
+                    period_finish: BigNumber.from(
+                      (t.periodFinish as unknown as string) || '0'
+                    ),
+                  },
+                ])
+              )
+            : {};
 
-    //     return r;
-    //   },
-    //   {}
-    // );
+          return r;
+        },
+        {}
+      );
+    }
 
     return gauges.map(this.compose.bind(this));
   }
