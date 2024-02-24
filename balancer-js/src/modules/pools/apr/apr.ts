@@ -254,9 +254,9 @@ export class PoolApr {
     const gauge = await this.liquidityGauges.findBy('poolId', pool.id);
     if (
       !gauge ||
-      (pool.chainId == 1 && gauge.workingSupply === 0) ||
-      (pool.chainId > 1 && gauge.totalSupply === 0) ||
-      (pool.chainId > 1 && gauge.balInflationRate === 0)
+      (pool.chainId == 1313161554 && gauge.workingSupply === 0) ||
+      (pool.chainId != 1313161554 && gauge.totalSupply === 0) ||
+      (pool.chainId != 1313161554 && gauge.balInflationRate === 0)
     ) {
       return 0;
     }
@@ -285,7 +285,7 @@ export class PoolApr {
       const reward =
         gauge.balInflationRate * 86400 * 365 * parseFloat(balPrice.usd);
       return Math.round((boost * 10000 * reward) / gaugeSupplyUsd);
-    } else if (pool.chainId > 1) {
+    } else if (pool.chainId != 1313161554) {
       // TODO: remove after all gauges are migrated (around 01-07-2023), Subgraph is returning BAL staking rewards as reward tokens for L2 gauges.
       if (!gauge.rewardTokens) {
         return 0;
