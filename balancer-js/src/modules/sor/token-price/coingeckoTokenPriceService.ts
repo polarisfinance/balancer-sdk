@@ -1,8 +1,27 @@
 import { TokenPriceService } from '@balancer-labs/sor';
 import axios from 'axios';
+import { BALANCER_NETWORK_CONFIG } from '@/lib/constants/config';
+import { Network, BalancerNetworkConfig, CoingeckoConfig } from '@/types';
+import {
+  getCoingeckoApiBaseUrl,
+  getCoingeckoApiKeyHeaderName,
+} from '@/lib/utils/coingecko-api';
 
 export class CoingeckoTokenPriceService implements TokenPriceService {
-  constructor(private readonly chainId: number) {}
+  private readonly urlBase: string;
+  private readonly apiKey: string;
+  private readonly coingeckoApiKeyHeaderName: string;
+  constructor(private readonly chainId: number, coingecko: CoingeckoConfig) {
+    this.urlBase = `${getCoingeckoApiBaseUrl(
+      coingecko?.isDemoApiKey
+    )}simple/token_price/${this.platformId}?vs_currencies=${
+      this.nativeAssetId
+    }`;
+    this.coingeckoApiKeyHeaderName = getCoingeckoApiKeyHeaderName(
+      coingecko?.isDemoApiKey
+    );
+    this.apiKey = coingecko.coingeckoApiKey;
+  }
 
   public async getNativeAssetPriceInToken(
     tokenAddress: string
@@ -20,16 +39,20 @@ export class CoingeckoTokenPriceService implements TokenPriceService {
    * @returns the price of 1 ETH in terms of the token base units
    */
   async getTokenPriceInNativeAsset(tokenAddress: string): Promise<string> {
-    const endpoint = `https://api.coingecko.com/api/v3/simple/token_price/${this.platformId}?contract_addresses=${tokenAddress}&vs_currencies=${this.nativeAssetId}`;
+    const endpoint = `${this.urlBase}&contract_addresses=${tokenAddress}`;
 
     const { data } = await axios.get(endpoint, {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
+        [this.coingeckoApiKeyHeaderName]: this.apiKey ?? '',
       },
     });
 
-    if (data[tokenAddress.toLowerCase()][this.nativeAssetId] === undefined) {
+    if (
+      data[tokenAddress.toLowerCase()] === undefined ||
+      data[tokenAddress.toLowerCase()][this.nativeAssetId] === undefined
+    ) {
       throw Error('No price returned from Coingecko');
     }
 
@@ -37,32 +60,14 @@ export class CoingeckoTokenPriceService implements TokenPriceService {
   }
 
   private get platformId(): string {
-    switch (this.chainId) {
-      case 1:
-        return 'ethereum';
-      case 42:
-        return 'ethereum';
-      case 137:
-        return 'polygon-pos';
-      case 42161:
-        return 'arbitrum-one';
-    }
-
-    return '2';
+    const networkConfig: BalancerNetworkConfig =
+      BALANCER_NETWORK_CONFIG[this.chainId as Network];
+    return networkConfig.thirdParty.coingecko.platformId || '2';
   }
 
   private get nativeAssetId(): string {
-    switch (this.chainId) {
-      case 1:
-        return 'eth';
-      case 42:
-        return 'eth';
-      case 137:
-        return '';
-      case 42161:
-        return 'eth';
-    }
-
-    return '';
+    const networkConfig: BalancerNetworkConfig =
+      BALANCER_NETWORK_CONFIG[this.chainId as Network];
+    return networkConfig.thirdParty.coingecko.nativeAssetId || '';
   }
 }

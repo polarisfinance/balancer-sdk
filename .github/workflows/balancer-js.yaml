@@ -6,9 +6,9 @@ on:
       - master
   pull_request:
     branches:
-      - '*'
+      - "*"
     paths:
-      - 'balancer-js/**'
+      - "balancer-js/**"
 
 defaults:
   run:
@@ -20,9 +20,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: 18
       - name: Cache
         uses: actions/cache@v2
         id: cache
@@ -40,9 +40,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: 18
       - name: Cache
         uses: actions/cache@v2
         id: cache
@@ -54,6 +54,8 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
       - name: Generate Subgraph Queries
         run: yarn subgraph:generate
+      - name: Generate Typechain
+        run: yarn typechain:generate
       - name: Build
         run: yarn build
 
@@ -62,9 +64,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: 18
       - name: Cache
         uses: actions/cache@v2
         id: cache
@@ -76,10 +78,16 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
       - name: Generate Subgraph Queries
         run: yarn subgraph:generate
+      - name: Generate Typechain
+        run: yarn typechain:generate
       - name: Compile
         run: yarn build
       - name: Run node in background for integration tests
-        run: npx hardhat node --hostname 127.0.0.1 &
+        run: npx hardhat --tsconfig tsconfig.testing.json node --hostname 127.0.0.1 --fork ${{ secrets.ALCHEMY_URL }} &
+      - name: Run goerli node in background for integration tests
+        run: npx hardhat --tsconfig tsconfig.testing.json --config hardhat.config.goerli.ts node --hostname 127.0.0.1 --fork ${{ secrets.ALCHEMY_URL_GOERLI }} --port 8000 &
+      - name: Run Polygon node in background for integration tests
+        run: npx hardhat --tsconfig tsconfig.testing.json --config hardhat.config.polygon.ts node --hostname 127.0.0.1 --fork ${{ secrets.ALCHEMY_URL_POLYGON }} --port 8137 &
       - name: Test
         run: yarn test
 
@@ -87,3 +95,8 @@ env:
   CI: true
   INFURA: ${{ secrets.INFURA }}
   ALCHEMY_URL: ${{ secrets.ALCHEMY_URL }}
+  ALCHEMY_URL_GOERLI: ${{ secrets.ALCHEMY_URL_GOERLI }}
+  ALCHEMY_URL_POLYGON: ${{ secrets.ALCHEMY_URL_POLYGON }}
+  TENDERLY_ACCESS_KEY: ${{ secrets.TENDERLY_ACCESS_KEY }}
+  TENDERLY_PROJECT: ${{ secrets.TENDERLY_PROJECT }}
+  TENDERLY_USER: ${{ secrets.TENDERLY_USER }}

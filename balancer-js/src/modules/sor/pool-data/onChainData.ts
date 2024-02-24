@@ -1,23 +1,70 @@
-import { formatFixed } from '@ethersproject/bignumber';
 import { Provider } from '@ethersproject/providers';
-import { PoolFilter, SubgraphPoolBase } from '@balancer-labs/sor';
+import { SubgraphPoolBase, SubgraphToken } from '@balancer-labs/sor';
+import { Pool, PoolToken, PoolType } from '@/types';
+import { decorateGyroEv2 } from './multicall/gyroEv2';
+import { getPoolsFromDataQuery } from './poolDataQueries';
+import { Logger } from '@/lib/utils/logger';
+import { decorateFx } from './multicall/fx';
+import { formatFixed } from '@ethersproject/bignumber';
+import {
+  ComposableStablePool__factory,
+  ConvergentCurvePool__factory,
+  FXPool__factory,
+  GyroEV2__factory,
+  LinearPool__factory,
+  Multicall__factory,
+  StablePool__factory,
+  StaticATokenRateProvider__factory,
+  Vault__factory,
+  WeightedPool__factory,
+} from '@/contracts';
+import { JsonFragment } from '@ethersproject/abi';
 import { Multicaller } from '@/lib/utils/multiCaller';
 import { isSameAddress } from '@/lib/utils';
-import { Vault__factory } from '@balancer-labs/typechain';
 
-// TODO: decide whether we want to trim these ABIs down to the relevant functions
-import aTokenRateProvider from '@/lib/abi/StaticATokenRateProvider.json';
-import weightedPoolAbi from '@/lib/abi/WeightedPool.json';
-import stablePoolAbi from '@/lib/abi/StablePool.json';
-import elementPoolAbi from '@/lib/abi/ConvergentCurvePool.json';
-import linearPoolAbi from '@/lib/abi/LinearPool.json';
+export type Tokens = (SubgraphToken | PoolToken)[];
 
-export async function getOnChainBalances(
-  subgraphPoolsOriginal: SubgraphPoolBase[],
+export type BalancerPool = Omit<SubgraphPoolBase | Pool, 'tokens'> & {
+  tokens: Tokens;
+};
+
+export async function getOnChainPools<GenericPool extends BalancerPool>(
+  subgraphPoolsOriginal: GenericPool[],
+  dataQueryAddr: string,
+  multicallAddr: string,
+  provider: Provider
+): Promise<GenericPool[]> {
+  if (subgraphPoolsOriginal.length === 0) return subgraphPoolsOriginal;
+
+  const supportedPoolTypes: string[] = Object.values(PoolType);
+  const filteredPools = subgraphPoolsOriginal.filter((p) => {
+    if (!supportedPoolTypes.includes(p.poolType) || p.poolType === 'Managed') {
+      const logger = Logger.getInstance();
+      logger.warn(`Unknown pool type: ${p.poolType} ${p.id}`);
+      return false;
+    } else return true;
+  });
+  const onChainPools = await getPoolsFromDataQuery(
+    filteredPools,
+    dataQueryAddr,
+    provider
+  );
+  // GyroEV2 requires tokenRates onchain update that dataQueries does not provide
+  await decorateGyroEv2(onChainPools, multicallAddr, provider);
+  await decorateFx(onChainPools, multicallAddr, provider);
+  return onChainPools;
+}
+
+export async function getOnChainBalances<
+  GenericPool extends Omit<SubgraphPoolBase | Pool, 'tokens'> & {
+    tokens: (SubgraphToken | PoolToken)[];
+  }
+>(
+  subgraphPoolsOriginal: GenericPool[],
   multiAddress: string,
   vaultAddress: string,
   provider: Provider
-): Promise<SubgraphPoolBase[]> {
+): Promise<GenericPool[]> {
   if (subgraphPoolsOriginal.length === 0) return subgraphPoolsOriginal;
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -25,23 +72,32 @@ export async function getOnChainBalances(
     // Remove duplicate entries using their names
     Object.fromEntries(
       [
-        ...Vault__factory.abi,
-        ...aTokenRateProvider,
-        ...weightedPoolAbi,
-        ...stablePoolAbi,
-        ...elementPoolAbi,
-        ...linearPoolAbi,
+        ...(Vault__factory.abi as readonly JsonFragment[]),
+        ...(StaticATokenRateProvider__factory.abi as readonly JsonFragment[]),
+        ...(WeightedPool__factory.abi as readonly JsonFragment[]),
+        ...(StablePool__factory.abi as readonly JsonFragment[]),
+        ...(ConvergentCurvePool__factory.abi as readonly JsonFragment[]),
+        ...(LinearPool__factory.abi as readonly JsonFragment[]),
+        ...(ComposableStablePool__factory.abi as readonly JsonFragment[]),
+        ...(GyroEV2__factory.abi as readonly JsonFragment[]),
+        ...(FXPool__factory.abi as readonly JsonFragment[]),
       ].map((row) => [row.name, row])
     )
   );
 
-  const multiPool = new Multicaller(multiAddress, provider, abis);
+  const multicall = Multicall__factory.connect(multiAddress, provider);
 
-  const supportedPoolTypes: string[] = Object.values(PoolFilter);
-  const subgraphPools: SubgraphPoolBase[] = [];
+  const multiPool = new Multicaller(multicall, abis);
+
+  const supportedPoolTypes: string[] = Object.values(PoolType);
+  const subgraphPools: GenericPool[] = [];
   subgraphPoolsOriginal.forEach((pool) => {
-    if (!supportedPoolTypes.includes(pool.poolType)) {
-      console.error(`Unknown pool type: ${pool.poolType} ${pool.id}`);
+    if (
+      !supportedPoolTypes.includes(pool.poolType) ||
+      pool.poolType === 'Managed'
+    ) {
+      const logger = Logger.getInstance();
+      logger.warn(`Unknown pool type: ${pool.poolType} ${pool.id}`);
       return;
     }
 
@@ -52,58 +108,140 @@ export async function getOnChainBalances(
     ]);
     multiPool.call(`${pool.id}.totalSupply`, pool.address, 'totalSupply');
 
-    // Pools with pre minted BPT
-    if (pool.poolType.includes('Linear') || pool.poolType === 'StablePhantom') {
-      multiPool.call(
-        `${pool.id}.virtualSupply`,
-        pool.address,
-        'getVirtualSupply'
-      );
-    }
-
-    // TO DO - Make this part of class to make more flexible?
-    if (
-      pool.poolType === 'Weighted' ||
-      pool.poolType === 'LiquidityBootstrapping' ||
-      pool.poolType === 'Investment'
-    ) {
-      multiPool.call(
-        `${pool.id}.weights`,
-        pool.address,
-        'getNormalizedWeights'
-      );
-      multiPool.call(
-        `${pool.id}.swapFee`,
-        pool.address,
-        'getSwapFeePercentage'
-      );
-    } else if (
-      pool.poolType === 'Stable' ||
-      pool.poolType === 'MetaStable' ||
-      pool.poolType === 'StablePhantom'
-    ) {
-      // MetaStable & StablePhantom is the same as Stable for multicall purposes
-      multiPool.call(
-        `${pool.id}.amp`,
-        pool.address,
-        'getAmplificationParameter'
-      );
-      multiPool.call(
-        `${pool.id}.swapFee`,
-        pool.address,
-        'getSwapFeePercentage'
-      );
-    } else if (pool.poolType === 'Element') {
-      multiPool.call(`${pool.id}.swapFee`, pool.address, 'percentFee');
-    } else if (pool.poolType.toString().includes('Linear')) {
-      multiPool.call(
-        `${pool.id}.swapFee`,
-        pool.address,
-        'getSwapFeePercentage'
-      );
-
-      multiPool.call(`${pool.id}.targets`, pool.address, 'getTargets');
-      multiPool.call(`${pool.id}.rate`, pool.address, 'getWrappedTokenRate');
+    switch (pool.poolType) {
+      case 'LiquidityBootstrapping':
+      case 'Investment':
+      case 'Weighted':
+        multiPool.call(
+          `${pool.id}.swapFee`,
+          pool.address,
+          'getSwapFeePercentage'
+        );
+        multiPool.call(
+          `${pool.id}.weights`,
+          pool.address,
+          'getNormalizedWeights'
+        );
+        break;
+      case 'StablePhantom':
+        multiPool.call(
+          `${pool.id}.virtualSupply`,
+          pool.address,
+          'getVirtualSupply'
+        );
+        multiPool.call(
+          `${pool.id}.amp`,
+          pool.address,
+          'getAmplificationParameter'
+        );
+        multiPool.call(
+          `${pool.id}.swapFee`,
+          pool.address,
+          'getSwapFeePercentage'
+        );
+        break;
+      // MetaStable is the same as Stable for multicall purposes
+      case 'MetaStable':
+      case 'Stable':
+        multiPool.call(
+          `${pool.id}.amp`,
+          pool.address,
+          'getAmplificationParameter'
+        );
+        multiPool.call(
+          `${pool.id}.swapFee`,
+          pool.address,
+          'getSwapFeePercentage'
+        );
+        break;
+      case 'ComposableStable':
+        /**
+         * Returns the effective BPT supply.
+         * In other pools, this would be the same as `totalSupply`, but there are two key differences here:
+         *  - this pool pre-mints BPT and holds it in the Vault as a token, and as such we need to subtract the Vault's
+         *    balance to get the total "circulating supply". This is called the 'virtualSupply'.
+         *  - the Pool owes debt to the Protocol in the form of unminted BPT, which will be minted immediately before the
+         *    next join or exit. We need to take these into account since, even if they don't yet exist, they will
+         *    effectively be included in any Pool operation that involves BPT.
+         * In the vast majority of cases, this function should be used instead of `totalSupply()`.
+         */
+        multiPool.call(
+          `${pool.id}.actualSupply`,
+          pool.address,
+          'getActualSupply'
+        );
+        // MetaStable & StablePhantom is the same as Stable for multicall purposes
+        multiPool.call(
+          `${pool.id}.amp`,
+          pool.address,
+          'getAmplificationParameter'
+        );
+        multiPool.call(
+          `${pool.id}.swapFee`,
+          pool.address,
+          'getSwapFeePercentage'
+        );
+        break;
+      case 'Element':
+        multiPool.call(`${pool.id}.swapFee`, pool.address, 'percentFee');
+        break;
+      case 'FX':
+        multiPool.call(
+          `${pool.id}.swapFee`,
+          pool.address,
+          'protocolPercentFee'
+        );
+        break;
+      case 'Gyro2':
+      case 'Gyro3':
+        multiPool.call(`${pool.id}.poolTokens`, vaultAddress, 'getPoolTokens', [
+          pool.id,
+        ]);
+        multiPool.call(`${pool.id}.totalSupply`, pool.address, 'totalSupply');
+        multiPool.call(
+          `${pool.id}.swapFee`,
+          pool.address,
+          'getSwapFeePercentage'
+        );
+        break;
+      case 'GyroE':
+        multiPool.call(
+          `${pool.id}.swapFee`,
+          pool.address,
+          'getSwapFeePercentage'
+        );
+        if (pool.poolTypeVersion && pool.poolTypeVersion === 2) {
+          multiPool.call(
+            `${pool.id}.tokenRates`,
+            pool.address,
+            'getTokenRates'
+          );
+        }
+        break;
+      default:
+        //Handling all Linear pools
+        if (pool.poolType.toString().includes('Linear')) {
+          multiPool.call(
+            `${pool.id}.virtualSupply`,
+            pool.address,
+            'getVirtualSupply'
+          );
+          multiPool.call(
+            `${pool.id}.swapFee`,
+            pool.address,
+            'getSwapFeePercentage'
+          );
+          multiPool.call(`${pool.id}.targets`, pool.address, 'getTargets');
+          // AaveLinear pools with version === 1 rates will still work
+          if (pool.poolType === 'AaveLinear' && pool.poolTypeVersion === 1) {
+            multiPool.call(
+              `${pool.id}.rate`,
+              pool.address,
+              'getWrappedTokenRate'
+            );
+          }
+        }
+        break;
     }
   });
 
@@ -121,6 +259,8 @@ export async function getOnChainBalances(
       totalSupply: string;
       virtualSupply?: string;
       rate?: string;
+      actualSupply?: string;
+      tokenRates?: string[];
     }
   >;
 
@@ -138,23 +278,33 @@ export async function getOnChainBalances(
         totalSupply: string;
         virtualSupply?: string;
         rate?: string;
+        actualSupply?: string;
+        tokenRates?: string[];
       }
     >;
   } catch (err) {
-    throw `Issue with multicall execution.`;
+    throw new Error(`Issue with multicall execution.`);
   }
 
-  const onChainPools: SubgraphPoolBase[] = [];
+  const onChainPools: GenericPool[] = [];
 
   Object.entries(pools).forEach(([poolId, onchainData], index) => {
     try {
-      const { poolTokens, swapFee, weights, totalSupply, virtualSupply } =
-        onchainData;
+      const {
+        poolTokens,
+        swapFee,
+        weights,
+        totalSupply,
+        virtualSupply,
+        actualSupply,
+        tokenRates,
+      } = onchainData;
 
       if (
         subgraphPools[index].poolType === 'Stable' ||
         subgraphPools[index].poolType === 'MetaStable' ||
-        subgraphPools[index].poolType === 'StablePhantom'
+        subgraphPools[index].poolType === 'StablePhantom' ||
+        subgraphPools[index].poolType === 'ComposableStable'
       ) {
         if (!onchainData.amp) {
           console.error(`Stable Pool Missing Amp: ${poolId}`);
@@ -181,26 +331,30 @@ export async function getOnChainBalances(
           );
         }
 
-        const wrappedIndex = subgraphPools[index].wrappedIndex;
-        if (wrappedIndex === undefined || onchainData.rate === undefined) {
-          console.error(
-            `Linear Pool Missing WrappedIndex or PriceRate: ${poolId}`
+        if (
+          subgraphPools[index].poolType === 'AaveLinear' &&
+          subgraphPools[index].poolTypeVersion === 1
+        ) {
+          const wrappedIndex = subgraphPools[index].wrappedIndex;
+          if (wrappedIndex === undefined || onchainData.rate === undefined) {
+            console.error(
+              `Linear Pool Missing WrappedIndex or PriceRate: ${poolId}`
+            );
+            return;
+          }
+          // Update priceRate of wrappedToken
+          subgraphPools[index].tokens[wrappedIndex].priceRate = formatFixed(
+            onchainData.rate,
+            18
           );
-          return;
         }
-        // Update priceRate of wrappedToken
-        subgraphPools[index].tokens[wrappedIndex].priceRate = formatFixed(
-          onchainData.rate,
-          18
-        );
       }
 
       subgraphPools[index].swapFee = formatFixed(swapFee, 18);
 
       poolTokens.tokens.forEach((token, i) => {
-        const T = subgraphPools[index].tokens.find((t) =>
-          isSameAddress(t.address, token)
-        );
+        const tokens = subgraphPools[index].tokens;
+        const T = tokens.find((t) => isSameAddress(t.address, token));
         if (!T) throw `Pool Missing Expected Token: ${poolId} ${token}`;
         T.balance = formatFixed(poolTokens.balances[i], T.decimals);
         if (weights) {
@@ -215,21 +369,43 @@ export async function getOnChainBalances(
         subgraphPools[index].poolType === 'StablePhantom'
       ) {
         if (virtualSupply === undefined) {
-          console.error(
+          const logger = Logger.getInstance();
+          logger.warn(
             `Pool with pre-minted BPT missing Virtual Supply: ${poolId}`
           );
           return;
         }
         subgraphPools[index].totalShares = formatFixed(virtualSupply, 18);
+      } else if (subgraphPools[index].poolType === 'ComposableStable') {
+        if (actualSupply === undefined) {
+          const logger = Logger.getInstance();
+          logger.warn(`ComposableStable missing Actual Supply: ${poolId}`);
+          return;
+        }
+        subgraphPools[index].totalShares = formatFixed(actualSupply, 18);
       } else {
         subgraphPools[index].totalShares = formatFixed(totalSupply, 18);
       }
 
+      if (
+        subgraphPools[index].poolType === 'GyroE' &&
+        subgraphPools[index].poolTypeVersion == 2
+      ) {
+        if (!Array.isArray(tokenRates) || tokenRates.length !== 2) {
+          console.error(
+            `GyroEV2 pool with missing or invalid tokenRates: ${poolId}`
+          );
+          return;
+        }
+        subgraphPools[index].tokenRates = tokenRates.map((rate) =>
+          formatFixed(rate, 18)
+        );
+      }
+
       onChainPools.push(subgraphPools[index]);
     } catch (err) {
-      throw `Issue with pool onchain data: ${err}`;
+      throw new Error(`Issue with pool onchain data: ${err}`);
     }
   });
-
   return onChainPools;
 }

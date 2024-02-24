@@ -1,6 +1,17 @@
 import { SwapInfo } from '@balancer-labs/sor';
-import { Vault } from '@balancer-labs/typechain';
 import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
+import { Vault } from '@/contracts/Vault';
+
+export interface TokenAmounts {
+  [token: string]: string;
+}
+
+export interface SwapsOptions {
+  maxPools?: number;
+  gasPrice?: string;
+  deadline?: string;
+  maxSlippage?: number;
+}
 
 export enum SwapType {
   SwapExactIn,
@@ -51,31 +62,11 @@ export type BatchSwap = {
   outputReferences?: { index: BigNumberish; key: BigNumberish }[];
 };
 
-export interface FetchPoolsInput {
-  fetchPools: boolean;
-  fetchOnChain: boolean;
-}
-
-export interface QueryWithSorInput {
-  tokensIn: string[];
-  tokensOut: string[];
-  swapType: SwapType;
-  amounts: string[];
-  fetchPools: FetchPoolsInput;
-}
-
 export interface SwapInput {
   tokenIn: string;
   tokenOut: string;
   swapType: SwapType;
   amount: string;
-}
-
-export interface QueryWithSorOutput {
-  returnAmounts: string[];
-  swaps: BatchSwapStep[];
-  assets: string[];
-  deltas: string[];
 }
 
 export interface QuerySimpleFlashSwapParameters {
@@ -102,7 +93,7 @@ export interface FindRouteParameters {
   tokenOut: string;
   amount: BigNumber;
   gasPrice: BigNumber;
-  maxPools: number;
+  maxPools?: number;
 }
 
 export interface BuildTransactionParameters {
@@ -110,7 +101,7 @@ export interface BuildTransactionParameters {
   recipient?: string;
   swapInfo: SwapInfo;
   kind: SwapType;
-  deadline: BigNumber;
+  deadline: string;
   maxSlippage: number;
 }
 

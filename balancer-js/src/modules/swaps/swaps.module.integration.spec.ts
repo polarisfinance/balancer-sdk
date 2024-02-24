@@ -6,7 +6,7 @@ import { AddressZero, MaxUint256 } from '@ethersproject/constants';
 import { SwapInfo } from '@balancer-labs/sor';
 import hardhat from 'hardhat';
 import { JsonRpcProvider, TransactionReceipt } from '@ethersproject/providers';
-import { BigNumber } from 'ethers';
+import { BigNumber } from '@ethersproject/bignumber';
 import { getForkedPools } from '@/test/lib/mainnetPools';
 
 dotenv.config();
@@ -50,7 +50,7 @@ const tokenOut = '0x2260fac5e5542a773aa44fbcfedf7c193bc2c599'; // wBTC
 const amount = ethers.utils.parseEther('1');
 const gasPrice = ethers.utils.parseUnits('1', 'gwei'); // not important
 const maxPools = 4;
-const deadline = MaxUint256;
+const deadline = MaxUint256.toString();
 const maxSlippage = 1;
 
 describe('swaps execution', async () => {

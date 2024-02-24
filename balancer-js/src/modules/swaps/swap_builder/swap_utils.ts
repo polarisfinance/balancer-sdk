@@ -1,7 +1,7 @@
-import { Vault__factory } from '@balancer-labs/typechain';
-import vaultActionsAbi from '@/lib/abi/VaultActions.json';
+import { Vault__factory } from '@/contracts/factories/Vault__factory';
 import { JsonFragment } from '@ethersproject/abi';
 import { networkAddresses } from '@/lib/constants/config';
+import { BatchRelayerLibrary__factory } from '@/contracts';
 
 /**
  * Maps SOR data to get the tokenIn used in swaps.
@@ -85,14 +85,20 @@ function relayerResolver(
 }
 
 function swapFragment(relayer: SwapRelayer): JsonFragment[] {
-  let source = Vault__factory.abi;
-  if (relayer.id === Relayers.lido) source = vaultActionsAbi;
-
-  const signatures = source.filter(
-    (fn) => fn.name && ['swap', 'batchSwap'].includes(fn.name)
-  );
-
-  return signatures;
+  if (relayer.id === Relayers.lido)
+    return BatchRelayerLibrary__factory.abi.filter(
+      (f) =>
+        f.type === 'function' &&
+        f.name &&
+        ['swap', 'batchSwap'].includes(f.name)
+    );
+  else
+    return Vault__factory.abi.filter(
+      (f) =>
+        f.type === 'function' &&
+        f.name &&
+        ['swap', 'batchSwap'].includes(f.name)
+    );
 }
 
 function batchSwapFragment(
@@ -100,20 +106,19 @@ function batchSwapFragment(
   assetOut: string,
   chainId: number
 ): JsonFragment[] {
-  const vaultSignaturesForSwaps = Vault__factory.abi.filter(
-    (fn) => fn.name && ['batchSwap'].includes(fn.name)
-  );
-  const relayerSignaturesForSwaps = vaultActionsAbi.filter(
-    (fn) => fn.name && ['batchSwap'].includes(fn.name)
-  );
-  let returnSignatures = vaultSignaturesForSwaps;
   const { tokens, contracts } = networkAddresses(chainId);
   if (tokens.stETH && contracts.lidoRelayer) {
-    if ([assetIn, assetOut].includes(tokens.stETH))
-      returnSignatures = relayerSignaturesForSwaps;
+    if ([assetIn, assetOut].includes(tokens.stETH)) {
+      const relayerSignaturesForSwaps = BatchRelayerLibrary__factory.abi.filter(
+        (f) => f.type === 'function' && f.name === 'batchSwap'
+      );
+      return relayerSignaturesForSwaps;
+    }
   }
-
-  return returnSignatures;
+  const vaultSignaturesForSwaps = Vault__factory.abi.filter(
+    (f) => f.type === 'function' && f.name === 'batchSwap'
+  );
+  return vaultSignaturesForSwaps;
 }
 
 export { tokenForSwaps, relayerResolver, swapFragment, batchSwapFragment };

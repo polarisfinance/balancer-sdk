@@ -1,50 +1,89 @@
+import { parseFixed } from '@ethersproject/bignumber';
+import { AddressZero } from '@ethersproject/constants';
 import { expect } from 'chai';
+
 import {
   BalancerError,
   BalancerErrorCode,
-  BalancerSdkConfig,
   Network,
-  StaticPoolRepository,
-  Pool,
+  PoolWithMethods,
 } from '@/.';
-import { PoolsProvider } from '@/modules/pools/provider';
-import { parseFixed } from '@ethersproject/bignumber';
+import { TestPoolHelper } from '@/test/lib/utils';
+import { TEST_BLOCK } from '@/test/lib/constants';
 
-import { ADDRESSES } from '@/test/lib/constants';
-import pools_14717479 from '@/test/lib/pools_14717479.json';
-
-const stETH_stable_pool_id =
+const rpcUrl = 'http://127.0.0.1:8545';
+const network = Network.MAINNET;
+// This blockNumber is before protocol fees were switched on (Oct `21), for blockNos after this tests will fail because results don't 100% match
+const blockNumber = TEST_BLOCK[network];
+const testPoolId =
   '0x32296969ef14eb0c6d29669c550d4a0449130230000200000000000000000080'; // Balancer stETH Stable Pool
 
-describe('join module', () => {
-  const network = Network.MAINNET;
-  const sdkConfig: BalancerSdkConfig = {
-    network,
-    rpcUrl: '',
-  };
-  describe('buildJoin', async () => {
-    const pools = new PoolsProvider(
-      sdkConfig,
-      new StaticPoolRepository(pools_14717479 as Pool[])
+describe('MetaStablePool - Join - Unit tests', () => {
+  let pool: PoolWithMethods;
+  const signerAddress = AddressZero;
+  beforeEach(async function () {
+    const testPoolHelper = new TestPoolHelper(
+      testPoolId,
+      network,
+      rpcUrl,
+      blockNumber
     );
-    const pool = await pools.find(stETH_stable_pool_id);
-    if (!pool) throw new BalancerError(BalancerErrorCode.POOL_DOESNT_EXIST);
+    pool = await testPoolHelper.getPool();
+  });
 
-    it('should return encoded params', async () => {
-      const account = '0x35f5a330fd2f8e521ebd259fa272ba8069590741';
-      const tokensIn = [
-        ADDRESSES[network].wSTETH.address,
-        ADDRESSES[network].WETH.address,
-      ];
-      const amountsIn = [
-        parseFixed('1', 18).toString(),
-        parseFixed('1', 18).toString(),
-      ];
-      const slippage = '100';
-      const { data } = pool.buildJoin(account, tokensIn, amountsIn, slippage);
-      expect(data).to.equal(
-        '0xb95cac2832296969ef14eb0c6d29669c550d4a044913023000020000000000000000008000000000000000000000000035f5a330fd2f8e521ebd259fa272ba806959074100000000000000000000000035f5a330fd2f8e521ebd259fa272ba80695907410000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000e00000000000000000000000000000000000000000000000000000000000000140000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000020000000000000000000000007f39c581f595b53c5cb19bd0b3f8da6c935e2ca0000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc200000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000de0b6b3a76400000000000000000000000000000000000000000000000000000de0b6b3a764000000000000000000000000000000000000000000000000000000000000000000c0000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000001bf892f9e875996800000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000de0b6b3a76400000000000000000000000000000000000000000000000000000de0b6b3a7640000'
-      );
-    });
+  it('should return correct attributes for joining', async () => {
+    const tokensIn = pool.tokensList;
+    const amountsIn = pool.tokens.map((t, i) =>
+      parseFixed((i * 100).toString(), t.decimals).toString()
+    );
+    const slippage = '6';
+    const { attributes, functionName } = pool.buildJoin(
+      signerAddress,
+      tokensIn,
+      amountsIn,
+      slippage
+    );
+
+    expect(functionName).to.eq('joinPool');
+    expect(attributes.poolId).to.eq(testPoolId);
+    expect(attributes.recipient).to.eq(signerAddress);
+    expect(attributes.sender).to.eq(signerAddress);
+    expect(attributes.joinPoolRequest.assets).to.deep.eq(pool.tokensList);
+    expect(attributes.joinPoolRequest.fromInternalBalance).to.be.false;
+    expect(attributes.joinPoolRequest.maxAmountsIn).to.deep.eq(amountsIn);
+  });
+  it('should fail when joining with wrong amounts array length', () => {
+    const tokensIn = pool.tokensList;
+    const amountsIn = [parseFixed('1', pool.tokens[0].decimals).toString()];
+    const slippage = '0';
+    let errorMessage;
+    try {
+      pool.buildJoin(signerAddress, tokensIn, amountsIn, slippage);
+    } catch (error) {
+      errorMessage = (error as Error).message;
+    }
+    expect(errorMessage).to.contain(
+      BalancerError.getMessage(BalancerErrorCode.INPUT_LENGTH_MISMATCH)
+    );
+  });
+  it('should encode the same for different array sorting', () => {
+    const tokensIn = pool.tokensList;
+    const amountsIn = pool.tokens.map(({ decimals }, i) =>
+      parseFixed((i * 100).toString(), decimals).toString()
+    );
+    const slippage = '1';
+    const attributesA = pool.buildJoin(
+      signerAddress,
+      tokensIn,
+      amountsIn,
+      slippage
+    );
+    const attributesB = pool.buildJoin(
+      signerAddress,
+      tokensIn.reverse(),
+      amountsIn.reverse(),
+      slippage
+    );
+    expect(attributesA).to.deep.eq(attributesB);
   });
 });

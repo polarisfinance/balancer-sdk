@@ -7,3 +7,8 @@ yarn-error.log
 dist/
 src/subgraph/generated/
 cache/
+balancer-js.iml
+temp/
+src/contracts/
+
+.vscode/*

@@ -1,22 +1,19 @@
 import { SOR, SubgraphPoolBase, SwapInfo, SwapTypes } from '@balancer-labs/sor';
-import { Vault__factory, Vault } from '@balancer-labs/typechain';
+import { Vault__factory } from '@/contracts/factories/Vault__factory';
+import { Vault } from '@/contracts/Vault';
 import {
   BatchSwap,
   QuerySimpleFlashSwapParameters,
   QuerySimpleFlashSwapResponse,
-  QueryWithSorInput,
-  QueryWithSorOutput,
   SimpleFlashSwapParameters,
   FindRouteParameters,
   BuildTransactionParameters,
   SwapAttributes,
   SwapType,
+  TokenAmounts,
+  SwapsOptions,
 } from './types';
-import {
-  queryBatchSwap,
-  queryBatchSwapWithSor,
-  getSorSwapInfo,
-} from './queryBatchSwap';
+import { queryBatchSwap, getSorSwapInfo } from './queryBatchSwap';
 import { balancerVault } from '@/lib/constants/config';
 import { getLimitsForSlippage } from './helpers';
 import { BalancerSdkConfig } from '@/types';
@@ -30,6 +27,16 @@ import {
   SingleSwapBuilder,
   BatchSwapBuilder,
 } from '@/modules/swaps/swap_builder';
+import { BigNumber } from '@ethersproject/bignumber';
+import { AddressZero } from '@ethersproject/constants';
+import { GraphQLArgs } from '@/lib/graphql';
+
+const buildRouteDefaultOptions = {
+  maxPools: 4,
+  gasPrice: '1',
+  deadline: '999999999999999999',
+  maxSlippage: 10, // in bspt, eg: 10 = 0.1%
+};
 
 export class Swaps {
   readonly sor: SOR;
@@ -44,7 +51,9 @@ export class Swaps {
       this.chainId = (<any>this.sor.provider)['_network']['chainId'];
     } else {
       this.sor = new Sor(sorOrConfig);
-      this.chainId = sorOrConfig.network as number;
+      if (typeof sorOrConfig.network === 'number')
+        this.chainId = sorOrConfig.network as number;
+      else this.chainId = sorOrConfig.network.chainId;
     }
 
     this.vaultContract = Vault__factory.connect(
@@ -82,7 +91,7 @@ export class Swaps {
    * @param FindRouteParameters.tokenOut Address
    * @param FindRouteParameters.amount BigNumber with a trade amount
    * @param FindRouteParameters.gasPrice BigNumber current gas price
-   * @param FindRouteParameters.maxPools number of pool included in path
+   * @param FindRouteParameters.maxPools number of pool included in path, default 4
    * @returns Best trade route information
    */
   async findRouteGivenIn({
@@ -106,7 +115,7 @@ export class Swaps {
    * @param FindRouteParameters.tokenOut Address
    * @param FindRouteParameters.amount BigNumber with a trade amount
    * @param FindRouteParameters.gasPrice BigNumber current gas price
-   * @param FindRouteParameters.maxPools number of pool included in path
+   * @param FindRouteParameters.maxPools number of pool included in path, default 4
    * @returns Best trade route information
    */
   async findRouteGivenOut({
@@ -114,7 +123,7 @@ export class Swaps {
     tokenOut,
     amount,
     gasPrice,
-    maxPools,
+    maxPools = 4,
   }: FindRouteParameters): Promise<SwapInfo> {
     return this.sor.getSwaps(
       tokenIn,
@@ -135,7 +144,7 @@ export class Swaps {
    * @param BuildTransactionParameters.userAddress Address
    * @param BuildTransactionParameters.swapInfo result of route finding
    * @param BuildTransactionParameters.kind 0 - givenIn, 1 - givenOut
-   * @param BuildTransactionParameters.deadline BigNumber block timestamp
+   * @param BuildTransactionParameters.deadline block linux timestamp as string
    * @param BuildTransactionParameters.maxSlippage [bps], eg: 1 === 0.01%, 100 === 1%
    * @returns transaction request ready to send with signer.sendTransaction
    */
@@ -165,6 +174,59 @@ export class Swaps {
     const value = builder.value(maxSlippage);
 
     return { to, functionName, attributes, data, value };
+  }
+
+  /**
+   * Uses SOR to find optimal route for a trading pair and amount
+   * and builds a transaction request
+   *
+   * @param sender Sender of the swap
+   * @param recipient Reciever of the swap
+   * @param tokenIn Address of tokenIn
+   * @param tokenOut Address of tokenOut
+   * @param amount Amount of tokenIn to swap as a string with 18 decimals precision
+   * @param options
+   * @param options.maxPools number of pool included in path
+   * @param options.gasPrice BigNumber current gas price
+   * @param options.deadline BigNumber block timestamp
+   * @param options.maxSlippage [bps], eg: 1 === 0.01%, 100 === 1%
+   * @returns transaction request ready to send with signer.sendTransaction
+   */
+  async buildRouteExactIn(
+    sender: string,
+    recipient: string,
+    tokenIn: string,
+    tokenOut: string,
+    amount: string,
+    options: SwapsOptions = buildRouteDefaultOptions
+  ): Promise<SwapAttributes> {
+    const opts = {
+      ...buildRouteDefaultOptions,
+      ...options,
+    };
+
+    const swapInfo = await this.findRouteGivenIn({
+      tokenIn,
+      tokenOut,
+      amount: BigNumber.from(amount),
+      gasPrice: BigNumber.from(opts.gasPrice),
+      maxPools: opts.maxPools,
+    });
+
+    const tx = this.buildSwap({
+      userAddress: sender, // sender account
+      recipient, // recipient account
+      swapInfo, // result from the previous step
+      kind: SwapType.SwapExactIn, // or SwapExactOut
+      deadline: opts.deadline, // BigNumber block timestamp
+      maxSlippage: opts.maxSlippage, // [bps], eg: 1 == 0.01%, 100 == 1%
+    });
+
+    // TODO: add query support
+    // query will be a function that returns the deltas for the swap in { [address: string]: string } format
+    // const query = this.queryBatchSwap(tx);
+
+    return tx;
   }
 
   /**
@@ -222,12 +284,12 @@ export class Swaps {
 
   /**
    * fetchPools saves updated pools data to SOR internal onChainBalanceCache.
-   * @param {SubgraphPoolBase[]} [poolsData=[]] If poolsData passed uses this as pools source otherwise fetches from config.subgraphUrl.
-   * @param {boolean} [isOnChain=true] If isOnChain is true will retrieve all required onChain data via multicall otherwise uses subgraph values.
-   * @returns {boolean} Boolean indicating whether pools data was fetched correctly (true) or not (false).
+   *
+   * @returns Boolean indicating whether pools data was fetched correctly (true) or not (false).
    */
-  async fetchPools(): Promise<boolean> {
-    return this.sor.fetchPools();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  async fetchPools(queryArgs?: GraphQLArgs): Promise<boolean> {
+    return this.sor.fetchPools(queryArgs);
   }
 
   public getPools(): SubgraphPoolBase[] {
@@ -252,26 +314,6 @@ export class Swaps {
       batchSwap.kind,
       batchSwap.swaps,
       batchSwap.assets
-    );
-  }
-
-  /**
-   * Uses SOR to create and query a batchSwap.
-   * @param {QueryWithSorInput} queryWithSor - Swap information used for querying using SOR.
-   * @param {string[]} queryWithSor.tokensIn - Array of addresses of assets in.
-   * @param {string[]} queryWithSor.tokensOut - Array of addresses of assets out.
-   * @param {SwapType} queryWithSor.swapType - Type of Swap, ExactIn/Out.
-   * @param {string[]} queryWithSor.amounts - Array of amounts used in swap.
-   * @param {FetchPoolsInput} queryWithSor.fetchPools - Set whether SOR will fetch updated pool info.
-   * @returns {Promise<QueryWithSorOutput>} Returns amount of tokens swaps along with swap and asset info that can be submitted to a batchSwap call.
-   */
-  async queryBatchSwapWithSor(
-    queryWithSor: QueryWithSorInput
-  ): Promise<QueryWithSorOutput> {
-    return await queryBatchSwapWithSor(
-      this.sor,
-      this.vaultContract,
-      queryWithSor
     );
   }
 
@@ -318,5 +360,37 @@ export class Swaps {
       swapInput.amount,
       this.sor
     );
+  }
+
+  async queryExactIn(swap: SwapInfo): Promise<TokenAmounts> {
+    const deltas = await this.query(swap, SwapType.SwapExactIn);
+    return this.assetDeltas(deltas.map(String), swap.tokenAddresses);
+  }
+
+  async queryExactOut(swap: SwapInfo): Promise<TokenAmounts> {
+    const deltas = await this.query(swap, SwapType.SwapExactOut);
+    return this.assetDeltas(deltas.map(String), swap.tokenAddresses);
+  }
+
+  private query(swap: SwapInfo, kind: SwapType): Promise<BigNumber[]> {
+    const { swaps, tokenAddresses: assets } = swap;
+
+    const funds = {
+      sender: AddressZero,
+      recipient: AddressZero,
+      fromInternalBalance: false,
+      toInternalBalance: false,
+    };
+
+    return this.vaultContract.callStatic.queryBatchSwap(
+      kind,
+      swaps,
+      assets,
+      funds
+    );
+  }
+
+  private assetDeltas(deltas: string[], assets: string[]): TokenAmounts {
+    return Object.fromEntries(deltas.map((delta, idx) => [assets[idx], delta]));
   }
 }

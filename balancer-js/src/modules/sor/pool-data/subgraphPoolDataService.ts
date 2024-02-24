@@ -2,22 +2,24 @@ import { PoolDataService, SubgraphPoolBase } from '@balancer-labs/sor';
 import {
   OrderDirection,
   Pool_OrderBy,
+  PoolsQueryVariables,
   SubgraphClient,
 } from '@/modules/subgraph/subgraph';
 import { parseInt } from 'lodash';
-import { getOnChainBalances } from './onChainData';
+import { getOnChainBalances } from './onChainData3';
 import { Provider } from '@ethersproject/providers';
-import { Network } from '@/lib/constants/network';
-import { BalancerNetworkConfig, BalancerSdkSorConfig } from '@/types';
+import {
+  BalancerNetworkConfig,
+  BalancerSdkSorConfig,
+  GraphQLQuery,
+} from '@/types';
+import { GraphQLArgs } from '@/lib/graphql/types';
+import {
+  GraphQLArgsBuilder,
+  SubgraphArgsFormatter,
+} from '@/lib/graphql/args-builder';
 
-const NETWORKS_WITH_LINEAR_POOLS = [
-  Network.MAINNET,
-  Network.POLYGON,
-  Network.ROPSTEN,
-  Network.RINKEBY,
-  Network.GOERLI,
-  Network.KOVAN,
-];
+import { Logger } from '@/lib/utils/logger';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function mapPools(pools: any[]): SubgraphPoolBase[] {
@@ -39,55 +41,83 @@ export function mapPools(pools: any[]): SubgraphPoolBase[] {
 }
 
 export class SubgraphPoolDataService implements PoolDataService {
+  private readonly defaultArgs: GraphQLArgs;
   constructor(
     private readonly client: SubgraphClient,
     private readonly provider: Provider,
     private readonly network: BalancerNetworkConfig,
-    private readonly sorConfig: BalancerSdkSorConfig
-  ) {}
+    private readonly sorConfig?: BalancerSdkSorConfig,
+    query?: GraphQLQuery
+  ) {
+    // Default args can be overwritten by passing in a queryArgs object to .getPools
+    this.defaultArgs = query?.args || {
+      orderBy: Pool_OrderBy.TotalLiquidity,
+      orderDirection: OrderDirection.Desc,
+      where: {
+        swapEnabled: {
+          eq: true,
+        },
+        totalShares: {
+          gt: 0.000000000001,
+        },
+      },
+    };
+  }
 
-  public async getPools(): Promise<SubgraphPoolBase[]> {
-    const pools = this.supportsLinearPools
-      ? await this.getLinearPools()
-      : await this.getNonLinearPools();
+  /**
+   * Returns pools from the subgraph filtered by queryArgs with on-chain balances
+   *
+   * @param queryArgs
+   * @returns SubgraphPoolBase[]
+   */
+  async getPools(queryArgs?: GraphQLArgs): Promise<SubgraphPoolBase[]> {
+    const pools = await this.getSubgraphPools(queryArgs);
 
-    const mapped = mapPools(pools);
+    const filteredPools = pools.filter((p) => {
+      if (!this.network.poolsToIgnore) return true;
+      const index = this.network.poolsToIgnore.findIndex(
+        (id) => id.toLowerCase() === p.id.toLowerCase()
+      );
+      return index === -1;
+    });
 
-    if (this.sorConfig.fetchOnChainBalances === false) {
+    const mapped = mapPools(filteredPools);
+
+    if (this.sorConfig && this.sorConfig.fetchOnChainBalances === false) {
       return mapped;
     }
 
-    return getOnChainBalances(
+    const logger = Logger.getInstance();
+    logger.time(`fetching on-chain balances for ${mapped.length} pools`);
+
+    const onChainBalances = await getOnChainBalances(
       mapped,
       this.network.addresses.contracts.multicall,
       this.network.addresses.contracts.vault,
-      this.provider
+      this.provider,
+      this.network.multicallBatchSize
     );
+
+    logger.timeEnd(`fetching on-chain balances for ${mapped.length} pools`);
+
+    return onChainBalances;
   }
 
-  private get supportsLinearPools() {
-    return NETWORKS_WITH_LINEAR_POOLS.includes(this.network.chainId);
-  }
+  private async getSubgraphPools(queryArgs?: GraphQLArgs) {
+    const formattedQuery = new GraphQLArgsBuilder(
+      queryArgs || this.defaultArgs
+    ).format(new SubgraphArgsFormatter()) as PoolsQueryVariables;
 
-  private async getLinearPools() {
-    const { pool0, pool1000 } = await this.client.Pools({
-      where: { swapEnabled: true, totalShares_gt: '0' },
-      orderBy: Pool_OrderBy.TotalLiquidity,
-      orderDirection: OrderDirection.Desc,
-    });
+    if (formattedQuery.first) {
+      const { pools } = await this.client.Pools(formattedQuery);
+      return pools;
+    }
 
-    const pools = [...pool0, ...pool1000];
+    const { pool0, pool1000, pool2000 } = await this.client.AllPools(
+      formattedQuery
+    );
 
-    return pools;
-  }
-
-  private async getNonLinearPools() {
-    const { pools } = await this.client.PoolsWithoutLinear({
-      where: { swapEnabled: true, totalShares_gt: '0' },
-      orderBy: Pool_OrderBy.TotalLiquidity,
-      orderDirection: OrderDirection.Desc,
-      first: 1000,
-    });
+    const pools = [...pool0, ...pool1000, ...pool2000];
 
     return pools;
   }
