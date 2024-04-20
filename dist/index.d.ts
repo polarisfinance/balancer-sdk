@@ -3497,100 +3497,100 @@ declare namespace IPoolSwapStructs$a {
 }
 interface ComposableStablePoolInterface extends utils.Interface {
     functions: {
-        "DELEGATE_PROTOCOL_SWAP_FEES_SENTINEL()": FunctionFragment;
-        "DOMAIN_SEPARATOR()": FunctionFragment;
-        "allowance(address,address)": FunctionFragment;
-        "approve(address,uint256)": FunctionFragment;
-        "balanceOf(address)": FunctionFragment;
-        "decimals()": FunctionFragment;
-        "decreaseAllowance(address,uint256)": FunctionFragment;
-        "disableRecoveryMode()": FunctionFragment;
-        "enableRecoveryMode()": FunctionFragment;
-        "getActionId(bytes4)": FunctionFragment;
-        "getActualSupply()": FunctionFragment;
-        "getAmplificationParameter()": FunctionFragment;
-        "getAuthorizer()": FunctionFragment;
-        "getBptIndex()": FunctionFragment;
-        "getDomainSeparator()": FunctionFragment;
-        "getLastJoinExitData()": FunctionFragment;
-        "getMinimumBpt()": FunctionFragment;
-        "getNextNonce(address)": FunctionFragment;
-        "getOwner()": FunctionFragment;
-        "getPausedState()": FunctionFragment;
-        "getPoolId()": FunctionFragment;
-        "getProtocolFeePercentageCache(uint256)": FunctionFragment;
-        "getProtocolFeesCollector()": FunctionFragment;
-        "getProtocolSwapFeeDelegation()": FunctionFragment;
-        "getRate()": FunctionFragment;
-        "getRateProviders()": FunctionFragment;
-        "getScalingFactors()": FunctionFragment;
-        "getSwapFeePercentage()": FunctionFragment;
-        "getTokenRate(address)": FunctionFragment;
-        "getTokenRateCache(address)": FunctionFragment;
-        "getVault()": FunctionFragment;
-        "inRecoveryMode()": FunctionFragment;
-        "increaseAllowance(address,uint256)": FunctionFragment;
-        "isTokenExemptFromYieldProtocolFee(address)": FunctionFragment;
-        "name()": FunctionFragment;
-        "nonces(address)": FunctionFragment;
-        "onExitPool(bytes32,address,address,uint256[],uint256,uint256,bytes)": FunctionFragment;
-        "onJoinPool(bytes32,address,address,uint256[],uint256,uint256,bytes)": FunctionFragment;
-        "onSwap((uint8,address,address,uint256,bytes32,uint256,address,address,bytes),uint256[],uint256,uint256)": FunctionFragment;
-        "pause()": FunctionFragment;
-        "permit(address,address,uint256,uint256,uint8,bytes32,bytes32)": FunctionFragment;
-        "queryExit(bytes32,address,address,uint256[],uint256,uint256,bytes)": FunctionFragment;
-        "queryJoin(bytes32,address,address,uint256[],uint256,uint256,bytes)": FunctionFragment;
-        "setAssetManagerPoolConfig(address,bytes)": FunctionFragment;
-        "setSwapFeePercentage(uint256)": FunctionFragment;
-        "setTokenRateCacheDuration(address,uint256)": FunctionFragment;
-        "startAmplificationParameterUpdate(uint256,uint256)": FunctionFragment;
-        "stopAmplificationParameterUpdate()": FunctionFragment;
-        "symbol()": FunctionFragment;
-        "totalSupply()": FunctionFragment;
-        "transfer(address,uint256)": FunctionFragment;
-        "transferFrom(address,address,uint256)": FunctionFragment;
-        "unpause()": FunctionFragment;
-        "updateProtocolFeePercentageCache()": FunctionFragment;
-        "updateTokenRateCache(address)": FunctionFragment;
+        'DELEGATE_PROTOCOL_SWAP_FEES_SENTINEL()': FunctionFragment;
+        'DOMAIN_SEPARATOR()': FunctionFragment;
+        'allowance(address,address)': FunctionFragment;
+        'approve(address,uint256)': FunctionFragment;
+        'balanceOf(address)': FunctionFragment;
+        'decimals()': FunctionFragment;
+        'decreaseAllowance(address,uint256)': FunctionFragment;
+        'disableRecoveryMode()': FunctionFragment;
+        'enableRecoveryMode()': FunctionFragment;
+        'getActionId(bytes4)': FunctionFragment;
+        'getActualSupply()': FunctionFragment;
+        'getAmplificationParameter()': FunctionFragment;
+        'getAuthorizer()': FunctionFragment;
+        'getBptIndex()': FunctionFragment;
+        'getDomainSeparator()': FunctionFragment;
+        'getLastJoinExitData()': FunctionFragment;
+        'getMinimumBpt()': FunctionFragment;
+        'getNextNonce(address)': FunctionFragment;
+        'getOwner()': FunctionFragment;
+        'getPausedState()': FunctionFragment;
+        'getPoolId()': FunctionFragment;
+        'getProtocolFeePercentageCache(uint256)': FunctionFragment;
+        'getProtocolFeesCollector()': FunctionFragment;
+        'getProtocolSwapFeeDelegation()': FunctionFragment;
+        'getRate()': FunctionFragment;
+        'getRateProviders()': FunctionFragment;
+        'getScalingFactors()': FunctionFragment;
+        'getSwapFeePercentage()': FunctionFragment;
+        'getTokenRate(address)': FunctionFragment;
+        'getTokenRateCache(address)': FunctionFragment;
+        'getVault()': FunctionFragment;
+        'inRecoveryMode()': FunctionFragment;
+        'increaseAllowance(address,uint256)': FunctionFragment;
+        'isTokenExemptFromYieldProtocolFee(address)': FunctionFragment;
+        'name()': FunctionFragment;
+        'nonces(address)': FunctionFragment;
+        'onExitPool(bytes32,address,address,uint256[],uint256,uint256,bytes)': FunctionFragment;
+        'onJoinPool(bytes32,address,address,uint256[],uint256,uint256,bytes)': FunctionFragment;
+        'onSwap((uint8,address,address,uint256,bytes32,uint256,address,address,bytes),uint256[],uint256,uint256)': FunctionFragment;
+        'pause()': FunctionFragment;
+        'permit(address,address,uint256,uint256,uint8,bytes32,bytes32)': FunctionFragment;
+        'queryExit(bytes32,address,address,uint256[],uint256,uint256,bytes)': FunctionFragment;
+        'queryJoin(bytes32,address,address,uint256[],uint256,uint256,bytes)': FunctionFragment;
+        'setAssetManagerPoolConfig(address,bytes)': FunctionFragment;
+        'setSwapFeePercentage(uint256)': FunctionFragment;
+        'setTokenRateCacheDuration(address,uint256)': FunctionFragment;
+        'startAmplificationParameterUpdate(uint256,uint256)': FunctionFragment;
+        'stopAmplificationParameterUpdate()': FunctionFragment;
+        'symbol()': FunctionFragment;
+        'totalSupply()': FunctionFragment;
+        'transfer(address,uint256)': FunctionFragment;
+        'transferFrom(address,address,uint256)': FunctionFragment;
+        'unpause()': FunctionFragment;
+        'updateProtocolFeePercentageCache()': FunctionFragment;
+        'updateTokenRateCache(address)': FunctionFragment;
     };
-    getFunction(nameOrSignatureOrTopic: "DELEGATE_PROTOCOL_SWAP_FEES_SENTINEL" | "DOMAIN_SEPARATOR" | "allowance" | "approve" | "balanceOf" | "decimals" | "decreaseAllowance" | "disableRecoveryMode" | "enableRecoveryMode" | "getActionId" | "getActualSupply" | "getAmplificationParameter" | "getAuthorizer" | "getBptIndex" | "getDomainSeparator" | "getLastJoinExitData" | "getMinimumBpt" | "getNextNonce" | "getOwner" | "getPausedState" | "getPoolId" | "getProtocolFeePercentageCache" | "getProtocolFeesCollector" | "getProtocolSwapFeeDelegation" | "getRate" | "getRateProviders" | "getScalingFactors" | "getSwapFeePercentage" | "getTokenRate" | "getTokenRateCache" | "getVault" | "inRecoveryMode" | "increaseAllowance" | "isTokenExemptFromYieldProtocolFee" | "name" | "nonces" | "onExitPool" | "onJoinPool" | "onSwap" | "pause" | "permit" | "queryExit" | "queryJoin" | "setAssetManagerPoolConfig" | "setSwapFeePercentage" | "setTokenRateCacheDuration" | "startAmplificationParameterUpdate" | "stopAmplificationParameterUpdate" | "symbol" | "totalSupply" | "transfer" | "transferFrom" | "unpause" | "updateProtocolFeePercentageCache" | "updateTokenRateCache"): FunctionFragment;
-    encodeFunctionData(functionFragment: "DELEGATE_PROTOCOL_SWAP_FEES_SENTINEL", values?: undefined): string;
-    encodeFunctionData(functionFragment: "DOMAIN_SEPARATOR", values?: undefined): string;
-    encodeFunctionData(functionFragment: "allowance", values: [PromiseOrValue<string>, PromiseOrValue<string>]): string;
-    encodeFunctionData(functionFragment: "approve", values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish$1>]): string;
-    encodeFunctionData(functionFragment: "balanceOf", values: [PromiseOrValue<string>]): string;
-    encodeFunctionData(functionFragment: "decimals", values?: undefined): string;
-    encodeFunctionData(functionFragment: "decreaseAllowance", values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish$1>]): string;
-    encodeFunctionData(functionFragment: "disableRecoveryMode", values?: undefined): string;
-    encodeFunctionData(functionFragment: "enableRecoveryMode", values?: undefined): string;
-    encodeFunctionData(functionFragment: "getActionId", values: [PromiseOrValue<BytesLike>]): string;
-    encodeFunctionData(functionFragment: "getActualSupply", values?: undefined): string;
-    encodeFunctionData(functionFragment: "getAmplificationParameter", values?: undefined): string;
-    encodeFunctionData(functionFragment: "getAuthorizer", values?: undefined): string;
-    encodeFunctionData(functionFragment: "getBptIndex", values?: undefined): string;
-    encodeFunctionData(functionFragment: "getDomainSeparator", values?: undefined): string;
-    encodeFunctionData(functionFragment: "getLastJoinExitData", values?: undefined): string;
-    encodeFunctionData(functionFragment: "getMinimumBpt", values?: undefined): string;
-    encodeFunctionData(functionFragment: "getNextNonce", values: [PromiseOrValue<string>]): string;
-    encodeFunctionData(functionFragment: "getOwner", values?: undefined): string;
-    encodeFunctionData(functionFragment: "getPausedState", values?: undefined): string;
-    encodeFunctionData(functionFragment: "getPoolId", values?: undefined): string;
-    encodeFunctionData(functionFragment: "getProtocolFeePercentageCache", values: [PromiseOrValue<BigNumberish$1>]): string;
-    encodeFunctionData(functionFragment: "getProtocolFeesCollector", values?: undefined): string;
-    encodeFunctionData(functionFragment: "getProtocolSwapFeeDelegation", values?: undefined): string;
-    encodeFunctionData(functionFragment: "getRate", values?: undefined): string;
-    encodeFunctionData(functionFragment: "getRateProviders", values?: undefined): string;
-    encodeFunctionData(functionFragment: "getScalingFactors", values?: undefined): string;
-    encodeFunctionData(functionFragment: "getSwapFeePercentage", values?: undefined): string;
-    encodeFunctionData(functionFragment: "getTokenRate", values: [PromiseOrValue<string>]): string;
-    encodeFunctionData(functionFragment: "getTokenRateCache", values: [PromiseOrValue<string>]): string;
-    encodeFunctionData(functionFragment: "getVault", values?: undefined): string;
-    encodeFunctionData(functionFragment: "inRecoveryMode", values?: undefined): string;
-    encodeFunctionData(functionFragment: "increaseAllowance", values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish$1>]): string;
-    encodeFunctionData(functionFragment: "isTokenExemptFromYieldProtocolFee", values: [PromiseOrValue<string>]): string;
-    encodeFunctionData(functionFragment: "name", values?: undefined): string;
-    encodeFunctionData(functionFragment: "nonces", values: [PromiseOrValue<string>]): string;
-    encodeFunctionData(functionFragment: "onExitPool", values: [
+    getFunction(nameOrSignatureOrTopic: 'DELEGATE_PROTOCOL_SWAP_FEES_SENTINEL' | 'DOMAIN_SEPARATOR' | 'allowance' | 'approve' | 'balanceOf' | 'decimals' | 'decreaseAllowance' | 'disableRecoveryMode' | 'enableRecoveryMode' | 'getActionId' | 'getActualSupply' | 'getAmplificationParameter' | 'getAuthorizer' | 'getBptIndex' | 'getDomainSeparator' | 'getLastJoinExitData' | 'getMinimumBpt' | 'getNextNonce' | 'getOwner' | 'getPausedState' | 'getPoolId' | 'getProtocolFeePercentageCache' | 'getProtocolFeesCollector' | 'getProtocolSwapFeeDelegation' | 'getRate' | 'getRateProviders' | 'getScalingFactors' | 'getSwapFeePercentage' | 'getTokenRate' | 'getTokenRateCache' | 'getVault' | 'inRecoveryMode' | 'increaseAllowance' | 'isTokenExemptFromYieldProtocolFee' | 'name' | 'nonces' | 'onExitPool' | 'onJoinPool' | 'onSwap' | 'pause' | 'permit' | 'queryExit' | 'queryJoin' | 'setAssetManagerPoolConfig' | 'setSwapFeePercentage' | 'setTokenRateCacheDuration' | 'startAmplificationParameterUpdate' | 'stopAmplificationParameterUpdate' | 'symbol' | 'totalSupply' | 'transfer' | 'transferFrom' | 'unpause' | 'updateProtocolFeePercentageCache' | 'updateTokenRateCache'): FunctionFragment;
+    encodeFunctionData(functionFragment: 'DELEGATE_PROTOCOL_SWAP_FEES_SENTINEL', values?: undefined): string;
+    encodeFunctionData(functionFragment: 'DOMAIN_SEPARATOR', values?: undefined): string;
+    encodeFunctionData(functionFragment: 'allowance', values: [PromiseOrValue<string>, PromiseOrValue<string>]): string;
+    encodeFunctionData(functionFragment: 'approve', values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish$1>]): string;
+    encodeFunctionData(functionFragment: 'balanceOf', values: [PromiseOrValue<string>]): string;
+    encodeFunctionData(functionFragment: 'decimals', values?: undefined): string;
+    encodeFunctionData(functionFragment: 'decreaseAllowance', values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish$1>]): string;
+    encodeFunctionData(functionFragment: 'disableRecoveryMode', values?: undefined): string;
+    encodeFunctionData(functionFragment: 'enableRecoveryMode', values?: undefined): string;
+    encodeFunctionData(functionFragment: 'getActionId', values: [PromiseOrValue<BytesLike>]): string;
+    encodeFunctionData(functionFragment: 'getActualSupply', values?: undefined): string;
+    encodeFunctionData(functionFragment: 'getAmplificationParameter', values?: undefined): string;
+    encodeFunctionData(functionFragment: 'getAuthorizer', values?: undefined): string;
+    encodeFunctionData(functionFragment: 'getBptIndex', values?: undefined): string;
+    encodeFunctionData(functionFragment: 'getDomainSeparator', values?: undefined): string;
+    encodeFunctionData(functionFragment: 'getLastJoinExitData', values?: undefined): string;
+    encodeFunctionData(functionFragment: 'getMinimumBpt', values?: undefined): string;
+    encodeFunctionData(functionFragment: 'getNextNonce', values: [PromiseOrValue<string>]): string;
+    encodeFunctionData(functionFragment: 'getOwner', values?: undefined): string;
+    encodeFunctionData(functionFragment: 'getPausedState', values?: undefined): string;
+    encodeFunctionData(functionFragment: 'getPoolId', values?: undefined): string;
+    encodeFunctionData(functionFragment: 'getProtocolFeePercentageCache', values: [PromiseOrValue<BigNumberish$1>]): string;
+    encodeFunctionData(functionFragment: 'getProtocolFeesCollector', values?: undefined): string;
+    encodeFunctionData(functionFragment: 'getProtocolSwapFeeDelegation', values?: undefined): string;
+    encodeFunctionData(functionFragment: 'getRate', values?: undefined): string;
+    encodeFunctionData(functionFragment: 'getRateProviders', values?: undefined): string;
+    encodeFunctionData(functionFragment: 'getScalingFactors', values?: undefined): string;
+    encodeFunctionData(functionFragment: 'getSwapFeePercentage', values?: undefined): string;
+    encodeFunctionData(functionFragment: 'getTokenRate', values: [PromiseOrValue<string>]): string;
+    encodeFunctionData(functionFragment: 'getTokenRateCache', values: [PromiseOrValue<string>]): string;
+    encodeFunctionData(functionFragment: 'getVault', values?: undefined): string;
+    encodeFunctionData(functionFragment: 'inRecoveryMode', values?: undefined): string;
+    encodeFunctionData(functionFragment: 'increaseAllowance', values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish$1>]): string;
+    encodeFunctionData(functionFragment: 'isTokenExemptFromYieldProtocolFee', values: [PromiseOrValue<string>]): string;
+    encodeFunctionData(functionFragment: 'name', values?: undefined): string;
+    encodeFunctionData(functionFragment: 'nonces', values: [PromiseOrValue<string>]): string;
+    encodeFunctionData(functionFragment: 'onExitPool', values: [
         PromiseOrValue<BytesLike>,
         PromiseOrValue<string>,
         PromiseOrValue<string>,
@@ -3599,7 +3599,7 @@ interface ComposableStablePoolInterface extends utils.Interface {
         PromiseOrValue<BigNumberish$1>,
         PromiseOrValue<BytesLike>
     ]): string;
-    encodeFunctionData(functionFragment: "onJoinPool", values: [
+    encodeFunctionData(functionFragment: 'onJoinPool', values: [
         PromiseOrValue<BytesLike>,
         PromiseOrValue<string>,
         PromiseOrValue<string>,
@@ -3608,14 +3608,14 @@ interface ComposableStablePoolInterface extends utils.Interface {
         PromiseOrValue<BigNumberish$1>,
         PromiseOrValue<BytesLike>
     ]): string;
-    encodeFunctionData(functionFragment: "onSwap", values: [
+    encodeFunctionData(functionFragment: 'onSwap', values: [
         IPoolSwapStructs$a.SwapRequestStruct,
         PromiseOrValue<BigNumberish$1>[],
         PromiseOrValue<BigNumberish$1>,
         PromiseOrValue<BigNumberish$1>
     ]): string;
-    encodeFunctionData(functionFragment: "pause", values?: undefined): string;
-    encodeFunctionData(functionFragment: "permit", values: [
+    encodeFunctionData(functionFragment: 'pause', values?: undefined): string;
+    encodeFunctionData(functionFragment: 'permit', values: [
         PromiseOrValue<string>,
         PromiseOrValue<string>,
         PromiseOrValue<BigNumberish$1>,
@@ -3624,16 +3624,7 @@ interface ComposableStablePoolInterface extends utils.Interface {
         PromiseOrValue<BytesLike>,
         PromiseOrValue<BytesLike>
     ]): string;
-    encodeFunctionData(functionFragment: "queryExit", values: [
-        PromiseOrValue<BytesLike>,
-        PromiseOrValue<string>,
-        PromiseOrValue<string>,
-        PromiseOrValue<BigNumberish$1>[],
-        PromiseOrValue<BigNumberish$1>,
-        PromiseOrValue<BigNumberish$1>,
-        PromiseOrValue<BytesLike>
-    ]): string;
-    encodeFunctionData(functionFragment: "queryJoin", values: [
+    encodeFunctionData(functionFragment: 'queryExit', values: [
         PromiseOrValue<BytesLike>,
         PromiseOrValue<string>,
         PromiseOrValue<string>,
@@ -3642,99 +3633,108 @@ interface ComposableStablePoolInterface extends utils.Interface {
         PromiseOrValue<BigNumberish$1>,
         PromiseOrValue<BytesLike>
     ]): string;
-    encodeFunctionData(functionFragment: "setAssetManagerPoolConfig", values: [PromiseOrValue<string>, PromiseOrValue<BytesLike>]): string;
-    encodeFunctionData(functionFragment: "setSwapFeePercentage", values: [PromiseOrValue<BigNumberish$1>]): string;
-    encodeFunctionData(functionFragment: "setTokenRateCacheDuration", values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish$1>]): string;
-    encodeFunctionData(functionFragment: "startAmplificationParameterUpdate", values: [PromiseOrValue<BigNumberish$1>, PromiseOrValue<BigNumberish$1>]): string;
-    encodeFunctionData(functionFragment: "stopAmplificationParameterUpdate", values?: undefined): string;
-    encodeFunctionData(functionFragment: "symbol", values?: undefined): string;
-    encodeFunctionData(functionFragment: "totalSupply", values?: undefined): string;
-    encodeFunctionData(functionFragment: "transfer", values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish$1>]): string;
-    encodeFunctionData(functionFragment: "transferFrom", values: [
+    encodeFunctionData(functionFragment: 'queryJoin', values: [
+        PromiseOrValue<BytesLike>,
+        PromiseOrValue<string>,
+        PromiseOrValue<string>,
+        PromiseOrValue<BigNumberish$1>[],
+        PromiseOrValue<BigNumberish$1>,
+        PromiseOrValue<BigNumberish$1>,
+        PromiseOrValue<BytesLike>
+    ]): string;
+    encodeFunctionData(functionFragment: 'setAssetManagerPoolConfig', values: [PromiseOrValue<string>, PromiseOrValue<BytesLike>]): string;
+    encodeFunctionData(functionFragment: 'setSwapFeePercentage', values: [PromiseOrValue<BigNumberish$1>]): string;
+    encodeFunctionData(functionFragment: 'setTokenRateCacheDuration', values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish$1>]): string;
+    encodeFunctionData(functionFragment: 'startAmplificationParameterUpdate', values: [PromiseOrValue<BigNumberish$1>, PromiseOrValue<BigNumberish$1>]): string;
+    encodeFunctionData(functionFragment: 'stopAmplificationParameterUpdate', values?: undefined): string;
+    encodeFunctionData(functionFragment: 'symbol', values?: undefined): string;
+    encodeFunctionData(functionFragment: 'totalSupply', values?: undefined): string;
+    encodeFunctionData(functionFragment: 'transfer', values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish$1>]): string;
+    encodeFunctionData(functionFragment: 'transferFrom', values: [
         PromiseOrValue<string>,
         PromiseOrValue<string>,
         PromiseOrValue<BigNumberish$1>
     ]): string;
-    encodeFunctionData(functionFragment: "unpause", values?: undefined): string;
-    encodeFunctionData(functionFragment: "updateProtocolFeePercentageCache", values?: undefined): string;
-    encodeFunctionData(functionFragment: "updateTokenRateCache", values: [PromiseOrValue<string>]): string;
-    decodeFunctionResult(functionFragment: "DELEGATE_PROTOCOL_SWAP_FEES_SENTINEL", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "DOMAIN_SEPARATOR", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "allowance", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "approve", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "decimals", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "decreaseAllowance", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "disableRecoveryMode", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "enableRecoveryMode", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "getActionId", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "getActualSupply", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "getAmplificationParameter", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "getAuthorizer", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "getBptIndex", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "getDomainSeparator", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "getLastJoinExitData", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "getMinimumBpt", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "getNextNonce", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "getOwner", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "getPausedState", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "getPoolId", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "getProtocolFeePercentageCache", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "getProtocolFeesCollector", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "getProtocolSwapFeeDelegation", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "getRate", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "getRateProviders", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "getScalingFactors", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "getSwapFeePercentage", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "getTokenRate", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "getTokenRateCache", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "getVault", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "inRecoveryMode", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "increaseAllowance", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "isTokenExemptFromYieldProtocolFee", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "name", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "nonces", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "onExitPool", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "onJoinPool", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "onSwap", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "pause", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "permit", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "queryExit", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "queryJoin", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "setAssetManagerPoolConfig", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "setSwapFeePercentage", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "setTokenRateCacheDuration", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "startAmplificationParameterUpdate", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "stopAmplificationParameterUpdate", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "symbol", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "totalSupply", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "transfer", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "transferFrom", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "unpause", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "updateProtocolFeePercentageCache", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "updateTokenRateCache", data: BytesLike): Result;
+    encodeFunctionData(functionFragment: 'unpause', values?: undefined): string;
+    encodeFunctionData(functionFragment: 'updateProtocolFeePercentageCache', values?: undefined): string;
+    encodeFunctionData(functionFragment: 'updateTokenRateCache', values: [PromiseOrValue<string>]): string;
+    decodeFunctionResult(functionFragment: 'DELEGATE_PROTOCOL_SWAP_FEES_SENTINEL', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'DOMAIN_SEPARATOR', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'allowance', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'approve', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'balanceOf', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'decimals', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'decreaseAllowance', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'disableRecoveryMode', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'enableRecoveryMode', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'getActionId', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'getActualSupply', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'getAmplificationParameter', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'getAuthorizer', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'getBptIndex', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'getDomainSeparator', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'getLastJoinExitData', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'getMinimumBpt', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'getNextNonce', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'getOwner', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'getPausedState', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'getPoolId', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'getProtocolFeePercentageCache', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'getProtocolFeesCollector', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'getProtocolSwapFeeDelegation', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'getRate', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'getRateProviders', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'getScalingFactors', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'getSwapFeePercentage', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'getTokenRate', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'getTokenRateCache', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'getVault', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'inRecoveryMode', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'increaseAllowance', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'isTokenExemptFromYieldProtocolFee', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'name', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'nonces', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'onExitPool', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'onJoinPool', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'onSwap', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'pause', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'permit', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'queryExit', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'queryJoin', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'setAssetManagerPoolConfig', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'setSwapFeePercentage', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'setTokenRateCacheDuration', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'startAmplificationParameterUpdate', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'stopAmplificationParameterUpdate', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'symbol', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'totalSupply', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'transfer', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'transferFrom', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'unpause', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'updateProtocolFeePercentageCache', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'updateTokenRateCache', data: BytesLike): Result;
     events: {
-        "AmpUpdateStarted(uint256,uint256,uint256,uint256)": EventFragment;
-        "AmpUpdateStopped(uint256)": EventFragment;
-        "Approval(address,address,uint256)": EventFragment;
-        "PausedStateChanged(bool)": EventFragment;
-        "ProtocolFeePercentageCacheUpdated(uint256,uint256)": EventFragment;
-        "RecoveryModeStateChanged(bool)": EventFragment;
-        "SwapFeePercentageChanged(uint256)": EventFragment;
-        "TokenRateCacheUpdated(uint256,uint256)": EventFragment;
-        "TokenRateProviderSet(uint256,address,uint256)": EventFragment;
-        "Transfer(address,address,uint256)": EventFragment;
+        'AmpUpdateStarted(uint256,uint256,uint256,uint256)': EventFragment;
+        'AmpUpdateStopped(uint256)': EventFragment;
+        'Approval(address,address,uint256)': EventFragment;
+        'PausedStateChanged(bool)': EventFragment;
+        'ProtocolFeePercentageCacheUpdated(uint256,uint256)': EventFragment;
+        'RecoveryModeStateChanged(bool)': EventFragment;
+        'SwapFeePercentageChanged(uint256)': EventFragment;
+        'TokenRateCacheUpdated(uint256,uint256)': EventFragment;
+        'TokenRateProviderSet(uint256,address,uint256)': EventFragment;
+        'Transfer(address,address,uint256)': EventFragment;
     };
-    getEvent(nameOrSignatureOrTopic: "AmpUpdateStarted"): EventFragment;
-    getEvent(nameOrSignatureOrTopic: "AmpUpdateStopped"): EventFragment;
-    getEvent(nameOrSignatureOrTopic: "Approval"): EventFragment;
-    getEvent(nameOrSignatureOrTopic: "PausedStateChanged"): EventFragment;
-    getEvent(nameOrSignatureOrTopic: "ProtocolFeePercentageCacheUpdated"): EventFragment;
-    getEvent(nameOrSignatureOrTopic: "RecoveryModeStateChanged"): EventFragment;
-    getEvent(nameOrSignatureOrTopic: "SwapFeePercentageChanged"): EventFragment;
-    getEvent(nameOrSignatureOrTopic: "TokenRateCacheUpdated"): EventFragment;
-    getEvent(nameOrSignatureOrTopic: "TokenRateProviderSet"): EventFragment;
-    getEvent(nameOrSignatureOrTopic: "Transfer"): EventFragment;
+    getEvent(nameOrSignatureOrTopic: 'AmpUpdateStarted'): EventFragment;
+    getEvent(nameOrSignatureOrTopic: 'AmpUpdateStopped'): EventFragment;
+    getEvent(nameOrSignatureOrTopic: 'Approval'): EventFragment;
+    getEvent(nameOrSignatureOrTopic: 'PausedStateChanged'): EventFragment;
+    getEvent(nameOrSignatureOrTopic: 'ProtocolFeePercentageCacheUpdated'): EventFragment;
+    getEvent(nameOrSignatureOrTopic: 'RecoveryModeStateChanged'): EventFragment;
+    getEvent(nameOrSignatureOrTopic: 'SwapFeePercentageChanged'): EventFragment;
+    getEvent(nameOrSignatureOrTopic: 'TokenRateCacheUpdated'): EventFragment;
+    getEvent(nameOrSignatureOrTopic: 'TokenRateProviderSet'): EventFragment;
+    getEvent(nameOrSignatureOrTopic: 'Transfer'): EventFragment;
 }
 interface AmpUpdateStartedEventObject$1 {
     startValue: BigNumber$1;
@@ -3837,7 +3837,7 @@ declare namespace ComposableStablePool {
         tokens: PromiseOrValue<string>[];
         rateProviders: PromiseOrValue<string>[];
         tokenRateCacheDurations: PromiseOrValue<BigNumberish$1>[];
-        exemptFromYieldProtocolFeeFlags: PromiseOrValue<boolean>[];
+        exemptFromYieldProtocolFeeFlag: PromiseOrValue<boolean>;
         amplificationParameter: PromiseOrValue<BigNumberish$1>;
         swapFeePercentage: PromiseOrValue<BigNumberish$1>;
         pauseWindowDuration: PromiseOrValue<BigNumberish$1>;
@@ -3852,7 +3852,7 @@ declare namespace ComposableStablePool {
         string[],
         string[],
         BigNumber$1[],
-        boolean[],
+        boolean,
         BigNumber$1,
         BigNumber$1,
         BigNumber$1,
@@ -3866,7 +3866,7 @@ declare namespace ComposableStablePool {
         tokens: string[];
         rateProviders: string[];
         tokenRateCacheDurations: BigNumber$1[];
-        exemptFromYieldProtocolFeeFlags: boolean[];
+        exemptFromYieldProtocolFeeFlag: boolean;
         amplificationParameter: BigNumber$1;
         swapFeePercentage: BigNumber$1;
         pauseWindowDuration: BigNumber$1;
@@ -4254,25 +4254,25 @@ interface ComposableStablePool extends BaseContract {
         updateTokenRateCache(token: PromiseOrValue<string>, overrides?: CallOverrides): Promise<void>;
     };
     filters: {
-        "AmpUpdateStarted(uint256,uint256,uint256,uint256)"(startValue?: null, endValue?: null, startTime?: null, endTime?: null): AmpUpdateStartedEventFilter$1;
+        'AmpUpdateStarted(uint256,uint256,uint256,uint256)'(startValue?: null, endValue?: null, startTime?: null, endTime?: null): AmpUpdateStartedEventFilter$1;
         AmpUpdateStarted(startValue?: null, endValue?: null, startTime?: null, endTime?: null): AmpUpdateStartedEventFilter$1;
-        "AmpUpdateStopped(uint256)"(currentValue?: null): AmpUpdateStoppedEventFilter$1;
+        'AmpUpdateStopped(uint256)'(currentValue?: null): AmpUpdateStoppedEventFilter$1;
         AmpUpdateStopped(currentValue?: null): AmpUpdateStoppedEventFilter$1;
-        "Approval(address,address,uint256)"(owner?: PromiseOrValue<string> | null, spender?: PromiseOrValue<string> | null, value?: null): ApprovalEventFilter$c;
+        'Approval(address,address,uint256)'(owner?: PromiseOrValue<string> | null, spender?: PromiseOrValue<string> | null, value?: null): ApprovalEventFilter$c;
         Approval(owner?: PromiseOrValue<string> | null, spender?: PromiseOrValue<string> | null, value?: null): ApprovalEventFilter$c;
-        "PausedStateChanged(bool)"(paused?: null): PausedStateChangedEventFilter$9;
+        'PausedStateChanged(bool)'(paused?: null): PausedStateChangedEventFilter$9;
         PausedStateChanged(paused?: null): PausedStateChangedEventFilter$9;
-        "ProtocolFeePercentageCacheUpdated(uint256,uint256)"(feeType?: PromiseOrValue<BigNumberish$1> | null, protocolFeePercentage?: null): ProtocolFeePercentageCacheUpdatedEventFilter$1;
+        'ProtocolFeePercentageCacheUpdated(uint256,uint256)'(feeType?: PromiseOrValue<BigNumberish$1> | null, protocolFeePercentage?: null): ProtocolFeePercentageCacheUpdatedEventFilter$1;
         ProtocolFeePercentageCacheUpdated(feeType?: PromiseOrValue<BigNumberish$1> | null, protocolFeePercentage?: null): ProtocolFeePercentageCacheUpdatedEventFilter$1;
-        "RecoveryModeStateChanged(bool)"(enabled?: null): RecoveryModeStateChangedEventFilter$5;
+        'RecoveryModeStateChanged(bool)'(enabled?: null): RecoveryModeStateChangedEventFilter$5;
         RecoveryModeStateChanged(enabled?: null): RecoveryModeStateChangedEventFilter$5;
-        "SwapFeePercentageChanged(uint256)"(swapFeePercentage?: null): SwapFeePercentageChangedEventFilter$8;
+        'SwapFeePercentageChanged(uint256)'(swapFeePercentage?: null): SwapFeePercentageChangedEventFilter$8;
         SwapFeePercentageChanged(swapFeePercentage?: null): SwapFeePercentageChangedEventFilter$8;
-        "TokenRateCacheUpdated(uint256,uint256)"(tokenIndex?: PromiseOrValue<BigNumberish$1> | null, rate?: null): TokenRateCacheUpdatedEventFilter;
+        'TokenRateCacheUpdated(uint256,uint256)'(tokenIndex?: PromiseOrValue<BigNumberish$1> | null, rate?: null): TokenRateCacheUpdatedEventFilter;
         TokenRateCacheUpdated(tokenIndex?: PromiseOrValue<BigNumberish$1> | null, rate?: null): TokenRateCacheUpdatedEventFilter;
-        "TokenRateProviderSet(uint256,address,uint256)"(tokenIndex?: PromiseOrValue<BigNumberish$1> | null, provider?: PromiseOrValue<string> | null, cacheDuration?: null): TokenRateProviderSetEventFilter;
+        'TokenRateProviderSet(uint256,address,uint256)'(tokenIndex?: PromiseOrValue<BigNumberish$1> | null, provider?: PromiseOrValue<string> | null, cacheDuration?: null): TokenRateProviderSetEventFilter;
         TokenRateProviderSet(tokenIndex?: PromiseOrValue<BigNumberish$1> | null, provider?: PromiseOrValue<string> | null, cacheDuration?: null): TokenRateProviderSetEventFilter;
-        "Transfer(address,address,uint256)"(from?: PromiseOrValue<string> | null, to?: PromiseOrValue<string> | null, value?: null): TransferEventFilter$c;
+        'Transfer(address,address,uint256)'(from?: PromiseOrValue<string> | null, to?: PromiseOrValue<string> | null, value?: null): TransferEventFilter$c;
         Transfer(from?: PromiseOrValue<string> | null, to?: PromiseOrValue<string> | null, value?: null): TransferEventFilter$c;
     };
     estimateGas: {
@@ -4481,64 +4481,64 @@ interface ComposableStablePool extends BaseContract {
 
 interface ComposableStablePoolFactoryInterface extends utils.Interface {
     functions: {
-        "create(string,string,address[],uint256,address[],uint256[],bool[],uint256,address,bytes32)": FunctionFragment;
-        "disable()": FunctionFragment;
-        "getActionId(bytes4)": FunctionFragment;
-        "getAuthorizer()": FunctionFragment;
-        "getCreationCode()": FunctionFragment;
-        "getCreationCodeContracts()": FunctionFragment;
-        "getPauseConfiguration()": FunctionFragment;
-        "getPoolVersion()": FunctionFragment;
-        "getProtocolFeePercentagesProvider()": FunctionFragment;
-        "getVault()": FunctionFragment;
-        "isDisabled()": FunctionFragment;
-        "isPoolFromFactory(address)": FunctionFragment;
-        "version()": FunctionFragment;
+        'create(string,string,address[],uint256,address[],uint256[],bool,uint256,address,bytes32)': FunctionFragment;
+        'disable()': FunctionFragment;
+        'getActionId(bytes4)': FunctionFragment;
+        'getAuthorizer()': FunctionFragment;
+        'getCreationCode()': FunctionFragment;
+        'getCreationCodeContracts()': FunctionFragment;
+        'getPauseConfiguration()': FunctionFragment;
+        'getPoolVersion()': FunctionFragment;
+        'getProtocolFeePercentagesProvider()': FunctionFragment;
+        'getVault()': FunctionFragment;
+        'isDisabled()': FunctionFragment;
+        'isPoolFromFactory(address)': FunctionFragment;
+        'version()': FunctionFragment;
     };
-    getFunction(nameOrSignatureOrTopic: "create" | "disable" | "getActionId" | "getAuthorizer" | "getCreationCode" | "getCreationCodeContracts" | "getPauseConfiguration" | "getPoolVersion" | "getProtocolFeePercentagesProvider" | "getVault" | "isDisabled" | "isPoolFromFactory" | "version"): FunctionFragment;
-    encodeFunctionData(functionFragment: "create", values: [
+    getFunction(nameOrSignatureOrTopic: 'create' | 'disable' | 'getActionId' | 'getAuthorizer' | 'getCreationCode' | 'getCreationCodeContracts' | 'getPauseConfiguration' | 'getPoolVersion' | 'getProtocolFeePercentagesProvider' | 'getVault' | 'isDisabled' | 'isPoolFromFactory' | 'version'): FunctionFragment;
+    encodeFunctionData(functionFragment: 'create', values: [
         PromiseOrValue<string>,
         PromiseOrValue<string>,
         PromiseOrValue<string>[],
         PromiseOrValue<BigNumberish$1>,
         PromiseOrValue<string>[],
         PromiseOrValue<BigNumberish$1>[],
-        PromiseOrValue<boolean>[],
+        PromiseOrValue<boolean>,
         PromiseOrValue<BigNumberish$1>,
         PromiseOrValue<string>,
         PromiseOrValue<BytesLike>
     ]): string;
-    encodeFunctionData(functionFragment: "disable", values?: undefined): string;
-    encodeFunctionData(functionFragment: "getActionId", values: [PromiseOrValue<BytesLike>]): string;
-    encodeFunctionData(functionFragment: "getAuthorizer", values?: undefined): string;
-    encodeFunctionData(functionFragment: "getCreationCode", values?: undefined): string;
-    encodeFunctionData(functionFragment: "getCreationCodeContracts", values?: undefined): string;
-    encodeFunctionData(functionFragment: "getPauseConfiguration", values?: undefined): string;
-    encodeFunctionData(functionFragment: "getPoolVersion", values?: undefined): string;
-    encodeFunctionData(functionFragment: "getProtocolFeePercentagesProvider", values?: undefined): string;
-    encodeFunctionData(functionFragment: "getVault", values?: undefined): string;
-    encodeFunctionData(functionFragment: "isDisabled", values?: undefined): string;
-    encodeFunctionData(functionFragment: "isPoolFromFactory", values: [PromiseOrValue<string>]): string;
-    encodeFunctionData(functionFragment: "version", values?: undefined): string;
-    decodeFunctionResult(functionFragment: "create", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "disable", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "getActionId", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "getAuthorizer", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "getCreationCode", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "getCreationCodeContracts", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "getPauseConfiguration", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "getPoolVersion", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "getProtocolFeePercentagesProvider", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "getVault", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "isDisabled", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "isPoolFromFactory", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "version", data: BytesLike): Result;
+    encodeFunctionData(functionFragment: 'disable', values?: undefined): string;
+    encodeFunctionData(functionFragment: 'getActionId', values: [PromiseOrValue<BytesLike>]): string;
+    encodeFunctionData(functionFragment: 'getAuthorizer', values?: undefined): string;
+    encodeFunctionData(functionFragment: 'getCreationCode', values?: undefined): string;
+    encodeFunctionData(functionFragment: 'getCreationCodeContracts', values?: undefined): string;
+    encodeFunctionData(functionFragment: 'getPauseConfiguration', values?: undefined): string;
+    encodeFunctionData(functionFragment: 'getPoolVersion', values?: undefined): string;
+    encodeFunctionData(functionFragment: 'getProtocolFeePercentagesProvider', values?: undefined): string;
+    encodeFunctionData(functionFragment: 'getVault', values?: undefined): string;
+    encodeFunctionData(functionFragment: 'isDisabled', values?: undefined): string;
+    encodeFunctionData(functionFragment: 'isPoolFromFactory', values: [PromiseOrValue<string>]): string;
+    encodeFunctionData(functionFragment: 'version', values?: undefined): string;
+    decodeFunctionResult(functionFragment: 'create', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'disable', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'getActionId', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'getAuthorizer', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'getCreationCode', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'getCreationCodeContracts', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'getPauseConfiguration', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'getPoolVersion', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'getProtocolFeePercentagesProvider', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'getVault', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'isDisabled', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'isPoolFromFactory', data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: 'version', data: BytesLike): Result;
     events: {
-        "FactoryDisabled()": EventFragment;
-        "PoolCreated(address)": EventFragment;
+        'FactoryDisabled()': EventFragment;
+        'PoolCreated(address)': EventFragment;
     };
-    getEvent(nameOrSignatureOrTopic: "FactoryDisabled"): EventFragment;
-    getEvent(nameOrSignatureOrTopic: "PoolCreated"): EventFragment;
+    getEvent(nameOrSignatureOrTopic: 'FactoryDisabled'): EventFragment;
+    getEvent(nameOrSignatureOrTopic: 'PoolCreated'): EventFragment;
 }
 interface FactoryDisabledEventObject$5 {
 }
@@ -4564,7 +4564,7 @@ interface ComposableStablePoolFactory extends BaseContract {
     once: OnEvent<this>;
     removeListener: OnEvent<this>;
     functions: {
-        create(name: PromiseOrValue<string>, symbol: PromiseOrValue<string>, tokens: PromiseOrValue<string>[], amplificationParameter: PromiseOrValue<BigNumberish$1>, rateProviders: PromiseOrValue<string>[], tokenRateCacheDurations: PromiseOrValue<BigNumberish$1>[], exemptFromYieldProtocolFeeFlags: PromiseOrValue<boolean>[], swapFeePercentage: PromiseOrValue<BigNumberish$1>, owner: PromiseOrValue<string>, salt: PromiseOrValue<BytesLike>, overrides?: Overrides & {
+        create(name: PromiseOrValue<string>, symbol: PromiseOrValue<string>, tokens: PromiseOrValue<string>[], amplificationParameter: PromiseOrValue<BigNumberish$1>, rateProviders: PromiseOrValue<string>[], tokenRateCacheDurations: PromiseOrValue<BigNumberish$1>[], exemptFromYieldProtocolFeeFlag: PromiseOrValue<boolean>, swapFeePercentage: PromiseOrValue<BigNumberish$1>, owner: PromiseOrValue<string>, salt: PromiseOrValue<BytesLike>, overrides?: Overrides & {
             from?: PromiseOrValue<string>;
         }): Promise<ContractTransaction>;
         disable(overrides?: Overrides & {
@@ -4591,7 +4591,7 @@ interface ComposableStablePoolFactory extends BaseContract {
         isPoolFromFactory(pool: PromiseOrValue<string>, overrides?: CallOverrides): Promise<[boolean]>;
         version(overrides?: CallOverrides): Promise<[string]>;
     };
-    create(name: PromiseOrValue<string>, symbol: PromiseOrValue<string>, tokens: PromiseOrValue<string>[], amplificationParameter: PromiseOrValue<BigNumberish$1>, rateProviders: PromiseOrValue<string>[], tokenRateCacheDurations: PromiseOrValue<BigNumberish$1>[], exemptFromYieldProtocolFeeFlags: PromiseOrValue<boolean>[], swapFeePercentage: PromiseOrValue<BigNumberish$1>, owner: PromiseOrValue<string>, salt: PromiseOrValue<BytesLike>, overrides?: Overrides & {
+    create(name: PromiseOrValue<string>, symbol: PromiseOrValue<string>, tokens: PromiseOrValue<string>[], amplificationParameter: PromiseOrValue<BigNumberish$1>, rateProviders: PromiseOrValue<string>[], tokenRateCacheDurations: PromiseOrValue<BigNumberish$1>[], exemptFromYieldProtocolFeeFlag: PromiseOrValue<boolean>, swapFeePercentage: PromiseOrValue<BigNumberish$1>, owner: PromiseOrValue<string>, salt: PromiseOrValue<BytesLike>, overrides?: Overrides & {
         from?: PromiseOrValue<string>;
     }): Promise<ContractTransaction>;
     disable(overrides?: Overrides & {
@@ -4618,7 +4618,7 @@ interface ComposableStablePoolFactory extends BaseContract {
     isPoolFromFactory(pool: PromiseOrValue<string>, overrides?: CallOverrides): Promise<boolean>;
     version(overrides?: CallOverrides): Promise<string>;
     callStatic: {
-        create(name: PromiseOrValue<string>, symbol: PromiseOrValue<string>, tokens: PromiseOrValue<string>[], amplificationParameter: PromiseOrValue<BigNumberish$1>, rateProviders: PromiseOrValue<string>[], tokenRateCacheDurations: PromiseOrValue<BigNumberish$1>[], exemptFromYieldProtocolFeeFlags: PromiseOrValue<boolean>[], swapFeePercentage: PromiseOrValue<BigNumberish$1>, owner: PromiseOrValue<string>, salt: PromiseOrValue<BytesLike>, overrides?: CallOverrides): Promise<string>;
+        create(name: PromiseOrValue<string>, symbol: PromiseOrValue<string>, tokens: PromiseOrValue<string>[], amplificationParameter: PromiseOrValue<BigNumberish$1>, rateProviders: PromiseOrValue<string>[], tokenRateCacheDurations: PromiseOrValue<BigNumberish$1>[], exemptFromYieldProtocolFeeFlag: PromiseOrValue<boolean>, swapFeePercentage: PromiseOrValue<BigNumberish$1>, owner: PromiseOrValue<string>, salt: PromiseOrValue<BytesLike>, overrides?: CallOverrides): Promise<string>;
         disable(overrides?: CallOverrides): Promise<void>;
         getActionId(selector: PromiseOrValue<BytesLike>, overrides?: CallOverrides): Promise<string>;
         getAuthorizer(overrides?: CallOverrides): Promise<string>;
@@ -4642,13 +4642,13 @@ interface ComposableStablePoolFactory extends BaseContract {
         version(overrides?: CallOverrides): Promise<string>;
     };
     filters: {
-        "FactoryDisabled()"(): FactoryDisabledEventFilter$5;
+        'FactoryDisabled()'(): FactoryDisabledEventFilter$5;
         FactoryDisabled(): FactoryDisabledEventFilter$5;
-        "PoolCreated(address)"(pool?: PromiseOrValue<string> | null): PoolCreatedEventFilter$5;
+        'PoolCreated(address)'(pool?: PromiseOrValue<string> | null): PoolCreatedEventFilter$5;
         PoolCreated(pool?: PromiseOrValue<string> | null): PoolCreatedEventFilter$5;
     };
     estimateGas: {
-        create(name: PromiseOrValue<string>, symbol: PromiseOrValue<string>, tokens: PromiseOrValue<string>[], amplificationParameter: PromiseOrValue<BigNumberish$1>, rateProviders: PromiseOrValue<string>[], tokenRateCacheDurations: PromiseOrValue<BigNumberish$1>[], exemptFromYieldProtocolFeeFlags: PromiseOrValue<boolean>[], swapFeePercentage: PromiseOrValue<BigNumberish$1>, owner: PromiseOrValue<string>, salt: PromiseOrValue<BytesLike>, overrides?: Overrides & {
+        create(name: PromiseOrValue<string>, symbol: PromiseOrValue<string>, tokens: PromiseOrValue<string>[], amplificationParameter: PromiseOrValue<BigNumberish$1>, rateProviders: PromiseOrValue<string>[], tokenRateCacheDurations: PromiseOrValue<BigNumberish$1>[], exemptFromYieldProtocolFeeFlag: PromiseOrValue<boolean>, swapFeePercentage: PromiseOrValue<BigNumberish$1>, owner: PromiseOrValue<string>, salt: PromiseOrValue<BytesLike>, overrides?: Overrides & {
             from?: PromiseOrValue<string>;
         }): Promise<BigNumber$1>;
         disable(overrides?: Overrides & {
@@ -4667,7 +4667,7 @@ interface ComposableStablePoolFactory extends BaseContract {
         version(overrides?: CallOverrides): Promise<BigNumber$1>;
     };
     populateTransaction: {
-        create(name: PromiseOrValue<string>, symbol: PromiseOrValue<string>, tokens: PromiseOrValue<string>[], amplificationParameter: PromiseOrValue<BigNumberish$1>, rateProviders: PromiseOrValue<string>[], tokenRateCacheDurations: PromiseOrValue<BigNumberish$1>[], exemptFromYieldProtocolFeeFlags: PromiseOrValue<boolean>[], swapFeePercentage: PromiseOrValue<BigNumberish$1>, owner: PromiseOrValue<string>, salt: PromiseOrValue<BytesLike>, overrides?: Overrides & {
+        create(name: PromiseOrValue<string>, symbol: PromiseOrValue<string>, tokens: PromiseOrValue<string>[], amplificationParameter: PromiseOrValue<BigNumberish$1>, rateProviders: PromiseOrValue<string>[], tokenRateCacheDurations: PromiseOrValue<BigNumberish$1>[], exemptFromYieldProtocolFeeFlag: PromiseOrValue<boolean>, swapFeePercentage: PromiseOrValue<BigNumberish$1>, owner: PromiseOrValue<string>, salt: PromiseOrValue<BytesLike>, overrides?: Overrides & {
             from?: PromiseOrValue<string>;
         }): Promise<PopulatedTransaction>;
         disable(overrides?: Overrides & {
@@ -22104,9 +22104,9 @@ declare class ComposableStablePoolFactory__factory {
             readonly name: "tokenRateCacheDurations";
             readonly type: "uint256[]";
         }, {
-            readonly internalType: "bool[]";
-            readonly name: "exemptFromYieldProtocolFeeFlags";
-            readonly type: "bool[]";
+            readonly internalType: "bool";
+            readonly name: "exemptFromYieldProtocolFeeFlag";
+            readonly type: "bool";
         }, {
             readonly internalType: "uint256";
             readonly name: "swapFeePercentage";

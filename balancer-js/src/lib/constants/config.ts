@@ -539,7 +539,7 @@ export const BALANCER_NETWORK_CONFIG: Record<Network, BalancerNetworkConfig> = {
         veBalProxy: '0xDA4765fE5AfAEac3A0582eDAF78E76b6C4cF9a7C',
         weightedPoolFactory: '0x98b5584A0c40F2c50CBa0Adb40E51A8caD79b9AC',
         composableStablePoolFactory:
-          '0xA408376E84DedD19616e8Cd79753eb4B594acd85',
+          '0xCACD11CDD35d2842e6Ce16fB76920021D8bAb58B',
       },
       tokens: {
         wrappedNativeAsset: '0xC9BdeEd33CD01541e1eeD10f90519d2C06Fe3feB',
@@ -598,8 +598,6 @@ export const BALANCER_NETWORK_CONFIG: Record<Network, BalancerNetworkConfig> = {
         'https://api.goldsky.com/api/public/project_clqbhfggr3ii501w02mp62ver/subgraphs/polaris-dex-v2-telos/1.0.1/gn',
       gaugesSubgraph:
         'https://api.goldsky.com/api/public/project_clqbhfggr3ii501w02mp62ver/subgraphs/gauges-telos/1.0.0/gn',
-      blockNumberSubgraph:
-        'https://api.goldsky.com/api/public/project_clqbhfggr3ii501w02mp62ver/subgraphs/blocks-telos/1.0.0/gn',
     },
     thirdParty: {
       coingecko: {
@@ -607,6 +605,7 @@ export const BALANCER_NETWORK_CONFIG: Record<Network, BalancerNetworkConfig> = {
         platformId: 'telos',
       },
     },
+    averageBlockTime: 0.5,
     pools: {},
     poolsToIgnore: [],
     sorConnectingTokens: [],
