@@ -550,11 +550,11 @@ export const BALANCER_NETWORK_CONFIG: Record<Network, BalancerNetworkConfig> = {
     },
     urls: {
       subgraph:
-        'https://api.thegraph.com/subgraphs/name/polarisfinance/polaris-dex-v2',
+        'https://gateway-arbitrum.network.thegraph.com/api/45dee7017080a9544513ec90a5814526/subgraphs/id/A5rwUeaVVQW6VtJ9AJwbainWXxXfwBh6bgcT6gZZPJeL',
       gaugesSubgraph:
-        'https://api.thegraph.com/subgraphs/name/polarisfinance/polaris-gauges',
+        'https://gateway-arbitrum.network.thegraph.com/api/45dee7017080a9544513ec90a5814526/subgraphs/id/A5rwUeaVVQW6VtJ9AJwbainWXxXfwBh6bgcT6gZZPJeL',
       blockNumberSubgraph:
-        'https://api.thegraph.com/subgraphs/name/polarisfinance/aurora-blocks',
+        'https://gateway-arbitrum.network.thegraph.com/api/45dee7017080a9544513ec90a5814526/subgraphs/id/9FTPTBoKPxCeVr3ozrd6jcYZbo3beGPJnpiJnsDnVXA2',
     },
     thirdParty: {
       coingecko: {
