@@ -550,7 +550,7 @@ export const BALANCER_NETWORK_CONFIG: Record<Network, BalancerNetworkConfig> = {
     },
     urls: {
       subgraph:
-        'https://gateway-arbitrum.network.thegraph.com/api/45dee7017080a9544513ec90a5814526/subgraphs/id/A5rwUeaVVQW6VtJ9AJwbainWXxXfwBh6bgcT6gZZPJeL',
+        'https://gateway-arbitrum.network.thegraph.com/api/45dee7017080a9544513ec90a5814526/subgraphs/id/2CpCYZ6NNrr5wpFY3KFQb2nDwkZaLcQajMaHcQsDp4yd',
       gaugesSubgraph:
         'https://gateway-arbitrum.network.thegraph.com/api/45dee7017080a9544513ec90a5814526/subgraphs/id/A5rwUeaVVQW6VtJ9AJwbainWXxXfwBh6bgcT6gZZPJeL',
       blockNumberSubgraph:
