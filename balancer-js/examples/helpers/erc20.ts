@@ -3,7 +3,7 @@ import { keccak256 } from '@ethersproject/solidity';
 import { BigNumber } from '@ethersproject/bignumber';
 import { Contract } from '@ethersproject/contracts';
 import { JsonRpcProvider, JsonRpcSigner } from '@ethersproject/providers';
-
+import { Wallet } from '@ethersproject/wallet';
 /**
  * Set token balance for a given account
  *
@@ -46,7 +46,7 @@ export const approveToken = async (
   token: string,
   spender: string,
   amount: string,
-  signer: JsonRpcSigner
+  signer: Wallet
 ): Promise<boolean> => {
   const iERC20 = [
     'function approve(address spender, uint256 amount) external returns (bool)',

@@ -45,7 +45,7 @@ export class ComposableStableFactory implements PoolFactory {
    * @param amplificationParameter The amplification parameter(must be greater than 1)
    * @param rateProviders The addresses of the rate providers for each token, ordered
    * @param tokenRateCacheDurations the Token Rate Cache Duration of each token
-   * @param exemptFromYieldProtocolFeeFlags Array containing boolean for each token exemption from yield protocol fee flags
+   * @param exemptFromYieldProtocolFeeFlag Boolean for exempting the pool from yield protocol fee
    * @param swapFeeEvm The swapFee for the owner of the pool in string format parsed to evm(100% is 1e18, 10% is 1e17, 1% is 1e16)
    * @param owner The address of the owner of the pool
    * @returns A TransactionRequest object, which can be directly inserted in the transaction to create a composable stable pool
@@ -57,7 +57,7 @@ export class ComposableStableFactory implements PoolFactory {
     amplificationParameter,
     rateProviders,
     tokenRateCacheDurations,
-    exemptFromYieldProtocolFeeFlags,
+    exemptFromYieldProtocolFeeFlag,
     swapFeeEvm,
     owner,
     salt,
@@ -66,7 +66,7 @@ export class ComposableStableFactory implements PoolFactory {
       rateProviders,
       tokenAddresses,
       tokenRateCacheDurations,
-      exemptFromYieldProtocolFeeFlags,
+      exemptFromYieldProtocolFeeFlag,
       swapFeeEvm,
     });
     const params = this.parseCreateParamsForEncoding({
@@ -76,7 +76,7 @@ export class ComposableStableFactory implements PoolFactory {
       amplificationParameter,
       rateProviders,
       tokenRateCacheDurations,
-      exemptFromYieldProtocolFeeFlags,
+      exemptFromYieldProtocolFeeFlag,
       swapFeeEvm,
       owner,
       salt,
@@ -91,7 +91,7 @@ export class ComposableStableFactory implements PoolFactory {
   checkCreateInputs = ({
     tokenAddresses,
     tokenRateCacheDurations,
-    exemptFromYieldProtocolFeeFlags,
+    exemptFromYieldProtocolFeeFlag,
     rateProviders,
     swapFeeEvm,
   }: Pick<
@@ -99,15 +99,10 @@ export class ComposableStableFactory implements PoolFactory {
     | 'rateProviders'
     | 'tokenRateCacheDurations'
     | 'tokenAddresses'
-    | 'exemptFromYieldProtocolFeeFlags'
+    | 'exemptFromYieldProtocolFeeFlag'
     | 'swapFeeEvm'
   >): void => {
-    if (
-      tokenAddresses.length !== tokenRateCacheDurations.length ||
-      tokenRateCacheDurations.length !==
-        exemptFromYieldProtocolFeeFlags.length ||
-      exemptFromYieldProtocolFeeFlags.length !== rateProviders.length
-    ) {
+    if (tokenAddresses.length !== tokenRateCacheDurations.length) {
       throw new BalancerError(BalancerErrorCode.INPUT_LENGTH_MISMATCH);
     }
     if (BigInt(swapFeeEvm) <= BigInt(0) || BigInt(swapFeeEvm) > BigInt(1e17)) {
@@ -121,7 +116,7 @@ export class ComposableStableFactory implements PoolFactory {
     amplificationParameter,
     rateProviders,
     tokenRateCacheDurations,
-    exemptFromYieldProtocolFeeFlags,
+    exemptFromYieldProtocolFeeFlag,
     swapFeeEvm,
     owner,
     salt,
@@ -132,23 +127,18 @@ export class ComposableStableFactory implements PoolFactory {
     string,
     string[],
     string[],
-    boolean[],
+    boolean,
     string,
     string,
     BytesLike
   ] => {
     const assetHelpers = new AssetHelpers(this.wrappedNativeAsset);
-    const [
-      sortedTokens,
-      sortedRateProviders,
-      sortedTokenRateCacheDurations,
-      sortedExemptFromYieldProtocols,
-    ] = assetHelpers.sortTokens(
-      tokenAddresses,
-      rateProviders,
-      tokenRateCacheDurations,
-      exemptFromYieldProtocolFeeFlags
-    ) as [string[], string[], string[], boolean[]];
+    const [sortedTokens, sortedRateProviders, sortedTokenRateCacheDurations] =
+      assetHelpers.sortTokens(
+        tokenAddresses,
+        rateProviders,
+        tokenRateCacheDurations
+      ) as [string[], string[], string[]];
     const params = [
       name,
       symbol,
@@ -156,7 +146,7 @@ export class ComposableStableFactory implements PoolFactory {
       amplificationParameter,
       sortedRateProviders,
       sortedTokenRateCacheDurations,
-      sortedExemptFromYieldProtocols,
+      exemptFromYieldProtocolFeeFlag,
       swapFeeEvm.toString(),
       owner,
       salt || getRandomBytes32(),
@@ -167,7 +157,7 @@ export class ComposableStableFactory implements PoolFactory {
       string,
       string[],
       string[],
-      boolean[],
+      boolean,
       string,
       string,
       BytesLike
@@ -183,7 +173,7 @@ export class ComposableStableFactory implements PoolFactory {
       string,
       string[],
       string[],
-      boolean[],
+      boolean,
       string,
       string,
       BytesLike

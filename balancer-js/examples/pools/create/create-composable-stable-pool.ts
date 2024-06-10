@@ -7,24 +7,24 @@
 import { BalancerSDK, Network, PoolType } from '@balancer-labs/sdk';
 import { parseFixed } from '@ethersproject/bignumber';
 import { reset, setTokenBalance, approveToken } from 'examples/helpers';
+import { Wallet } from '@ethersproject/wallet';
 
 async function createAndInitJoinComposableStable() {
   const balancer = new BalancerSDK({
-    network: Network.MAINNET,
-    rpcUrl: 'http://127.0.0.1:8545', // Using local fork for simulation
+    network: Network.TELOS,
+    rpcUrl: 'https://mainnet.telos.net/evm', // Using local fork for simulation
   });
 
   // Setup join parameters
-  const signer = balancer.provider.getSigner();
+  const signer = new Wallet('', balancer.provider);
   const ownerAddress = await signer.getAddress();
-  const usdc = '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48';
-  const usdt = '0xdac17f958d2ee523a2206206994597c13d831ec7';
+  const usdc = '0x8D97Cea50351Fb4329d591682b148D43a0C3611b';
+  const usdt = '0x975Ed13fa16857E83e7C493C7741D556eaaD4A3f';
   const poolTokens = [usdc, usdt];
   const amountsIn = [
-    parseFixed('1000000000', 6).toString(),
-    parseFixed('1000000000', 6).toString(),
+    parseFixed('1000000', 6).toString(),
+    parseFixed('1000000', 6).toString(),
   ];
-
   // Prepare local fork for simulation
   await reset(balancer.provider, 17700000);
   await setTokenBalance(
@@ -59,22 +59,23 @@ async function createAndInitJoinComposableStable() {
   );
 
   const poolParameters = {
-    name: 'Test-Name',
-    symbol: 'Test-Symbol',
+    name: 'Polaris DEX UsdStablePool',
+    symbol: 'UsdStablePool',
     tokenAddresses: poolTokens,
-    amplificationParameter: '72',
+    amplificationParameter: '2000',
     rateProviders: [
       '0x0000000000000000000000000000000000000000',
       '0x0000000000000000000000000000000000000000',
     ],
-    tokenRateCacheDurations: ['100', '100'],
-    swapFeeEvm: parseFixed('1', 16).toString(),
-    exemptFromYieldProtocolFeeFlags: [false, false],
-    owner: ownerAddress,
+    tokenRateCacheDurations: ['10000', '10000'],
+    swapFeeEvm: parseFixed('3', 15).toString(),
+    exemptFromYieldProtocolFeeFlag: false,
+    owner: '0xBA1BA1ba1BA1bA1bA1Ba1BA1ba1BA1bA1ba1ba1B',
   };
 
   // Build the create transaction
   const createInfo = composableStablePoolFactory.create(poolParameters);
+  console.log(poolParameters);
 
   // Sends the create transaction
   const createTransactionReceipt = await (
@@ -84,7 +85,7 @@ async function createAndInitJoinComposableStable() {
   // Check logs of creation receipt to get new pool ID and address
   const { poolAddress, poolId } =
     await composableStablePoolFactory.getPoolAddressAndIdWithReceipt(
-      signer.provider,
+      balancer.provider,
       createTransactionReceipt
     );
 
@@ -104,6 +105,7 @@ async function createAndInitJoinComposableStable() {
   const tokens = await balancer.contracts.vault.getPoolTokens(poolId);
   console.log('Pool Tokens Addresses (Includes BPT): ' + tokens.tokens);
   console.log('Pool Tokens balances (Includes BPT): ' + tokens.balances);
+  console.log('Pool ID: ' + poolId);
 }
 
 createAndInitJoinComposableStable();

@@ -26,7 +26,7 @@ export interface ComposableStableCreatePoolParameters
   amplificationParameter: string;
   rateProviders: string[];
   tokenRateCacheDurations: string[];
-  exemptFromYieldProtocolFeeFlags: boolean[];
+  exemptFromYieldProtocolFeeFlag: boolean;
 
   salt?: BytesLike;
 }
