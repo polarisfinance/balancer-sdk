@@ -22,9 +22,11 @@ async function createAndInitJoinComposableStable() {
   const usdt = '0x975Ed13fa16857E83e7C493C7741D556eaaD4A3f';
   const poolTokens = [usdc, usdt];
   const amountsIn = [
-    parseFixed('1000000', 6).toString(),
-    parseFixed('1000000', 6).toString(),
+    parseFixed('1', 6).toString(),
+    parseFixed('1', 6).toString(),
   ];
+  console.log(amountsIn);
+
   // Prepare local fork for simulation
   await reset(balancer.provider, 17700000);
   await setTokenBalance(

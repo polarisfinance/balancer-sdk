@@ -3,7 +3,7 @@ import { BigNumberish } from '@ethersproject/bignumber';
 import { StablePhantomPoolJoinKind } from '../pool-stable/index';
 
 export enum ComposableStablePoolJoinKind {
-  INIT = 0,
+  INIT,
   EXACT_TOKENS_IN_FOR_BPT_OUT,
   TOKEN_IN_FOR_EXACT_BPT_OUT,
 }

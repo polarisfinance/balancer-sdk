@@ -595,7 +595,7 @@ export const BALANCER_NETWORK_CONFIG: Record<Network, BalancerNetworkConfig> = {
     },
     urls: {
       subgraph:
-        'https://api.goldsky.com/api/public/project_clqbhfggr3ii501w02mp62ver/subgraphs/polaris-dex-v2-telos/1.0.1/gn',
+        'https://api.goldsky.com/api/public/project_clqbhfggr3ii501w02mp62ver/subgraphs/polaris-dex-v2-telos/1.0.2/gn',
       gaugesSubgraph:
         'https://api.goldsky.com/api/public/project_clqbhfggr3ii501w02mp62ver/subgraphs/gauges-telos/1.0.0/gn',
     },

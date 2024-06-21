@@ -7,7 +7,7 @@ import {
   JoinPoolDecodedAttributes,
   JoinPoolRequestDecodedAttributes,
 } from '@/modules/pools/factory/types';
-import { balancerVault, networkAddresses } from '@/lib/constants/config';
+import { networkAddresses } from '@/lib/constants/config';
 import { AssetHelpers, getRandomBytes32 } from '@/lib/utils';
 import { PoolFactory } from '@/modules/pools/factory/pool-factory';
 import { ComposableStablePoolEncoder } from '@/pool-composable-stable';
@@ -213,10 +213,11 @@ export class ComposableStableFactory implements PoolFactory {
       tokensIn,
       amountsIn,
     });
+    console.log(amountsIn, tokensIn, params, attributes);
     const { functionName, data } = this.encodeInitJoinFunctionData(params);
 
     return {
-      to: balancerVault,
+      to: this.contracts.vault.address,
       functionName,
       data,
       attributes,
