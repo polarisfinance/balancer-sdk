@@ -610,6 +610,41 @@ export const BALANCER_NETWORK_CONFIG: Record<Network, BalancerNetworkConfig> = {
     poolsToIgnore: [],
     sorConnectingTokens: [],
   },
+  [Network.TAIKO]: {
+    chainId: Network.TAIKO, //167000
+    addresses: {
+      contracts: {
+        poolDataQueries: '0x3827548F5c78DE3688b15AEEd686326ef9c0a7F1',
+        vault: '0x723F40720836a03f1F20441FbDa3D109fc99640F',
+        multicall: '0x8Dd3716Bf2a7B823C1D08Ff1EF5FD77c70e80171',
+        balancerHelpers: '0x0C9862Bd6307D5D90D07ca0AAE39871100B8e7EB',
+        balancerRelayer: '0xc017907866c55DD6C02B71f92a64DcD9a637A1a3',
+        weightedPoolFactory: '0xec205bcd4177CF32f7Dc4D6aa478cdf7Dc176d37',
+        composableStablePoolFactory:
+          '0xcB14a672Ba81B35AEd41a3FdDB38a052519A38dC',
+      },
+      tokens: {
+        wrappedNativeAsset: '0xA51894664A773981C6C112C43ce576f315d5b1B6',
+        bal: '0x5fc798A5072CD551b8bB5C51416078bc95499d2B',
+      },
+    },
+    urls: {
+      subgraph:
+        'https://api.goldsky.com/api/public/project_clqbhfggr3ii501w02mp62ver/subgraphs/polaris-dex-v2-taiko/1.0.0/gn',
+      gaugesSubgraph:
+        'https://api.goldsky.com/api/public/project_clqbhfggr3ii501w02mp62ver/subgraphs/gauges-taiko/1.0.0/gn',
+    },
+    thirdParty: {
+      coingecko: {
+        nativeAssetId: 'eth',
+        platformId: 'taiko',
+      },
+    },
+    averageBlockTime: 30,
+    pools: {},
+    poolsToIgnore: [],
+    sorConnectingTokens: [],
+  },
 };
 
 export const networkAddresses = (

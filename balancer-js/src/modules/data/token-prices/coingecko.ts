@@ -176,6 +176,8 @@ export class CoingeckoPriceRepository implements Findable<Price> {
         return 'aurora';
       case 40:
         return 'telos';
+      case 167000:
+        return 'taiko';
     }
 
     return '2';

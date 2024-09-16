@@ -229,7 +229,8 @@ declare enum Network {
     AVALANCHE = 43114,
     SEPOLIA = 11155111,
     AURORA = 1313161554,
-    TELOS = 40
+    TELOS = 40,
+    TAIKO = 167000
 }
 
 interface JoinPool {

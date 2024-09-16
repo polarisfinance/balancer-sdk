@@ -13,4 +13,5 @@ export enum Network {
   SEPOLIA = 11155111,
   AURORA = 1313161554,
   TELOS = 40,
+  TAIKO = 167000,
 }
