@@ -102,7 +102,7 @@ export class LiquidityGaugeSubgraphRPCProvider
     }
 
     // Kept as a potential fallback for getting rewardData from RPC
-    const l2Chains = [40,16700]
+    const l2Chains = [40, 167000];
     if (l2Chains.includes(this.chainId)) {
       this.rewardData = await this.multicall.getRewardData(
         gaugeAddresses //,
